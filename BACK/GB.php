@@ -433,9 +433,9 @@ echo("</table> ");
                       </a>
           </li>
           <li class="active">
-            <a class="" href="index.html">
+            <a class="" href="voyage.php">
                           <i class="icon_house_alt"></i>
-                          <span>Dashboard</span>
+                          <span>voyage</span>
                       </a>
           </li>
 

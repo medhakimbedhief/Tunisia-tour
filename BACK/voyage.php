@@ -338,12 +338,17 @@
                           <span>randonné et camping </span>
                       </a>
           </li>
-          <li class="active">
-            <a class="" href="voyage.php">
-                          <i class="icon_house_alt"></i>
-                          <span>voyage</span>
+          <li class="sub-menu">
+              <a href="javascript:;" class="">
+                          <i class="icon_document_alt"></i>
+                          <span>Voyage</span>
+                          <span class="menu-arrow arrow_carrot-down"></span>
                       </a>
-          </li>
+              <ul class="sub" style="overflow: hidden; display: block;">
+                <li><a class="" href="GV.php">Tableau</a></li>
+                <li><a class="" href="ajoutV.php">formulaire ajout</a></li>
+              </ul>
+            </li>
 
         </ul>
         <!-- sidebar menu end-->
