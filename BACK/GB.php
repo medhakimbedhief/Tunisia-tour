@@ -16,7 +16,6 @@ if (isset($_POST["titre"])&& isset($_POST["article"]) &&isset($_POST["image"]))
      );
 $blogC->ajouterblog($blog);
 $error = "jawik behy";
-echo($error);
 
  }
  else{
@@ -24,17 +23,7 @@ echo($error);
     
 
  }
-try{
-    $pdo=config::getConnexion();
-    $query= $pdo ->prepare(
-        'SELECT * FROM blog'
-    );
-    $query->execute();
-    $result = $query->fetchAll();
-}
-catch(PDOException $e){
-    $e->getMessage();
-}
+$result=$blogC->afficherblog();
 ?>
 
 <!--echo("<table border='1' align='center'><tr>");
@@ -408,35 +397,42 @@ echo("</table> ");
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
-          <li class="active">
+          <li>
             <a class="" href="index.html">
                           <i class="icon_house_alt"></i>
                           <span>Dashboard</span>
                       </a>
           </li>
-          <li class="active">
+          <li class="sub-menu">
             <a class="" href="GU.php">
                           <i class="icon_house_alt"></i>
                           <span>Gestion des utilisateurs</span>
                       </a>
           </li>
+          <li class="sub-menu">
           <li class="active">
+
             <a class="" href="GB.php">
                           <i class="icon_house_alt"></i>
                           <span>Blog</span>
                       </a>
           </li>
-          <li class="active">
+          <li class="sub-menu">
             <a class="" href="index.html">
                           <i class="icon_house_alt"></i>
                           <span>randonné et camping </span>
                       </a>
           </li>
-          <li class="active">
-            <a class="" href="voyage.php">
-                          <i class="icon_house_alt"></i>
-                          <span>voyage</span>
-                      </a>
+          <li class="sub-menu">
+            <a href="javascript:;" class="">
+                        <i class="icon_document_alt"></i>
+                        <span>Voyage</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
+                    </a>
+            <ul class="sub" >
+              <li><a class="" href="GV.php">Tableau</a></li>
+              <li><a class="" href="ajoutV.php">formulaire ajout</a></li>
+            </ul>
           </li>
 
         </ul>
@@ -459,37 +455,7 @@ echo("</table> ");
           </div>
         </div>
         <!-- page start-->
-        <div class="row">
-              <!-- CKEditor -->
-              <div class="col-lg-12">
-                <section class="panel">
-                <div class="form">
-                     
-                     <div class="form-group">
-                       <form action="GB.php" method="POST">
-                          <div class="col-lg-6">
-                            <h3 style="text-align: left; color: rgb(12, 137, 175) ;">Titre  :</h3>
-                            <input type="text" class="form-control" id="titre" name="titre" placeholder="Titre" style="color: rgb(29, 138, 165);" onfocusout="majus_nom()" Required></input>
-                            <label id="element" name="erreur" style="color: red;display: none;">titre invalide</label>
-                          </div>
-                          <div class="col-sm-10">
-                            <h3 style="text-align: left; color: rgb(12, 137, 175) ;">Sujet :</h3>
-                            <textarea class="form-control ckeditor" name="article" rows="6"></textarea>
-                          </div>
-                          <div class="col-sm-10">
-                              <h2 style="text-align: left; color: rgb(12, 137, 175) ;">Image :</h2>
-                            <input type="file" id="image" name="image" class="form-control" >
-                            <br>
-                            <center><input type="submit" class="btn btn-primary btn-lg" onClick="validation()" ></center>
-
-                          </div> 
-
-                            </form> 
-                    </div>
-                </div>
-              </div> 
-            
-          </div>
+        
 
 
 <!-- table start-->
