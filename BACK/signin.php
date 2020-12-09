@@ -1,37 +1,29 @@
 <?php
   include_once '../FRONT/Models/Utilisateur.php';
   include_once '../FRONT/Controller/UtilisateurC.php';
- $error = "";
- if (isset($_POST["login"]) && isset($_POST["pass"])) 
- {
-    $login=$_POST["login"];
-    $password=$_POST["pass"];
-    $utiC=new UtilisateurC();
-    $pdo=config::getConnexion();
-        $query= $pdo ->prepare("select * from utilisateur where login= '$login' and password= '$password'");
-        $query->execute(['login' => $login]);
-         $result = $query->fetchAll();
-         echo("<table border='1' align='center'><tr>");
-         // output data of each row
-     foreach($result as $rows)
-     {
-         echo ("<td>");
-         echo $rows['CIN'];
-         echo ("</td>");
-         echo ("<td>");
-         echo $rows['nom'];
-         echo ("</td>");
-         echo ("<td>");
-         echo $rows['prenom'];
-         echo ("</td>");
-
-
-     echo("</tr>");
- }
-echo("</table>");}
-
-
-
+  session_start();
+  $message = "";
+  $userC = new UtilisateurC();
+  if (
+      isset($_POST["login"]) &&
+      isset($_POST["pass"])
+  ) {
+      if (
+          !empty($_POST["login"]) &&
+          !empty($_POST["pass"])
+      ) {
+          $message = $userC->connexionUser($_POST["login"], $_POST["pass"]);
+          $_SESSION['e'] = $_POST["login"]; // on stocke dans le tableau une colonne ayant comme nom "e",
+          //  avec l'email à l'intérieur
+          if ($message != 'le login ou le mot de passe est incorrect') {
+              header('Location:../FRONT/index.php');
+          } else {
+              $message = 'le login ou le mot de passe est incorrect';
+          }
+      } else
+          $message = "Missing information";
+      echo ('<script> alert("Vos données sont incorrectes, Veuillez réessayer"); </script>');
+  }
 
 ?>
 <!DOCTYPE html>
@@ -72,7 +64,7 @@ echo("</table>");}
 	
 	<div class="container">
 
-    <form action="signin.php" method="POST">
+    <form action="" method="POST">
     
     
     <div class="login-form">
@@ -83,14 +75,14 @@ echo("</table>");}
         <div class="input-group">
         <span class="input-group-addon"><i class="icon_profile"></i></span>
 
-            <input type="text"  class="form-control"name="login" id="login" onfocusout="vide_log()" Required>
+            <input type="text"  class="form-control"name="login" id="login" placeholder="Username"  onfocusout="vide_log()" >
             <label id="elementlog" name="erreur" style="color: red;display: none;">Ce champ est obligatoire</label> 
         </div>
         Password :
         <br>
 <div class="input-group">
     <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-    <input type="password" id="pass" class="form-control" name="pass" placeholder="password"  onfocusout="vide_pass()"Required>
+    <input type="password" id="pass" class="form-control" name="pass" placeholder="password"  onfocusout="vide_pass()">
     <label id="elementpass" name="erreur" style="color: red;display: none;">Ce champ est obligatoire</label> 
 </div>
 <label class="checkbox">
@@ -99,44 +91,16 @@ echo("</table>");}
             </label>
     
      <input class="btn btn-primary btn-lg btn-block" type="submit" name="submit" value="Se Connecter" onClick="validation()">
+     <a><button class="btn btn-info btn-lg btn-block" formaction="../FRONT/Views/Signup.php" >S'inscrire</button></a>
+     
+
      </div>
     </div>
 
 </form>
-</div>
-<div id="error">
-            
-           
-           
-    <?php echo $error; ?>
-            </div>
-         <!--   <form action="supprimerutilisateur.php" method="POST">
-            <table border="1" align="center"bordercolor="black" bgcolor="white">
-            <tr>
-                <td><label for="Supprimer">Supprimer selon id:
-                            </label></td>
-                            <td><input type="text" name="id" id="id" ></td>
-                            <td>
-                            <input type="submit" value="Supprimer" > 
-                        </td>
-        </tr>
-            </table>
-                </form>
-                <form action="modifierutilisateur.php" method="GET">
-            <table border="1" align="center"bordercolor="black" bgcolor="white">
-            <tr>
-                <td><label for="Modifier">Modifier selon id:
-                            </label></td>
-                            <td><input type="text" name="id" id="id" ></td>
-                            <td>
-                            <input type="submit" value="Modifier" > 
-                        </td>
-        </tr>
-            </table>
-                </form> -->
-            
-
-  
+        </div>
+        <div id="error">
+                    </div>
 </body>
 <script>
         function vide_log() {
