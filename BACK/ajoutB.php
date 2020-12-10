@@ -1,16 +1,29 @@
 <?php
-include_once "config.php" ;
-try{
-    $pdo=config::getConnexion();
-    $query= $pdo ->prepare(
-        'SELECT * FROM utilisateur'
-    );
-    $query->execute();
-    $result = $query->fetchAll();
-}
-catch(PDOException $e){
-    $e->getMessage();
-}
+include_once "../FRONT/Controller/config.php" ;
+include_once "../FRONT/Controller/blogC.php";
+include_once "../FRONT/Models/blogm.php";
+$error ="";
+$blog = null;
+$blogC = new blogC();
+if (isset($_POST["titre"])&& isset($_POST["article"]) &&isset($_POST["image"])) 
+ {
+     $blog = new blog(
+         $_POST['titre'],
+         $_POST['article'],
+         $_POST["image"],
+
+         
+     );
+$blogC->ajouterblog($blog);
+$error = "jawik behy";
+
+ }
+ else{
+    $error = "Missing information";
+    
+
+ }
+$result=$blogC->afficherblog();
 ?>
 
 <!--echo("<table border='1' align='center'><tr>");
@@ -379,6 +392,7 @@ echo("</table> ");
     </header>
     <!--header end-->
 
+    <!--sidebar start-->
     <aside>
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
@@ -439,79 +453,47 @@ echo("</table> ");
             <h3 class="page-header"><i class="fa fa-table"></i> Table</h3>
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
-              <li><i class="fa fa-table"></i>GU</li>
-              
+  
+              <li><i class="fa fa-th-list"></i>GB</li>
             </ol>
           </div>
         </div>
         <!-- page start-->
-
-
-
-
         <div class="row">
-          <div class="col-lg-12">
-            <section class="panel">
-              <header class="panel-heading">
-                Advanced Table
-              </header>
+              <!-- CKEditor -->
+              <div class="col-lg-12">
+                <section class="panel">
+                <div class="form">
+                     
+                     <div class="form-group">
+                       <form action="GB.php" method="POST">
+                          <div class="col-lg-6">
+                            <h3 style="text-align: left; color: rgb(12, 137, 175) ;">Titre  :</h3>
+                            <input type="text" class="form-control" id="titre" name="titre" placeholder="Titre" style="color: rgb(29, 138, 165);" onfocusout="majus_nom()" Required></input>
+                            <label id="element" name="erreur" style="color: red;display: none;">titre invalide</label>
+                          </div>
+                          <div class="col-sm-10">
+                            <h3 style="text-align: left; color: rgb(12, 137, 175) ;">Sujet :</h3>
+                            <textarea class="form-control ckeditor" name="article" rows="6"></textarea>
+                          </div>
+                          <div class="col-sm-10">
+                              <h2 style="text-align: left; color: rgb(12, 137, 175) ;">Image :</h2>
+                            <input type="file" id="image" name="image" class="form-control" >
+                            <br>
+                            <center><input type="submit" class="btn btn-primary btn-lg" onClick="validation()" ></center>
 
-              <table class="table table-striped table-advance table-hover">
-                <tbody>
-                  <tr>
-                    <th><i class="icon_profile"></i>ID</th>
-                    <th><i class="icon_profile"></i> CIN</th>
-                    <th><i class="icon_profile"></i>Nom</th>
-                    <th><i class="icon_profile"></i>Prenom</th>
-                    <th><i class="icon_mobile"></i> Telephone</th>
-                    <th><i class="icon_mail_alt"></i> Email</th>
-                    <th><i class="icon_profile"></i>Login</th>
-                    <th><i class="icon_profile"></i>Password</th>
-                    <th><i class="icon_cogs"></i> Action</th>
-                  </tr>
-                  <?php
-                  foreach($result as $rows)
-{
-echo ("<tr><td>");
-echo $rows['id'];
-echo ("</td>");
-echo ("<td>");
-echo $rows['CIN'];
-echo ("</td>");
-    echo ("<td>");
-    echo $rows['nom'];
-    echo ("</td>");
-    echo ("<td>");
-    echo $rows['prenom'];
-    echo ("</td>");
-    echo ("<td>");
-    echo $rows['telephone'];
-    echo ("</td>");
-    echo ("<td>");
-    echo $rows['email'];
-    echo ("</td>");echo ("<td>");
-    echo $rows['login'];
-    echo ("</td>");
-        echo ("</td>");echo ("<td>");
-        echo $rows['password'];
-    echo ("</td>");
-?>
-                
-                    <td>
-                      <div class="btn-group">
-                        <a class="btn btn-primary" <?php echo("href=../FRONT/Controller/editu.php?id=" .$rows['id']." ") ?>><i class="icon_plus_alt2"></i></a>
-                        <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
-                        <a class="btn btn-danger" <?php echo("href=../FRONT/Controller/delete.php?id=" .$rows['id']." ") ?> ><i class="icon_close_alt2"></i></a>
-                      </div>
-                    </td>
-                  </tr>
-                  
-            <?php } ?>
-                </tbody>
-              </table>
-            </section>
+                          </div> 
+
+                            </form> 
+                    </div>
+                </div>
+              </div> 
+            
           </div>
-        </div>
+
+
+<!-- table start-->
+        
         <!-- page end-->
       </section>
     </section>
@@ -530,13 +512,71 @@ echo ("</td>");
   </section>
   <!-- container section end -->
   <!-- javascripts -->
-  <script src="js/jquery.js"></script>
+  <script>
+        function majus_nom() {
+            var ch = document.getElementById("titre").value;
+            var element = document.getElementById("element");
+            if (ch === "") { element.style.display = "block"; } else { element.style.display = "none"; }
+        }
+        
+        
+            <?php /*
+             $ch =echo(ch);
+               $utiC=new UtilisateurC();
+               $pdo=config::getConnexion();
+                   $query= $pdo ->prepare("select * from utilisateur where login= '$ch' ");
+                   $query->execute(['login' => $ch]);
+                    $result = $query->fetchAll();
+                    foreach($result as $rows)
+                    {
+                    if($rows['login'] == ch) {element.style.display = "block";} else { element.style.display = "none"; }
+                    } 
+                */
+                ?>
+        
+        function validation() {
+            majus_nom();majus_prenom();telephonefc();
+            var error1 = document.getElementById("element");
+            
+
+            if ((error1.style.display == "none"))
+                alert("ok");else alert("Votre blog est mal rempli");
+        }
+    </script>
+    <!-- javascripts -->
+    <script src="js/jquery.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <!-- nicescroll -->
+  <!-- nice scroll -->
   <script src="js/jquery.scrollTo.min.js"></script>
   <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-  <!--custome script for all page-->
+
+  <!-- jquery ui -->
+  <script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+
+  <!--custom checkbox & radio-->
+  <script type="text/javascript" src="js/ga.js"></script>
+  <!--custom switch-->
+  <script src="js/bootstrap-switch.js"></script>
+  <!--custom tagsinput-->
+  <script src="js/jquery.tagsinput.js"></script>
+
+  <!-- colorpicker -->
+
+  <!-- bootstrap-wysiwyg -->
+  <script src="js/jquery.hotkeys.js"></script>
+  <script src="js/bootstrap-wysiwyg.js"></script>
+  <script src="js/bootstrap-wysiwyg-custom.js"></script>
+  <script src="js/moment.js"></script>
+  <script src="js/bootstrap-colorpicker.js"></script>
+  <script src="js/daterangepicker.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <!-- ck editor -->
+  <script type="text/javascript" src="assets/ckeditor/ckeditor.js"></script>
+  <!-- custom form component script for this page-->
+  <script src="js/form-component.js"></script>
+  <!-- custome script for all page -->
   <script src="js/scripts.js"></script>
+  
   <div id="ascrail2000" class="nicescroll-rails"
     style="width: 6px; z-index: 1000; background: rgb(247, 247, 247); cursor: default; position: fixed; top: 0px; height: 100%; right: 0px; opacity: 0;">
     <div

@@ -1,8 +1,21 @@
 <?php
 include_once "config.php" ;
 class blogC{
-
-public function ajouterblog($blog) {
+    public function afficherblog() {
+        try{
+            $result=NULL;
+            $pdo=config::getConnexion();
+            $query= $pdo ->prepare(
+                'SELECT * FROM blog'
+            );
+            $query->execute();
+            return $query->fetchAll();
+        }
+        catch(PDOException $e){
+            $e->getMessage();
+        }
+    }
+    public function ajouterblog($blog) {
     try {
     $sql="insert into blog(titre,article,image) values(:titre,:article,:image)";
     $db=config::getConnexion();

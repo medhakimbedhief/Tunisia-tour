@@ -439,7 +439,7 @@ echo("</table> ");
             <h3 class="page-header"><i class="fa fa-table"></i> Table</h3>
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
-              <li><i class="fa fa-table"></i>GU</li>
+              <li><i class="fa fa-table"></i>GV</li>
               
             </ol>
           </div>
@@ -463,11 +463,11 @@ echo("</table> ");
                     <th><i class="icon_profile"></i> CIN</th>
                     <th><i class="icon_profile"></i>Nom</th>
                     <th><i class="icon_profile"></i>Prenom</th>
-                    <th><i class="icon_mobile"></i> Telephone</th>
-                    <th><i class="icon_mail_alt"></i> Email</th>
-                    <th><i class="icon_profile"></i>Login</th>
-                    <th><i class="icon_profile"></i>Password</th>
-                    <th><i class="icon_cogs"></i> Action</th>
+                    <th><i class="icon_mobile"></i> Te</th>
+                    <th><i class="icon_mail_alt"></i> ..</th>
+                    <th><i class="icon_profile"></i>..</th>
+                    <th><i class="icon_profile"></i>..</th>
+                    <th><i class="icon_cogs"></i> ..</th>
                   </tr>
                   <?php
                   foreach($result as $rows)
