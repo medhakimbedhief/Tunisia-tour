@@ -10,7 +10,7 @@ if (isset($_POST["titre"])&& isset($_POST["article"]) &&isset($_POST["image"]))
      $blog = new blog(
          $_POST['titre'],
          $_POST['article'],
-         $_POST["image"],
+         $_POST["image"]
 
          
      );
@@ -423,16 +423,13 @@ echo("</table> ");
                           <span>randonné et camping </span>
                       </a>
           </li>
-          <li class="sub-menu">
-            <a href="javascript:;" class="">
-                        <i class="icon_document_alt"></i>
-                        <span>Voyage</span>
-                        <span class="menu-arrow arrow_carrot-right"></span>
-                    </a>
-            <ul class="sub" >
-              <li><a class="" href="GV.php">Tableau</a></li>
-              <li><a class="" href="ajoutV.php">formulaire ajout</a></li>
-            </ul>
+
+          <li class="active">
+            <a class="" href="voyage.php">
+                          <i class="icon_house_alt"></i>
+                          <span>Voyage</span>
+                      </a>
+
           </li>
 
         </ul>
