@@ -28,17 +28,18 @@ header('location:../../BACK/signin.php');
 
 ?>
 <!DOCTYPE html>
-<html lang="fr"><!-- Basic -->
+<html lang="en"><!-- Basic -->
 
 
 <head>
 <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
 	<meta name="author" content="GeeksLabs">
 	<meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
 	<link rel="shortcut icon" href="img/favicon.png">
-	<title>SIGN UP page</title>
+	<title>Inscription</title>
 	<!-- Bootstrap CSS -->
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
 	<!-- bootstrap theme -->
@@ -78,44 +79,46 @@ header('location:../../BACK/signin.php');
                     <div class="input-group">
                         <span class="input-group-addon"><i></i></span>
                         <input type="number" class="form-control" id="CIN" name="CIN" placeholder="CIN" minlength="8"
-                            maxlength="8" onfocusout="cinfc()" Required autofocus>
-                        <label id="elementcin" name="erreur" style="color: red;display: none;">Le CIN est erroné</label>
+                            maxlength="8" onfocusout="cinfc()" required >
                     </div>
+                    <label id="elementcin" name="erreur" style="color: red;display: none;">Le CIN est erroné</label>
+
                     Nom :
                     <div class="input-group">
                         <span class="input-group-addon"><i></i></span>
-                        <input type="text" class="form-control" id="nom" name="nom" onfocusout="majus_nom()" Required>
-                        <label id="element" name="erreur" style="color: red;display: none;">Le nom doit commencer par
+                        <input type="text" class="form-control" id="nom" name="nom" onfocusout="majus_nom()" required>
+                    </div>
+                    <label id="element" name="erreur" style="color: red;display: none;">Le nom doit commencer par
                             une
                             majuscule </label>
-                    </div>
+
                     Prenom :
                     <div class="input-group">
                         <span class="input-group-addon"><i></i></span>
-                        <input type="text" class="form-control" id="prenom" name="prenom" onfocusout="majus_prenom()"
-                            Required> <label id="element1" name="erreur" style="color: red;display: none;">Le prenom
+                        <input type="text" class="form-control" id="prenom" name="prenom" onfocusout="majus_prenom()" required> 
+                    </div>
+                    <label id="element1" name="erreur" style="color: red;display: none;">Le prenom
                             doit
                             commencer par une majuscule </label>
-                    </div>
 
                     Email :
                     <div class="input-group">
                         <span class="input-group-addon"><ins></i></span>
                         <input type="email" class="form-control" name="email" id="email" pattern=".+@gmail.com"
-                            placeholder="Enter mail" onfocusout="ad_email()" Required>
-                        <label id="elementemail" name="erreur" style="color: red;display: none;">L'adresse email est
-                            invalide . </label>
+                            placeholder="Enter mail" onfocusout="ad_email()" required>
                     </div>
+                    <label id="elementemail" name="erreur" style="color: red;display: none;">L'adresse email est
+                            invalide . </label>
 
 
                     Telephone :
                     <div class="input-group">
                         <span class="input-group-addon"><i></i></span>
                         <input type="number" class="form-control" id="telephone" name="telephone" placeholder="24123856"
-                            minlength="8" maxlength="8" onfocusout="telephonefc()" Required>
-                        <label id="element2" name="erreur" style="color: red;display: none;">Le numéro de
-                            téléphone est erroné' </label>
+                            minlength="8" maxlength="8" onfocusout="telephonefc()" required>
                     </div>
+                    <label id="element2" name="erreur" style="color: red;display: none;">Le numéro de
+                            téléphone est erroné' </label>
 
                     
                 
@@ -123,26 +126,28 @@ header('location:../../BACK/signin.php');
                     <div class="input-group">
                     <span class="input-group-addon"><i class="icon_profile"></i></span>
                     <input type="text" class="form-control" id="login" name="login" placeholder="Username"
-                        onfocusout="vide_unique_log()" Required>
+                        onfocusout="vide_unique_log()" required>
+                    </div>
                     <label id="elementlog" name="erreur" style="color: red;display: none;">Le login est obligatoire et
                         doit etre unique</label>
-
-                </div>
                 Mot de passe :
                 <div class="input-group">
                     <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                    <input type="password" class="form-control" name="pass" id="pass1" placeholder="Password">
+                    <input type="password" class="form-control" name="pass" id="pass1" placeholder="Password"onfocusout="passf()" required>
                 </div>
                 Confirmer votre mot de passe :
                 <div class="input-group">
                     <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                    <input type="password" class="form-control" id="pass2" placeholder="*****" onfocusout="passf()"
-                        Required> <label id="elementpass" name="erreur" style="color: red;display: none;">Veuillez
+                    <input type="password" class="form-control" id="pass2" placeholder="*****" onfocusout="passf()" required> 
+                        </div>
+                        <label id="elementpass" name="erreur" style="color: red;display: none;">Veuillez
                         verifier votre mot de passe </label>
-                </div>
+                
 
 
                 <input class="btn btn-primary btn-lg btn-block" type="submit" name="submit" value="S'inscrire" onClick="validation()">
+                <a><button class="btn btn-info btn-lg btn-block" formaction="../../BACK/Signin.php" >Se connecter</button></a>
+
             </div>
     </div>
 
