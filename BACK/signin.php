@@ -19,10 +19,11 @@
               header('Location:../FRONT/index.php');
           } else {
               $message = 'le login ou le mot de passe est incorrect';
+              echo ('<script> alert("Vos données sont incorrectes, Veuillez réessayer"); </script>');
+
           }
       } else
           $message = "Missing information";
-      echo ('<script> alert("Vos données sont incorrectes, Veuillez réessayer"); </script>');
   }
 
 ?>
@@ -76,15 +77,16 @@
         <span class="input-group-addon"><i class="icon_profile"></i></span>
 
             <input type="text"  class="form-control"name="login" id="login" placeholder="Username"  onfocusout="vide_log()" >
-            <label id="elementlog" name="erreur" style="color: red;display: none;">Ce champ est obligatoire</label> 
         </div>
+        <label id="elementlog" name="erreur" style="color: red;display: none;">Ce champ est obligatoire</label> 
         Password :
         <br>
-<div class="input-group">
-    <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-    <input type="password" id="pass" class="form-control" name="pass" placeholder="password"  onfocusout="vide_pass()">
-    <label id="elementpass" name="erreur" style="color: red;display: none;">Ce champ est obligatoire</label> 
+        <div class="input-group">
+        <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+        <input type="password" id="pass" class="form-control" name="pass" placeholder="password"  onfocusout="vide_pass()">
 </div>
+<label id="elementpass" name="erreur" style="color: red;display: none;">Ce champ est obligatoire</label> 
+
 <label class="checkbox">
                 <input type="checkbox" value="remember-me"> Remember me
                 <span class="pull-right"> <a href="#"> Forgot Password?</a></span>
