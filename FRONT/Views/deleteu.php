@@ -1,11 +1,12 @@
 <?php
-    include_once 'UtilisateurC.php';
+  include_once '../Models/Utilisateur.php';
+  include_once '../Controller/UtilisateurC.php';
 
  $userC = new UtilisateurC();
  if (isset($_GET['id'])) // get id through query string
  {
 $id = $_GET['id']; 
-$userC->deleteUser($id);
+$userC->supprimerutilisateur($id);
 header("location: ../../BACK/GU.php"); // redirects to all records page
  
 }

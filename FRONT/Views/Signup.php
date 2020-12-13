@@ -5,7 +5,7 @@
  $utilisateur = null;
  $utilisateurC = new UtilisateurC();
 
- if (isset($_POST["CIN"]) &&isset($_POST["nom"])&& isset($_POST["prenom"]) &&isset($_POST["telephone"])  && isset($_POST["email"]) &&  isset($_POST["login"]) && isset($_POST["pass"])) 
+ if (isset($_POST["CIN"]) &&isset($_POST["nom"])&& isset($_POST["prenom"]) &&isset($_POST["telephone"])  && isset($_POST["email"]) &&  isset($_POST["login"]) && isset($_POST["pass"])&& !empty($_POST["CIN"]) &&!empty($_POST["nom"])&& !empty($_POST["prenom"]) &&!empty($_POST["telephone"])  && !empty($_POST["email"]) &&  !empty($_POST["login"]) && !empty($_POST["pass"])) 
  {
     if($utilisateurC->unique_log($_POST["login"])==false)
     {
@@ -97,14 +97,14 @@ header('location:../../BACK/signin.php');
                     <div class="input-group">
                         <span class="input-group-addon"><i></i></span>
                         <input type="number" class="form-control" id="CIN" name="CIN" placeholder="CIN" minlength="8"
-                            maxlength="8" onfocusout="cinfc()" required >
+                            maxlength="8" onfocusout="cinfc()" >
                     </div>
                     <label id="elementcin" name="erreur" style="color: red;display: none;">Le CIN est erroné</label>
 
                     Nom :
                     <div class="input-group">
                         <span class="input-group-addon"><i></i></span>
-                        <input type="text" class="form-control" id="nom" name="nom" onfocusout="majus_nom()" required>
+                        <input type="text" class="form-control" id="nom" name="nom" onfocusout="majus_nom()" >
                     </div>
                     <label id="element" name="erreur" style="color: red;display: none;">Le nom doit commencer par
                             une
@@ -113,7 +113,7 @@ header('location:../../BACK/signin.php');
                     Prenom :
                     <div class="input-group">
                         <span class="input-group-addon"><i></i></span>
-                        <input type="text" class="form-control" id="prenom" name="prenom" onfocusout="majus_prenom()" required> 
+                        <input type="text" class="form-control" id="prenom" name="prenom" onfocusout="majus_prenom()" > 
                     </div>
                     <label id="element1" name="erreur" style="color: red;display: none;">Le prenom
                             doit
@@ -123,7 +123,7 @@ header('location:../../BACK/signin.php');
                     <div class="input-group">
                         <span class="input-group-addon"><ins></i></span>
                         <input type="email" class="form-control" name="email" id="email" pattern=".+@gmail.com"
-                            placeholder="Enter mail" onfocusout="ad_email()" required>
+                            placeholder="Enter mail" onfocusout="ad_email()" >
                     </div>
                     <label id="elementemail" name="erreur" style="color: red;display: none;">L'adresse email est
                             invalide . </label>
@@ -133,7 +133,7 @@ header('location:../../BACK/signin.php');
                     <div class="input-group">
                         <span class="input-group-addon"><i></i></span>
                         <input type="number" class="form-control" id="telephone" name="telephone" placeholder="24123856"
-                            minlength="8" maxlength="8" onfocusout="telephonefc()" required>
+                            minlength="8" maxlength="8" onfocusout="telephonefc()" >
                     </div>
                     <label id="element2" name="erreur" style="color: red;display: none;">Le numéro de
                             téléphone est erroné' </label>
@@ -144,19 +144,19 @@ header('location:../../BACK/signin.php');
                     <div class="input-group">
                     <span class="input-group-addon"><i class="icon_profile"></i></span>
                     <input type="text" class="form-control" id="login" name="login" placeholder="Username"
-                        onfocusout="vide_unique_log()" required>
+                        onfocusout="vide_unique_log()" >
                     </div>
                     <label id="elementlog" name="erreur" style="color: red;display: none;">Le login est obligatoire et
                         doit etre unique</label>
                 Mot de passe :
                 <div class="input-group">
                     <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                    <input type="password" class="form-control" name="pass" id="pass1" placeholder="Password"onfocusout="passf()" required>
+                    <input type="password" class="form-control" name="pass" id="pass1" placeholder="Password"onfocusout="passf()" >
                 </div>
                 Confirmer votre mot de passe :
                 <div class="input-group">
                     <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-                    <input type="password" class="form-control" id="pass2" placeholder="*****" onfocusout="passf()" required> 
+                    <input type="password" class="form-control" id="pass2" placeholder="*****" onfocusout="passf()" > 
                         </div>
                         <label id="elementpass" name="erreur" style="color: red;display: none;">Veuillez
                         verifier votre mot de passe </label>
@@ -224,7 +224,7 @@ header('location:../../BACK/signin.php');
             var ch1 = document.getElementById("prenom").value;
 
             if ((error0.style.display == "none") && (error1.style.display == "none") && (error2.style.display == "none")  && (error3.style.display == "none") && (error6.style.display == "none") && (error7.style.display == "none") && (error8.style.display == "none"))
-                alert("Bienvenue" + ch + ch1); else alert("Votre formulaire est mal rempli");
+                {alert("Formulaire bien rempli");} else alert("Votre formulaire est mal rempli");
         }
     </script>
     </form>
