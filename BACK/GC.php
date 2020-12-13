@@ -1,29 +1,11 @@
 <?php
 include_once "../FRONT/Controller/config.php" ;
-include_once "../FRONT/Controller/blogC.php";
-include_once "../FRONT/Models/blogm.php";
+include_once "../FRONT/Controller/commentC.php";
+include_once "../FRONT/Models/commentm.php";
 $error ="";
-$blog = null;
-$blogC = new blogC();
-if (isset($_POST['titre'])&& isset($_POST['article']) &&isset($_POST['image'])) 
- {
-     $blog = new blog(
-         $_POST['titre'],
-         $_POST['article'],
-         $_POST['image']
-
-     );
-$blogC->ajouterblog($blog);
-$error = "jawik behy";
-echo $error;
- }
- else{
-    $error = "Missing information";
-    echo $error;
-
-
- }
-$result=$blogC->afficherblog();
+$comment = null;
+$commentC = new commentC();
+$result=$commentC->affichercomment();
 ?>
 
 <!--echo("<table border='1' align='center'><tr>");
@@ -397,7 +379,7 @@ echo("</table> ");
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
-          <li class="active">
+          <li>
             <a class="" href="index.html">
                           <i class="icon_house_alt"></i>
                           <span>Dashboard</span>
@@ -405,21 +387,17 @@ echo("</table> ");
           </li>
           <li class="sub-menu">
             <a class="" href="GU.php">
-                          <i class="icon_table"></i>
+                          <i class="icon_house_alt"></i>
                           <span>Gestion des utilisateurs</span>
                       </a>
           </li>
           <li class="sub-menu">
-            <a href="javascript:;" class="">
-              <i class="icon_house_alt"></i>
-                          <span>Blog</span>
-                          <span class="menu-arrow arrow_carrot-right"></span>
-                      </a>
-                      <ul class="sub">
-                        <li><a class=""href="GB.php"> Table</a></li>
-                        <li><a class=""href="ajoutB.php"> formulaire ajout </a></li>
+          <li class="active">
 
-                      </ul>
+            <a class="" href="GB.php">
+                          <i class="icon_house_alt"></i>
+                          <span>Blog</span>
+                      </a>
           </li>
           <li class="sub-menu">
             <a class="" href="index.html">
@@ -459,41 +437,56 @@ echo("</table> ");
           </div>
         </div>
         <!-- page start-->
-        <div class="row">
-              <!-- CKEditor -->
-              <div class="col-lg-12">
-                <section class="panel">
-                <div class="form">
-                     
-                     <div class="form-group">
-                       <form action="GB.php" method="POST">
-                          <div class="col-lg-6">
-                            <h3 style="text-align: left; color: rgb(12, 137, 175) ;">Titre  :</h3>
-                            <input type="text" class="form-control" id="titre" name="titre" placeholder="Titre" style="color: rgb(29, 138, 165);" onfocusout="majus_nom()" Required></input>
-                            <label id="element" name="erreur" style="color: red;display: none;">titre invalide</label>
-                          </div>
-                          <div class="col-sm-10">
-                            <h3 style="text-align: left; color: rgb(12, 137, 175) ;">Sujet :</h3>
-                            <textarea class="form-control ckeditor" name="article" rows="6"></textarea>
-                          </div>
-                          <div class="col-sm-10">
-                              <h2 style="text-align: left; color: rgb(12, 137, 175) ;">Image :</h2>
-                            <input type="file" id="image" name="image" class="form-control" >
-                            <br>
-                            <center><input type="submit" class="btn btn-primary btn-lg" onClick="validation()" ></center>
-
-                          </div> 
-
-                            </form> 
-                    </div>
-                </div>
-              </div> 
-            
-          </div>
+        
 
 
 <!-- table start-->
-        
+        <div class="row">
+          <div class="col-lg-12">
+            <section class="panel">
+              <header class="panel-heading">
+                Advanced Table
+              </header>
+
+              <table class="table table-striped table-advance table-hover">
+                <tbody>
+                  <tr>
+                    
+                    <th><i class="icon_profile"></i> commentaire</th>
+                    <th><i class="icon_profile"></i>blog id</th>
+                    <th><i class="icon_profile"></i>nom client:</th>
+                    <th><i class="icon_cogs"></i> Action</th>
+                  </tr>
+                  <?php
+                  foreach($result as $rows)
+{
+echo ("<tr><td>");
+echo $rows['text'];
+echo ("</td>");
+    echo ("<td>");
+    echo $rows['id_b'];
+    echo ("</td>");
+    echo ("<td>");
+    echo $rows['nom_u'];
+    echo ("</td>");
+
+?>
+                
+                    <td>
+                      <div class="btn-group">
+                        <a class="btn btn-primary" <?php echo("href=../FRONT/Controller/editb.php?id=" .$rows['id']." ") ?>><i class="icon_plus_alt2"></i></a>
+                        <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
+                        <a class="btn btn-danger" <?php echo("href=../FRONT/Controller/deletec.php?id=" .$rows['id']." ") ?> ><i class="icon_close_alt2"></i></a>
+                      </div>
+                    </td>
+                  </tr>
+                  
+            <?php } ?>
+                </tbody>
+              </table>
+            </section>
+          </div>
+        </div>
         <!-- page end-->
       </section>
     </section>
@@ -518,10 +511,27 @@ echo("</table> ");
             var element = document.getElementById("element");
             if (ch === "") { element.style.display = "block"; } else { element.style.display = "none"; }
         }
-
+        
+        
+            <?php /*
+             $ch =echo(ch);
+               $utiC=new UtilisateurC();
+               $pdo=config::getConnexion();
+                   $query= $pdo ->prepare("select * from utilisateur where login= '$ch' ");
+                   $query->execute(['login' => $ch]);
+                    $result = $query->fetchAll();
+                    foreach($result as $rows)
+                    {
+                    if($rows['login'] == ch) {element.style.display = "block";} else { element.style.display = "none"; }
+                    } 
+                */
+                ?>
+        
         function validation() {
-            majus_nom();
+            majus_nom();majus_prenom();telephonefc();
             var error1 = document.getElementById("element");
+            
+
             if ((error1.style.display == "none"))
                 alert("ok");else alert("Votre blog est mal rempli");
         }
