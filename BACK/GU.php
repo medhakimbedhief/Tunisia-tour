@@ -500,7 +500,7 @@ echo ("</td>");
                     <td>
                       <div class="btn-group">
                         <a class="btn btn-primary" <?php echo("href=../FRONT/Views/editu.php?id=" .$rows['id']." ") ?>><i class="icon_plus_alt2"></i></a>
-                        <a class="btn btn-danger" <?php echo("href=../FRONT/Controller/delete.php?id=" .$rows['id']." ") ?> ><i class="icon_close_alt2"></i></a>
+                        <a class="btn btn-danger" <?php echo("href=../FRONT/Views/deleteu.php?id=" .$rows['id']." ") ?> ><i class="icon_close_alt2"></i></a>
                       </div>
                     </td>
                   </tr>
