@@ -116,14 +116,8 @@ include_once "config.php" ;
                             'id' => $id
                         ]); 
             }
-            public function deleteUser($id) {
-                $sql="delete  from utilisateur where id= '$id' ";
-                $db=config::getConnexion();
-                $query=$db->prepare($sql);
-                $query->execute([
-                        'id' => $id]);
-            }
-   public  function unique_log($ch) {
+
+                public  function unique_log($ch) {
                $utiC=new UtilisateurC();
                $pdo=config::getConnexion();
                    $query= $pdo ->prepare("select * from utilisateur where login= '$ch' ");
@@ -133,9 +127,28 @@ include_once "config.php" ;
                     {
                     if($rows['login'] == $ch) {
                         return true;
-                    }
+                    }else {return false; } 
                 }}
-        }
+                function connexionUser($login,$password){
+                    $sql="SELECT * FROM utilisateur WHERE login='" . $login . "' and password = '". $password."'";
+                    $db = config::getConnexion();
+                    try{
+                        $query=$db->prepare($sql);
+                        $query->execute();
+                        $count=$query->rowCount();
+                        if($count==0) {
+                            $message = "le login ou le mot de passe est incorrect";
+                        } else {
+                            $x=$query->fetch();
+                            $message = $x['role'];
+                        }
+                    }
+                    catch (Exception $e){
+                            $message= " ".$e->getMessage();
+                    }
+                  return $message;
+                }
+    }
 
     
     ?>

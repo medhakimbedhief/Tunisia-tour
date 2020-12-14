@@ -5,7 +5,7 @@
  $utilisateur = null;
  $utilisateurC = new UtilisateurC();
 
- if (isset($_POST["CIN"]) &&isset($_POST["nom"])&& isset($_POST["prenom"]) &&isset($_POST["telephone"]) && isset($_POST["dateNais"]) && isset($_POST["email"]) && isset($_POST["adresse"]) && isset($_POST["login"]) && isset($_POST["pass"])) 
+ if (isset($_POST["CIN"]) &&isset($_POST["nom"])&& isset($_POST["prenom"]) &&isset($_POST["telephone"])  && isset($_POST["email"]) &&  isset($_POST["login"]) && isset($_POST["pass"])&& !empty($_POST["CIN"]) &&!empty($_POST["nom"])&& !empty($_POST["prenom"]) &&!empty($_POST["telephone"])  && !empty($_POST["email"]) &&  !empty($_POST["login"]) && !empty($_POST["pass"])) 
  {
     if($utilisateurC->unique_log($_POST["login"])==false)
     {
@@ -14,14 +14,31 @@
          $_POST['nom'],
          $_POST['prenom'],
          $_POST["telephone"],
-         $_POST['dateNais'], 
          $_POST['email'],
-         $_POST['adresse'],
          $_POST['login'],
          $_POST['pass']
          
      );
 $utilisateurC->ajouterUtilisateur($utilisateur);
+header('location:../../BACK/signin.php');
+
+
+//envoi d'un email d'inscription
+        $to_email =$_POST['email'];
+        $subject = 'Inscription valide';
+        $message = 'Bonjour nous voudrons vous informez que vous etes bien inscrit dans notre site TUNISIA TOUR';
+        $headers = ' ';
+        //check if the email address is invalid $secure_check
+        $secure_check = sanitize_my_email($to_email);
+        if ($secure_check == false) {
+            echo "adresse email invalide";
+        } else { //send email 
+            mail($to_email, $subject, $message, $headers);
+            echo ('<script> alert("Nous vous avons envoyer un mail"); </script>');
+        }
+
+
+
     }else {echo('<script> alert("Compte existant"); </script>');}
  }
 
@@ -29,17 +46,18 @@ $utilisateurC->ajouterUtilisateur($utilisateur);
 
 ?>
 <!DOCTYPE html>
-<html lang="fr"><!-- Basic -->
+<html lang="en"><!-- Basic -->
 
 
 <head>
 <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
 	<meta name="author" content="GeeksLabs">
 	<meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
 	<link rel="shortcut icon" href="img/favicon.png">
-	<title>SIGN UP page</title>
+	<title>Inscription</title>
 	<!-- Bootstrap CSS -->
 	<link href="../css/bootstrap.min.css" rel="stylesheet">
 	<!-- bootstrap theme -->
@@ -67,139 +85,93 @@ $utilisateurC->ajouterUtilisateur($utilisateur);
 </head>
 
 <body class="login-img3-body">
-	<!-- Start header -->
-    
+    <!-- Start header -->
+
     <div class="container">
 
-<form action="Signup.php" method="POST">
-<div class="login-form">
-    <div class="login-wrap">
-        <p class="login-img"><i class="icon_lock_alt"></i></p>
-        Cin:
-        <div class="input-group">
-            <span class="input-group-addon"><i></i></span>
-            <input type="number" class="form-control" id="CIN" name="CIN" placeholder="CIN" minlength="8"
-                maxlength="8" onfocusout="cinfc()" Required autofocus>
-            <label id="elementcin" name="erreur" style="color: red;display: none;">Le CIN est erroné</label>
-        </div>
-        Nom :
-        <div class="input-group">
-            <span class="input-group-addon"><i></i></span>
-            <input type="text" class="form-control" id="nom" name="nom" onfocusout="majus_nom()" Required>
-            <label id="element" name="erreur" style="color: red;display: none;">Le nom doit commencer par une
-                majuscule </label>
-        </div>
-        Prenom :
-        <div class="input-group">
-            <span class="input-group-addon"><i></i></span>
-            <input type="text" class="form-control" id="prenom" name="prenom" onfocusout="majus_prenom()"
-                Required> <label id="element1" name="erreur" style="color: red;display: none;">Le prenom doit
-                commencer par une majuscule </label>
-        </div>
-        DateNais :
-        <div class="input-group">
-            <span class="input-group-addon"><i></i></span>
-            <input type="date" class="form-control" id="dateNais" name="dateNais" onfocusout="age()" Required>
-            <label id="elementdate" name="erreur" style="color: red;display: none;">date invalide </label>
-        </div>
-        Email :
-        <div class="input-group">
-            <span class="input-group-addon"><ins></i></span>
-            <input type="email" class="form-control" name="email" id="email" pattern=".+@gmail.com"
-                placeholder="Enter mail" onfocusout="ad_email()" Required>
-            <label id="elementemail" name="erreur" style="color: red;display: none;">L'adresse email est
-                invalide . </label>
-        </div>
-        
-        Sexe :
-        <div class="input-group">
-        <label class="checkbox">
-            <input type="radio" class="form-control" name="genre" value="f" checked>
-            Femme
-            <input type="radio"class="form-control" name="genre" value="h">
-            Homme
-        </label>
-        </div>
-        Telephone :
-        <div class="input-group">
-            <span class="input-group-addon"><i></i></span>
-            <input type="number" class="form-control" id="telephone" name="telephone" placeholder="24123856"
-                minlength="8" maxlength="8" onfocusout="telephonefc()" Required>
-            <label id="element2" name="erreur" style="color: red;display: none;">Le numéro de
-                téléphone est erroné' </label>
-        </div>
-        Profession :
-        <div class="input-group">
-            <select id="profession" onfocusout="prof()" Required>
-                <option value="select">select</option>
-                <option value="client">Client</option>
-                <option value="administrateur">Administrateur</option>
-            </select>
-        </div>
-        <label id="elementpr" name="erreur" style="color: red;display: none;">Veuillez choisir un type </label>
-    </div>
-    Adresse:
+        <form action="Signup.php" method="POST">
+            <div class="login-form">
+                <div class="login-wrap">
+                    <p class="login-img"><i class="icon_lock_alt"></i></p>
+                    Cin:
+                    <div class="input-group">
+                        <span class="input-group-addon"><i></i></span>
+                        <input type="number" class="form-control" id="CIN" name="CIN" placeholder="CIN" minlength="8"
+                            maxlength="8" onfocusout="cinfc()" >
+                    </div>
+                    <label id="elementcin" name="erreur" style="color: red;display: none;">Le CIN est erroné</label>
 
-    <div class="input-group">
-        <span class="input-group-addon"></span>
-        <textarea name="adresse" class="form-control" id="adresse" cols="30" rows="10" Required></textarea>
-    </div>
-    <div class="input-group">
-        <span class="input-group-addon"><i class="icon_profile"></i></span>
-        <input type="text" class="form-control" id="login" name="login" placeholder="Username" onfocusout="vide_unique_log()"Required>
-        <label id="elementlog" name="erreur" style="color: red;display: none;">Le login est obligatoire et doit etre unique</label>
+                    Nom :
+                    <div class="input-group">
+                        <span class="input-group-addon"><i></i></span>
+                        <input type="text" class="form-control" id="nom" name="nom" onfocusout="majus_nom()" >
+                    </div>
+                    <label id="element" name="erreur" style="color: red;display: none;">Le nom doit commencer par
+                            une
+                            majuscule </label>
 
-    </div>
-    <div class="input-group">
-        <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-        <input type="password" class="form-control" name="pass" id="pass1" placeholder="Password">
-    </div>
-    confirmer mot de passe:
-    <div class="input-group">
-        <span class="input-group-addon"><i class="icon_key_alt"></i></span>
-    <input type="password" class="form-control" id="pass2" placeholder="*****" onfocusout="passf()" Required> <label id="elementpass" name="erreur"
-            style="color: red;display: none;">Veuillez verifier votre mot de passe </label>
-    </div>
+                    Prenom :
+                    <div class="input-group">
+                        <span class="input-group-addon"><i></i></span>
+                        <input type="text" class="form-control" id="prenom" name="prenom" onfocusout="majus_prenom()" > 
+                    </div>
+                    <label id="element1" name="erreur" style="color: red;display: none;">Le prenom
+                            doit
+                            commencer par une majuscule </label>
+
+                    Email :
+                    <div class="input-group">
+                        <span class="input-group-addon"><ins></i></span>
+                        <input type="email" class="form-control" name="email" id="email" pattern=".+@gmail.com"
+                            placeholder="Enter mail" onfocusout="ad_email()" >
+                    </div>
+                    <label id="elementemail" name="erreur" style="color: red;display: none;">L'adresse email est
+                            invalide . </label>
 
 
-            <input class="btn btn-primary btn-lg btn-block" type="submit" name="submit" value="S'inscrire" onClick="validation()">
+                    Telephone :
+                    <div class="input-group">
+                        <span class="input-group-addon"><i></i></span>
+                        <input type="number" class="form-control" id="telephone" name="telephone" placeholder="24123856"
+                            minlength="8" maxlength="8" onfocusout="telephonefc()" >
+                    </div>
+                    <label id="element2" name="erreur" style="color: red;display: none;">Le numéro de
+                            téléphone est erroné' </label>
+
+                    
+                
+                    Login :
+                    <div class="input-group">
+                    <span class="input-group-addon"><i class="icon_profile"></i></span>
+                    <input type="text" class="form-control" id="login" name="login" placeholder="Username"
+                        onfocusout="vide_unique_log()" >
+                    </div>
+                    <label id="elementlog" name="erreur" style="color: red;display: none;">Le login est obligatoire et
+                        doit etre unique</label>
+                Mot de passe :
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                    <input type="password" class="form-control" name="pass" id="pass1" placeholder="Password"onfocusout="passf()" >
+                </div>
+                Confirmer votre mot de passe :
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="icon_key_alt"></i></span>
+                    <input type="password" class="form-control" id="pass2" placeholder="*****" onfocusout="passf()" > 
+                        </div>
+                        <label id="elementpass" name="erreur" style="color: red;display: none;">Veuillez
+                        verifier votre mot de passe </label>
+                
+
+
+                <input class="btn btn-primary btn-lg btn-block" type="submit" name="submit" value="S'inscrire" onClick="validation()">
+                <a><button class="btn btn-info btn-lg btn-block" formaction="../../BACK/Signin.php" >Se connecter</button></a>
+
             </div>
     </div>
 
 
-</form>
-</div>
-<!-- <div id="error">
-            
-            <a href="../Views/afficher.php"> afficher ma base de donnees</a><br>
-           
-    <?php// echo $error; ?>
-            </div>
-            <form action="supprimerutilisateur.php" method="POST">
-            <table border="1" align="center">
-            <tr>
-                <td><label for="Supprimer">Supprimer selon id:
-                            </label></td>
-                            <td><input type="text" name="id" id="id" ></td>
-                            <td>
-                            <input type="submit" value="Supprimer" > 
-                        </td>
-        </tr>
-            </table>
-                </form>
-                <form action="modifierutilisateur.php" method="GET">
-            <table border="1" align="center">
-            <tr>
-                <td><label for="Modifier">Modifier selon id:
-                            </label></td>
-                            <td><input type="text" name="id" id="id" ></td>
-                            <td>
-                            <input type="submit" value="Modifier" > 
-                        </td>
-        </tr>
-            </table>
-                </form>-->
-            
+    </form>
+    </div>
     <script>
         function majus_nom() {
             var ch = document.getElementById("nom").value;
@@ -216,27 +188,17 @@ $utilisateurC->ajouterUtilisateur($utilisateur);
             var element = document.getElementById("elementemail");
             if (expressionReguliere.test(document.getElementById("email").value)) { element.style.display = "none"; } else { element.style.display = "block"; }
         }
-        function age() {
-            var today = new Date();
-            var element = document.getElementById("elementdate");
-            var dateNais = document.querySelector("#dateNais").value;
-            dateNais = new Date(dateNais);
-            if ((today.getFullYear() - dateNais.getFullYear()) < 0) { element.style.display = "block"; } else { element.style.display = "none"; }
-        }
+        
         function telephonefc() {
             var element = document.getElementById("element2");
-            if ( Number(document.getElementById("telephone").value) < 10000000) { element.style.display = "block"; } else { element.style.display = "none"; }
+            if (Number(document.getElementById("telephone").value) < 10000000) { element.style.display = "block"; } else { element.style.display = "none"; }
         }
         function cinfc() {
             var element = document.getElementById("elementcin");
-            if ( Number(document.getElementById("CIN").value) < 10000000) { element.style.display = "block"; } else { element.style.display = "none"; }
-        }
-        function prof() {
-            var pr = document.getElementById("profession").value;
-            var element = document.getElementById("elementpr");
-            if (pr === "select") { element.style.display = "block"; } else { element.style.display = "none"; }
+            if (Number(document.getElementById("CIN").value) < 10000000) { element.style.display = "block"; } else { element.style.display = "none"; }
         }
         
+
         function passf() {
             var ch1 = document.getElementById("pass1").value;
             var ch2 = document.getElementById("pass2").value;
@@ -247,15 +209,13 @@ $utilisateurC->ajouterUtilisateur($utilisateur);
             var ch = document.getElementById("login").value;
             var element = document.getElementById("elementlog");
             if (ch === "") { element.style.display = "block"; } else { element.style.display = "none"; }
-            
-        } 
+
+        }
         function validation() {
-            majus_nom();majus_prenom();ad_email();age();telephonefc();cinfc();prof();passf();vide_unique_log();
+            majus_nom(); majus_prenom(); ad_email();  telephonefc(); cinfc();  passf(); vide_unique_log();
             var error1 = document.getElementById("element");
             var error2 = document.getElementById("element1");
             var error3 = document.getElementById("element2");
-            var error4 = document.getElementById("elementdate");
-            var error5 = document.getElementById("elementpr");
             var error6 = document.getElementById("elementemail");
             var error7 = document.getElementById("elementpass");
             var error8 = document.getElementById("elementlog");
@@ -263,12 +223,11 @@ $utilisateurC->ajouterUtilisateur($utilisateur);
             var ch = document.getElementById("nom").value;
             var ch1 = document.getElementById("prenom").value;
 
-            if ((error0.style.display == "none") &&(error1.style.display == "none") && (error2.style.display == "none") && (error4.style.display == "none") && (error3.style.display == "none") && (error5.style.display == "none")  && (error6.style.display == "none")&& (error7.style.display == "none")&& (error8.style.display == "none"))
-                alert("Bienvenue" + ch + ch1);else alert("Votre formulaire est mal rempli");
+            if ((error0.style.display == "none") && (error1.style.display == "none") && (error2.style.display == "none")  && (error3.style.display == "none") && (error6.style.display == "none") && (error7.style.display == "none") && (error8.style.display == "none"))
+                {alert("Formulaire bien rempli");} else alert("Votre formulaire est mal rempli");
         }
     </script>
     </form>
 </body>
-
 
 </html>

@@ -2,7 +2,13 @@
   include_once '.\Controller\blogC.php ';
 $blogC = new blogC();
 $blog=$blogC->afficherblog();
-
+// On prolonge la session
+session_start();
+// On teste si la variable de session existe et contient une valeur
+if (empty($_SESSION['e'])) {
+	// Si inexistante ou nulle, on redirige vers le formulaire de login
+	header('Location:../BACK/signin.php');
+}
 ?>
 <!doctype html>
 <html class="no-js"  lang="fr">
@@ -102,7 +108,7 @@ $blog=$blogC->afficherblog();
 										<li class="smooth-menu"><a href="#blog">Blog</a></li>
 										<li class="smooth-menu"><a href="#subs">subscription</a></li>
 										<li>
-											<a href="../BACK/login.html"><button class="book-btn">book now 
+											<a href="../FRONT/Views/dex.php"><button class="book-btn">Déconnexion
 											</button></a>
 										</li><!--/.project-btn--> 
 									</ul>
@@ -667,6 +673,8 @@ $blog=$blogC->afficherblog();
 				<div class="gallery-details">
 					<div class="gallary-header text-center">
 						<h2>
+							<?php 	echo 'Bienvenue  ', $_SESSION['e']; ?>
+							<br>
 							top destination
 						</h2>
 						<p>
@@ -1395,9 +1403,9 @@ $blog=$blogC->afficherblog();
 														<?php echo $rows['titre'];?>
 													</a>
 												</h3>
-												<p>
+												
 														<?php echo $rows['article'];?>
-												</p>
+												
 												<a href="Views/blog.php">Read More</a>
 											</div><!--/.blog-txt-->
 										</div><!--/.caption-->
