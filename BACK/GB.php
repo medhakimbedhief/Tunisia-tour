@@ -5,24 +5,6 @@ include_once "../FRONT/Models/blogm.php";
 $error ="";
 $blog = null;
 $blogC = new blogC();
-if (isset($_POST["titre"])&& isset($_POST["article"]) &&isset($_POST["image"])) 
- {
-     $blog = new blog(
-         $_POST['titre'],
-         $_POST['article'],
-         $_POST["image"]
-
-         
-     );
-$blogC->ajouterblog($blog);
-$error = "jawik behy";
-
- }
- else{
-    $error = "Missing information";
-    
-
- }
 $result=$blogC->afficherblog();
 ?>
 
