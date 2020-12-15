@@ -132,15 +132,15 @@ $nom_u=$_SESSION['e'];
                             </div><!-- /.navbar-header-->
                             <div class="collapse navbar-collapse">
                                 <ul class="nav navbar-nav navbar-right">
-                                    <li class=""><a href="../index.php">home</a></li>
+                                    <li class=""><a href="../index1.php">home</a></li>
                                     <li class=""><a href="#footer">Destination</a></li>
                                     <li class=""><a href="#footer">Packages </a></li>
                                     <li class=""><a href="#footer">Special Offers</a></li>
                                     <li class="smooth-menu"><a href="#blog">blog</a></li>
                                     <li class=""><a href="#footer">subscription</a></li>
                                     <li>
-                                        <a href="../NiceAdmin/login.html"><button class="book-btn">book now
-                                            </button></a>
+                                    <a href="../FRONT/Views/dex.php"><button class="book-btn">Déconnexion
+											</button></a>
                                     </li>
                                     <!--/.project-btn-->
                                 </ul>

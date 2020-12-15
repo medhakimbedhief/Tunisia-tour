@@ -23,7 +23,7 @@ $utilisateurC->ajouterUtilisateur($utilisateur);
 header('location:../../BACK/signin.php');
 
 
-//envoi d'un email d'inscription
+/*envoi d'un email d'inscription
         $to_email =$_POST['email'];
         $subject = 'Inscription valide';
         $message = 'Bonjour nous voudrons vous informez que vous etes bien inscrit dans notre site TUNISIA TOUR';
@@ -35,7 +35,7 @@ header('location:../../BACK/signin.php');
         } else { //send email 
             mail($to_email, $subject, $message, $headers);
             echo ('<script> alert("Nous vous avons envoyer un mail"); </script>');
-        }
+        }*/
 
 
 
