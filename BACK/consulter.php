@@ -1,8 +1,8 @@
 <?PHP
 include  '../FRONT/Controller/voyageC.php';
 
-$voyageC = new voyageC();
-$listeUsers = $voyageC->affichervoyages();
+$voyagesC = new voyagesC();
+$listeUsers = $voyagesC->affichervoyages();
 
 ?>
 
@@ -15,7 +15,7 @@ $listeUsers = $voyageC->affichervoyages();
 </head>
 
 <body>
-	<button><a href="ajoutV.php">Ajouter un voyage</a></button>
+	<button><a href="ajoutV.php">Ajouter un voyages</a></button>
 	<hr>
 	<table border=1 align='center'>
 		<tr>
@@ -38,13 +38,13 @@ $listeUsers = $voyageC->affichervoyages();
 				<td><?PHP echo $user['depart']; ?></td>
 				<td><?PHP echo $user['retour']; ?></td>
 				<td>
-					<form method="POST" action="supprimervoyage.php">
+					<form method="POST" action="supprimervoyages.php">
 						<input type="submit" name="supprimer" value="supprimer">
 						<input type="hidden" value=<?PHP echo $user['id']; ?> name="id">
 					</form>
 				</td>
 				<td>
-					<a href="modifiervoyage.php?id=<?PHP echo $user['id']; ?>"> Modifier </a>
+					<a href="modifiervoyages.php?id=<?PHP echo $user['id']; ?>"> Modifier </a>
 				</td>
 			</tr>
 		<?PHP

@@ -3,7 +3,7 @@ include_once "config.php" ;
 try{
     $pdo=config::getConnexion();
     $query= $pdo ->prepare(
-        'SELECT * FROM voyage'
+        'SELECT * FROM voyages'
     );
     $query->execute();
     $result = $query->fetchAll();
@@ -389,7 +389,7 @@ echo("</table> ");
           <li class="active">
             <a class="" href="voyage.php">
                           <i class="icon_house_alt"></i>
-                          <span>Voyage</span>
+                          <span>voyages</span>
                       </a>
           </li>
 

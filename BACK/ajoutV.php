@@ -9,7 +9,7 @@ $error = "";
 $user = null;
 
 // create an instance of the controller
-$userC = new voyageC();
+$userC = new voyagesC();
 if (
     isset($_POST["destination"]) &&
     isset($_POST["prix"]) &&
@@ -22,13 +22,13 @@ if (
         !empty($_POST["depart"]) &&
         !empty($_POST["retour"])
     ) {
-        $user = new voyage(
+        $user = new voyages(
             $_POST['destination'],
             $_POST['prix'],
             $_POST['depart'],
             $_POST['retour']
         );
-        $userC->ajoutervoyage($user);
+        $userC->ajoutervoyages($user);
         header('Location:GV.php');
     } else
         $error = "Missing information";
@@ -377,7 +377,7 @@ if (
           <li class="active">
             <a class="" href="voyage.php">
                           <i class="icon_house_alt"></i>
-                          <span>Voyage</span>
+                          <span>voyages</span>
                       </a>
           </li>
 
@@ -417,7 +417,7 @@ if (
             <div class="panel-body"> 
             <section class="panel-body">
               <header class="panel-body">
-                Nouveau Voyage
+                Nouveau voyages
               </header>
               <table class="table">
                 <thead>

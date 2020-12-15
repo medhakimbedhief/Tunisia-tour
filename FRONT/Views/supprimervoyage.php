@@ -2,11 +2,11 @@
   include_once '../Model/voyagem.php';
   include_once '../Controller/voyageC.php';
  $error = "";
- $voyageC = new voyageC();
+ $voyagesC = new voyagesC();
 
  if (isset($_POST["id"])) 
  {
-    $voyageC->supprimervoyage($_POST["id"]);
+    $voyagesC->supprimervoyages($_POST["id"]);
      
 
  }

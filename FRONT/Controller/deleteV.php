@@ -1,11 +1,11 @@
 <?php
     include_once 'voyageC.php';
 
- $userC = new voyageC();
+ $userC = new voyagesC();
  if (isset($_GET['id'])) // get id through query string
  {
 $id = $_GET['id']; 
-$userC->deletevoyage($id);
+$userC->deletevoyages($id);
 header("location: ../../BACK/GV.php"); // redirects to all records page
  
 }

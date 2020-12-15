@@ -2,21 +2,21 @@
 include "config.php";
 
 
-class voyageC
+class voyagesC
 {
 
-	function ajoutervoyage($voyage)
+	function ajoutervoyages($voyages)
 	{
-		$sql = "INSERT INTO voyage (destination, prix, depart, retour) 
+		$sql = "INSERT INTO voyages (destination, prix, depart, retour) 
 			VALUES (:destination,:prix,:depart,:retour)";
 		$db = config::getConnexion();
 		try {
 			$query = $db->prepare($sql);
 			$query->execute([
-				'destination' => $voyage->getdestination(),
-				'prix' => $voyage->getprix(),
-				'depart' => $voyage->getdepart(),
-				'retour' => $voyage->getretour(),
+				'destination' => $voyages->getdestination(),
+				'prix' => $voyages->getprix(),
+				'depart' => $voyages->getdepart(),
+				'retour' => $voyages->getretour(),
 				
 			]);
 		} catch (Exception $e) {
@@ -27,7 +27,7 @@ class voyageC
 	function affichervoyages()
 	{
 
-		$sql = "SELECT * FROM voyage";
+		$sql = "SELECT * FROM voyages";
 		$db = config::getConnexion();
 		try {
 			$liste = $db->query($sql);
@@ -36,16 +36,16 @@ class voyageC
 			die('Erreur: ' . $e->getMessage());
 		}
     }
-    public function deletevoyage($id) {
-        $sql="delete  from voyage where id= '$id' ";
+    public function deletevoyages($id) {
+        $sql="delete  from voyages where id= '$id' ";
         $db=config::getConnexion();
         $query=$db->prepare($sql);
         $query->execute([
                 'id' => $id]);
         }
-	function supprimervoyage($id)
+	function supprimervoyages($id)
 	{
-		$sql = "DELETE FROM voyage WHERE id= :id";
+		$sql = "DELETE FROM voyages WHERE id= :id";
 		$db = config::getConnexion();
 		$req = $db->prepare($sql);
 		$req->bindValue(':id', $id);
@@ -56,8 +56,8 @@ class voyageC
 		}
 	}
 
-	public function modifiervoyage($destination,$prix,$depart,$retour,$email,$login,$password,$id) {
-		$sql="update voyage SET 
+	public function modifiervoyages($destination,$prix,$depart,$retour,$email,$login,$password,$id) {
+		$sql="update voyages SET 
 							destination = :destination,
 							prix = :prix, 
 							depart = :depart,
@@ -74,9 +74,9 @@ class voyageC
 						'id' => $id
 					]); 
 		}
-	function recuperervoyage($id)
+	function recuperervoyages($id)
 	{
-		$sql = "SELECT * from voyage where id=$id";
+		$sql = "SELECT * from voyages where id=$id";
 		$db = config::getConnexion();
 		try {
 			$query = $db->prepare($sql);
@@ -89,9 +89,9 @@ class voyageC
 		}
 	}
 
-	function recuperervoyage1($id)
+	function recuperervoyages1($id)
 	{
-		$sql = "SELECT * from voyage where id=$id";
+		$sql = "SELECT * from voyages where id=$id";
 		$db = config::getConnexion();
 		try {
 			$query = $db->prepare($sql);

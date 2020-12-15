@@ -122,8 +122,8 @@ header('location:../../BACK/signin.php');
                     Email :
                     <div class="input-group">
                         <span class="input-group-addon"><ins></i></span>
-                        <input type="email" class="form-control" name="email" id="email" pattern=".+@gmail.com"
-                            placeholder="Enter mail" onfocusout="ad_email()" >
+                        <input type="email" class="form-control" name="email" id="email"
+                            placeholder="Enter mail" onfocusout="ad_email()"    required >
                     </div>
                     <label id="elementemail" name="erreur" style="color: red;display: none;">L'adresse email est
                             invalide . </label>

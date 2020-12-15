@@ -6,9 +6,9 @@ include_once '../Model/voyagem.php';
 
 $id = $_GET['id']; 
 
-$voyageC = new voyageC();
+$voyagesC = new voyagesC();
     $pdo=config::getConnexion();
-    $query= $pdo ->prepare("select * from voyage where id='$id'");
+    $query= $pdo ->prepare("select * from voyages where id='$id'");
     $query->execute();
     $result = $query->fetchAll();
 
@@ -19,7 +19,7 @@ $voyageC = new voyageC();
         $prix = $_POST['prix'];
         $depart = $_POST['depart'];
         $retour = $_POST['retour'];
-        $voyageC->modifiervoyage($destination,$prix,$depart,$retour,$id);
+        $voyagesC->modifiervoyages($destination,$prix,$depart,$retour,$id);
           
     }
     ?>

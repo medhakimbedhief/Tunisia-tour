@@ -1,5 +1,5 @@
 <?PHP
-	class voyage{
+	class voyages{
 		private  $id ;
 		private  $destination=null;
 		private  $prix = null;

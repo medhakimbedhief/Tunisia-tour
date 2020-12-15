@@ -5,9 +5,9 @@
 
 $id = $_GET['id']; 
 
-    $voyageC = new voyageC();
+    $voyagesC = new voyagesC();
         $pdo=config::getConnexion();
-        $query= $pdo ->prepare("select * from voyage where id='$id'");
+        $query= $pdo ->prepare("select * from voyages where id='$id'");
         $query->execute();
         $result = $query->fetchAll();
 
@@ -18,7 +18,7 @@ if(isset($_POST['update']))
     $depart = $_POST['depart'];
     $retour = $_POST['retour'];
    
-    $voyageC->modifiervoyage($destination,$prix,$depart,$retour,$id);
+    $voyagesC->modifiervoyages($destination,$prix,$depart,$retour,$id);
     header("location:../../BACK/GV.php"); 
 }
 ?>
@@ -32,7 +32,7 @@ if(isset($_POST['update']))
     <meta name="viewport" content="width=device-width, initial-scale=1">
  
      <!-- Site Metas -->
-    <title>Modification du Voyage</title>  
+    <title>Modification du voyages</title>  
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -69,7 +69,7 @@ if(isset($_POST['update']))
 
 
 
-<h3>Modifier ce voyage</h3>
+<h3>Modifier ce voyages</h3>
 
 	<div class="container">
 <form method="POST">
