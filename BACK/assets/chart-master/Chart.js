@@ -252,10 +252,10 @@ window.Chart = function(context){
 			animationSteps : 100,
 			animationEasing : "easeOutBounce",
 			animateRotate : true,
-			animateScale : false,
+			animateScale : true,
 			onAnimationComplete : null
 		};		
-
+		
 		var config = (options)? mergeChartConfig(chart.Pie.defaults,options) : chart.Pie.defaults;
 		
 		return new Pie(data,config,context);				

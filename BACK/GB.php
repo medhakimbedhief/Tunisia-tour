@@ -375,49 +375,7 @@ echo("</table> ");
     <!--header end-->
 
     <!--sidebar start-->
-    <aside>
-      <div id="sidebar" class="nav-collapse ">
-        <!-- sidebar menu start-->
-        <ul class="sidebar-menu">
-          <li>
-            <a class="" href="index.html">
-                          <i class="icon_house_alt"></i>
-                          <span>Dashboard</span>
-                      </a>
-          </li>
-          <li class="sub-menu">
-            <a class="" href="GU.php">
-                          <i class="icon_house_alt"></i>
-                          <span>Gestion des utilisateurs</span>
-                      </a>
-          </li>
-          <li class="sub-menu">
-          <li class="active">
-
-            <a class="" href="GB.php">
-                          <i class="icon_house_alt"></i>
-                          <span>Blog</span>
-                      </a>
-          </li>
-          <li class="sub-menu">
-            <a class="" href="index.html">
-                          <i class="icon_house_alt"></i>
-                          <span>randonné et camping </span>
-                      </a>
-          </li>
-
-          <li class="active">
-            <a class="" href="voyage.php">
-                          <i class="icon_house_alt"></i>
-                          <span>Voyage</span>
-                      </a>
-
-          </li>
-
-        </ul>
-        <!-- sidebar menu end-->
-      </div>
-    </aside>
+    <?php include_once "sidebar.php"; ?>
     <!--sidebar end-->
 
     <!--main content start-->
@@ -510,20 +468,7 @@ echo ("</td>");
         }
         
         
-            <?php /*
-             $ch =echo(ch);
-               $utiC=new UtilisateurC();
-               $pdo=config::getConnexion();
-                   $query= $pdo ->prepare("select * from utilisateur where login= '$ch' ");
-                   $query->execute(['login' => $ch]);
-                    $result = $query->fetchAll();
-                    foreach($result as $rows)
-                    {
-                    if($rows['login'] == ch) {element.style.display = "block";} else { element.style.display = "none"; }
-                    } 
-                */
-                ?>
-        
+           
         function validation() {
             majus_nom();majus_prenom();telephonefc();
             var error1 = document.getElementById("element");

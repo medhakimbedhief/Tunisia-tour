@@ -1,6 +1,33 @@
 <?php
 include_once "config.php" ;
 class commentC{
+
+    public function positives()
+    {
+        try{
+            $pdo=config::getConnexion();
+            $sql="SELECT COUNT(*) FROM commentaire WHERE text LIKE '%joli%' OR text LIKE '%bon%' OR text LIKE '%great%'";
+            $query=$pdo->prepare($sql);
+            $query->execute();
+            return $query->fetchColumn();
+        }
+        catch(PDOException $e){
+            $e->getMessage();
+        }
+    }
+    public function negatives()
+    {
+        try{
+            $pdo=config::getConnexion();
+            $sql="SELECT COUNT(*) FROM commentaire WHERE text LIKE '%bad%' OR text LIKE '%mauvais%' OR text LIKE '%worst%'";
+            $query=$pdo->prepare($sql);
+            $query->execute();
+            return $query->fetchColumn();
+        }
+        catch(PDOException $e){
+            $e->getMessage();
+        }
+    }
         public function affichercommentbyid($id) {
            
             try{

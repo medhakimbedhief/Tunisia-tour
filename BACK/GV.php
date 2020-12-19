@@ -358,45 +358,7 @@ echo("</table> ");
     <!--header end-->
 
     <!--sidebar start-->
-    <aside>
-      <div id="sidebar" class="nav-collapse ">
-        <!-- sidebar menu start-->
-        <ul class="sidebar-menu">
-          <li class="active">
-            <a class="" href="index.html">
-                          <i class="icon_house_alt"></i>
-                          <span>Dashboard</span>
-                      </a>
-          </li>
-          <li class="active">
-            <a class="" href="GU.php">
-                          <i class="icon_house_alt"></i>
-                          <span>Gestion des utilisateurs</span>
-                      </a>
-          </li>
-          <li class="active">
-            <a class="" href="GB.php">
-                          <i class="icon_house_alt"></i>
-                          <span>Blog</span>
-                      </a>
-          </li>
-          <li class="active">
-            <a class="" href="index.html">
-                          <i class="icon_house_alt"></i>
-                          <span>randonné et camping </span>
-                      </a>
-          </li>
-          <li class="active">
-            <a class="" href="voyage.php">
-                          <i class="icon_house_alt"></i>
-                          <span>voyages</span>
-                      </a>
-          </li>
-
-        </ul>
-        <!-- sidebar menu end-->
-      </div>
-    </aside>
+    <?php include_once "sidebar.php"; ?>
     <!--sidebar end-->
 
     <!--main content start-->

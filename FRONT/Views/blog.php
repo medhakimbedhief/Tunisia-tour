@@ -15,6 +15,7 @@ if (isset($_POST["text"])&& isset($_POST["id_b"]) &&isset($_SESSION['e']))
      );
 
 $commentC->ajoutercomment($comment);
+
 }
     
 $blogC = new blogC();
@@ -271,106 +272,42 @@ $nom_u=$_SESSION['e'];
                 <?php } ?>
 
                 <br>
-                <form method="POST" bords="arrondis">
+                <form method="POST" >
                     <h4>ajouter un commentaire :</h4>
                     <br>
 
                     <input type="hidden" name="id_b" id="id_b" value="<?php echo $rows['id']; ?>">
+                   <input type="text" class="form-control input-lg m-bot15 "  onfocusout="majus_nom();" name="text" id="text" required>
 
-                    <textarea class="form-control"  onblur="majus_nom();"name="text" id="text" cols="20" rows="5" onfocusout="" required> </textarea>
-                    <label id="element" name="erreur" style="color: red;display: none;">commentaire vide
-                                            invalide</label>
-                    <br>
+                    <label id="element" name="erreur" style="color: red; display: none;">commentaire vide invalide</label>
+<br>
                     <input type="submit" class="book-btn" name="submit" value="   ajouter   " onClick="cmnt()">
-                    <script>
-                        
-                    </script>
+                    
 
-                   
                 </form>
                 </div>
             <hr>
+            
             <?php } ?>
+            <script>
+                    function majus_nom() {
+                        var ch = document.getElementById("text").value;
+                        var element = document.getElementById("element");
+                        if (ch === "") { element.style.display = "block"; } else { element.style.display = "none"; }
+                    }
+        
+                     function cmnt() {
+                            majus_nom();
+                            var error1 = document.getElementById("element");
+                            if ((error1.style.display == "none"))
+                                alert("comentaire bien ajouter" ); else alert("Votre commentaire est mal rempli");
+                        
+                    
+                        }
+            </script>
             <!--/.caption-->
 
-
         </section>
-        <!--subscribe start
-        <section id="join" class="discount-offer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="dicount-offer-content text-center">
-                            <h2>Create a New article</h2>
-                            <br>
-                            <form action="blog.php" method="POST">
-                                <div class="row">
-                                    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-
-                                        <input type="text" class="form-control" id="titre" name="titre"
-                                            placeholder="Titre" style="color: rgb(29, 138, 165);"
-                                            onfocusout="majus_nom()" Required></input>
-                                        <label id="element" name="erreur" style="color: red;display: none;">titre
-                                            invalide</label>
-                                        <hr>
-                                        <h2 style="text-align: left; color: rgb(12, 137, 175) ;">Sujet :</h2>
-                                        <textarea name="" class="form-control" name="article" id="article" cols="50"
-                                            rows="10" onfocusout="majus_prenom()" Required> </textarea>
-                                        <label id="element1" name="erreur" style="color: red;display: none;">L'article
-                                            est vide </label>
-                                        <br>
-                                        <h2 style="text-align: left; color: rgb(12, 137, 175) ;">Image :</h2>
-
-                                        <input type="file" id="image" name="image" class="form-control">
-                                        <br>
-                                        <h2 style="text-align: left; color: rgb(12, 137, 175) ;">votre ID :</h2>
-                                        <input type="num" id="id_c" name="id_c" class="form_control"
-                                            placeholder="24123856" minlength="1" maxlength="8"
-                                            onfocusout="telephonefc()" Required>
-                                        <label id="element2" name="erreur" style="color: red;display: none;">l'id est
-                                            invalide </label>
-                                      
-                                        <div class="clearfix"></div>
-
-                                    </div>
-                                </div>
-                            </form>
-                            <div class="about-btn">
-                                <input type="submit" name="submit" value="ajouter" onClick="validation()">
-                                </input>
-                            </div>
-                            /.about-btn-->
-
-
-                        <!--</div> /.dicount-offer-content
-                    </div> /.col
-                </div> /.row-
-            </div> /.container
-
-        </section> /.discount-offer-->                                       
-
-
-        <!--subscribe end-->
-        <script>
-            function majus_nom() {
-                var ch = document.getElementById("text").value;
-                var element = document.getElementById("element");
-                if (ch === "") { element.style.display = "block"; } else { element.style.display = "none"; }
-            }
-        
-
-                function cmnt() {
-                    majus_nom();
-                    var error1 = document.getElementById("element");
-                    if ((error1.style.display == "none"))
-                        alert("comentaire bien ajouter" ); else alert("Votre commentaire est mal rempli");
-                }
-        </script>
-
-
-
-
-
 
         <script src="../assets/js/jquery.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
