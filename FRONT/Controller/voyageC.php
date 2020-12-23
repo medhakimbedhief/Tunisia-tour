@@ -1,5 +1,5 @@
 <?PHP
-include "config.php";
+include_once "config.php";
 
 
 class voyagesC
@@ -7,8 +7,8 @@ class voyagesC
 
 	function ajoutervoyages($voyages)
 	{
-		$sql = "INSERT INTO voyages (destination, prix, depart, retour) 
-			VALUES (:destination,:prix,:depart,:retour)";
+		$sql = "INSERT INTO voyages (destination, prix, depart, retour, image) 
+			VALUES (:destination,:prix,:depart,:retour,:image)";
 		$db = config::getConnexion();
 		try {
 			$query = $db->prepare($sql);
@@ -17,7 +17,7 @@ class voyagesC
 				'prix' => $voyages->getprix(),
 				'depart' => $voyages->getdepart(),
 				'retour' => $voyages->getretour(),
-				
+				'image' => $voyages->getimage(),
 			]);
 		} catch (Exception $e) {
 			echo 'Erreur: ' . $e->getMessage();
@@ -56,12 +56,13 @@ class voyagesC
 		}
 	}
 
-	public function modifiervoyages($destination,$prix,$depart,$retour,$email,$login,$password,$id) {
+	public function modifiervoyages($destination,$prix,$depart,$retour,$image,$id) {
 		$sql="update voyages SET 
 							destination = :destination,
 							prix = :prix, 
 							depart = :depart,
 							retour = :retour,
+							image = :image,
 	
 						WHERE id = :id";
 		$db=config::getConnexion(); 
@@ -71,7 +72,8 @@ class voyagesC
 						'prix' => $prix,
 						'depart' => $depart,
 						'retour' => $retour,
-						'id' => $id
+						'image' => $image,
+						'id' => $id,
 					]); 
 		}
 	function recuperervoyages($id)
@@ -103,4 +105,37 @@ class voyagesC
 			die('Erreur: ' . $e->getMessage());
 		}
 	}
-    }
+	}
+	
+
+
+	function getdestination($destination) {
+		try {
+			$pdo = getConnexion();
+			$query = $pdo->prepare(
+				'SELECT * FROM voyages WHERE destination = :destination'
+			);
+			$query->execute([
+				'destination' => $destination
+			]);
+			return $query->fetch();
+		} catch (PDOException $e) {
+			$e->getMessage();
+		}
+	}
+
+	 function getvoyages($prix) {
+		
+		try {
+			$pdo = getConnexion();
+			$query = $pdo->prepare(
+				'SELECT * FROM voyages WHERE prix = :prix'
+			);
+			$query->execute([
+				'prix' => $prix
+			]);
+			return $query->fetch();
+		} catch (PDOException $e) {
+			$e->getMessage();
+		}
+	}

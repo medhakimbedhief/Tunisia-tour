@@ -358,7 +358,45 @@ echo("</table> ");
     <!--header end-->
 
     <!--sidebar start-->
-    <?php include_once "sidebar.php"; ?>
+    <aside>
+      <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu">
+          <li class="active">
+            <a class="" href="index.html">
+                          <i class="icon_house_alt"></i>
+                          <span>Dashboard</span>
+                      </a>
+          </li>
+          <li class="active">
+            <a class="" href="GU.php">
+                          <i class="icon_house_alt"></i>
+                          <span>Gestion des utilisateurs</span>
+                      </a>
+          </li>
+          <li class="active">
+            <a class="" href="GB.php">
+                          <i class="icon_house_alt"></i>
+                          <span>Blog</span>
+                      </a>
+          </li>
+          <li class="active">
+            <a class="" href="index.html">
+                          <i class="icon_house_alt"></i>
+                          <span>randonné et camping </span>
+                      </a>
+          </li>
+          <li class="active">
+            <a class="" href="voyage.php">
+                          <i class="icon_house_alt"></i>
+                          <span>voyages</span>
+                      </a>
+          </li>
+
+        </ul>
+        <!-- sidebar menu end-->
+      </div>
+    </aside>
     <!--sidebar end-->
 
     <!--main content start-->
@@ -394,6 +432,7 @@ echo("</table> ");
                     <th><i class="icon_profile"></i>prix</th>
                     <th><i class="icon_profile"></i>depart</th>
                     <th><i class="icon_mobile"></i> retour</th>
+                    <th><i class="icon_mobile"></i> image</th>
                   
                   </tr>
                   <?php
@@ -413,6 +452,9 @@ echo ("</td>");
     echo ("</td>");
     echo ("<td>");
     echo $rows['retour'];
+    echo ("</td>");
+    echo ("<td>");
+    echo $rows['image'];
     echo ("</td>");
    
 ?>

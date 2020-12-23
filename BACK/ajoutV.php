@@ -14,19 +14,22 @@ if (
     isset($_POST["destination"]) &&
     isset($_POST["prix"]) &&
     isset($_POST["depart"]) &&
-    isset($_POST["retour"])
+    isset($_POST["retour"]) &&
+    isset($_POST["image"]) 
 ) {
     if (
         !empty($_POST["destination"]) &&
         !empty($_POST["prix"]) &&
         !empty($_POST["depart"]) &&
-        !empty($_POST["retour"])
+        !empty($_POST["retour"]) &&
+        !empty($_POST["image"])
     ) {
         $user = new voyages(
             $_POST['destination'],
             $_POST['prix'],
             $_POST['depart'],
-            $_POST['retour']
+            $_POST['retour'],
+            $_POST['image']
         );
         $userC->ajoutervoyages($user);
         header('Location:GV.php');
@@ -463,6 +466,37 @@ if (
                     </div>
                     <br>
                     <br>
+
+
+
+
+                    <table border="1" align="center">
+        <div class="form-group">
+
+        <label class="col-sm-2 control-label">image</label>
+<div class="col-sm-10">
+<input type="file" id="image" name="image" class="form-control" >
+                    </div>
+                    </div>
+                    <br>
+                    <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             <tr>
             <br>
                     <br>
@@ -480,5 +514,8 @@ if (
         </table>
     </form>
    
+
+</body>
+
 
 </body>

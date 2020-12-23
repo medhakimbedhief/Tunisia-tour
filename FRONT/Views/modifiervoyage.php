@@ -19,7 +19,8 @@ $voyagesC = new voyagesC();
         $prix = $_POST['prix'];
         $depart = $_POST['depart'];
         $retour = $_POST['retour'];
-        $voyagesC->modifiervoyages($destination,$prix,$depart,$retour,$id);
+        $image = $_POST['image'];
+        $voyagesC->modifiervoyages($destination,$prix,$depart,$retour,$image,$id);
           
     }
     ?>
@@ -40,6 +41,7 @@ $voyagesC = new voyagesC();
             <td>prix</td>
             <td>depart</td>          
             <td>retour</td>
+            <td>image</td>
         </tr>
         <tr>
         <td >
@@ -51,14 +53,16 @@ $voyagesC = new voyagesC();
   <input type="text" name="depart" value="<?php echo $rows['depart'] ?>" placeholder="Enter depart" Required></td>
   <td >
   <input type="text" name="retour" value="<?php echo $rows['retour'] ?>" placeholder="Enter retour" Required></td>
-  
+  <td >
+  <input type="file" name="image" value="<?php echo $rows['image'] ?>" placeholder="Enter retour" Required></td>
+
   <td>
   <input type="submit" name="update" value="Modifier"></td></tr>
 <?php  ?>
 </table>
 </form>
-<a href="../Views/affichervoyages.php"> afficher ma base de donnees</a><br>
-<a href="../Controller/ajoutV.php"> retourner à la page d'acceuil</a><br>
+<a href="../BACK/GV.php"> afficher ma base de donnees</a><br>
+<a href="../BACK/GV.php"> retourner à la page d'acceuil</a><br>
 
 </body>
 </html>

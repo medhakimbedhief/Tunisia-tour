@@ -17,9 +17,11 @@ if(isset($_POST['update']))
     $prix = $_POST['prix'];
     $depart = $_POST['depart'];
     $retour = $_POST['retour'];
+    $retour = $_POST['image'];
    
-    $voyagesC->modifiervoyages($destination,$prix,$depart,$retour,$id);
+    $voyagesC->modifiervoyages($destination,$prix,$depart,$retour,$image,$id);
     header("location:../../BACK/GV.php"); 
+    
 }
 ?>
 <!DOCTYPE html>
@@ -126,6 +128,29 @@ if(isset($_POST['update']))
                     </div>
                     </div>
 
+
+
+
+                    <table border="1" align="center">
+        <div class="form-group">
+
+        <label class="col-sm-2 control-label">image</label>
+<div class="col-sm-10">
+<input type="file" class="form-control" name="image" id="image" value="<?php echo $rows['image'] ?>" placeholder="image" Required>
+                    </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
  
                     <tr>
             <br>
@@ -145,6 +170,8 @@ if(isset($_POST['update']))
 </div>
 </form>
 </div>
+
+
 
 </body>
 </html>
