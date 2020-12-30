@@ -3,7 +3,7 @@ include_once "config.php" ;
 try{
     $pdo=config::getConnexion();
     $query= $pdo ->prepare(
-        'SELECT * FROM utilisateur'
+        'SELECT * FROM voyages'
     );
     $query->execute();
     $result = $query->fetchAll();
@@ -18,52 +18,30 @@ echo ("<td>");
 echo "ID";
 echo ("</td>");
 echo ("<td>");
-echo "CIN";
+echo "destination";
 echo ("</td>");
     echo ("<td>");
-    echo "Nom";
+    echo "prix";
     echo ("</td>");
     echo ("<td>");
-    echo "Prenom";
+    echo "depart";
     echo ("</td>");
     echo ("<td>");
-    echo "Telephone";
+    echo "retour";
     echo ("</td>");
-    echo ("<td>");
-    echo "Email";
-    echo ("</td>");echo ("<td>");
-    echo "LOGIN";
-    echo ("</td>");
-    echo ("</td>");echo ("<td>");
-    echo "Password";
-    echo ("</td>");
-    echo "</tr>";
-
-foreach($result as $rows)
-{
-echo ("<tr><td>");
-echo $rows['id'];
-echo ("</td>");
-echo ("<td>");
-echo $rows['CIN'];
+   
+echo $rows['destination'];
 echo ("</td>");
     echo ("<td>");
-    echo $rows['nom'];
+    echo $rows['prix'];
     echo ("</td>");
     echo ("<td>");
-    echo $rows['prenom'];
+    echo $rows['depart'];
     echo ("</td>");
     echo ("<td>");
-    echo $rows['telephone'];
+    echo $rows['retour'];
     echo ("</td>");
-    echo ("<td>");
-    echo $rows['email'];
-    echo ("</td>");echo ("<td>");
-    echo $rows['login'];
-    echo ("</td>");
-    echo ("</td>");echo ("<td>");
-    echo $rows['password'];
-    echo ("</td>");
+    
 echo("</tr>");
 }
 echo("</table> ");
@@ -379,6 +357,7 @@ echo("</table> ");
     </header>
     <!--header end-->
 
+    <!--sidebar start-->
     <aside>
       <div id="sidebar" class="nav-collapse ">
         <!-- sidebar menu start-->
@@ -389,40 +368,29 @@ echo("</table> ");
                           <span>Dashboard</span>
                       </a>
           </li>
-          <li class="sub-menu">
+          <li class="active">
             <a class="" href="GU.php">
-                          <i class="icon_table"></i>
+                          <i class="icon_house_alt"></i>
                           <span>Gestion des utilisateurs</span>
                       </a>
           </li>
-          <li class="sub-menu">
-            <a href="javascript:;" class="">
-              <i class="icon_house_alt"></i>
+          <li class="active">
+            <a class="" href="GB.php">
+                          <i class="icon_house_alt"></i>
                           <span>Blog</span>
-                          <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
-                      <ul class="sub">
-                        <li><a class=""href="GB.php"> Table</a></li>
-                        <li><a class=""href="ajoutB.php"> formulaire ajout </a></li>
-
-                      </ul>
           </li>
-          <li class="sub-menu">
+          <li class="active">
             <a class="" href="index.html">
                           <i class="icon_house_alt"></i>
                           <span>randonné et camping </span>
                       </a>
           </li>
-          <li class="sub-menu">
-            <a href="javascript:;" class="">
-                        <i class="icon_document_alt"></i>
-                        <span>Voyage</span>
-                        <span class="menu-arrow arrow_carrot-right"></span>
-                    </a>
-            <ul class="sub" >
-              <li><a class="" href="GV.php">Tableau</a></li>
-              <li><a class="" href="ajoutV.php">formulaire ajout</a></li>
-            </ul>
+          <li class="active">
+            <a class="" href="voyage.php">
+                          <i class="icon_house_alt"></i>
+                          <span>voyages</span>
+                      </a>
           </li>
 
         </ul>
@@ -460,14 +428,12 @@ echo("</table> ");
                 <tbody>
                   <tr>
                     <th><i class="icon_profile"></i>ID</th>
-                    <th><i class="icon_profile"></i> CIN</th>
-                    <th><i class="icon_profile"></i>Nom</th>
-                    <th><i class="icon_profile"></i>Prenom</th>
-                    <th><i class="icon_mobile"></i> Te</th>
-                    <th><i class="icon_mail_alt"></i> ..</th>
-                    <th><i class="icon_profile"></i>..</th>
-                    <th><i class="icon_profile"></i>..</th>
-                    <th><i class="icon_cogs"></i> ..</th>
+                    <th><i class="icon_profile"></i> destination</th>
+                    <th><i class="icon_profile"></i>prix</th>
+                    <th><i class="icon_profile"></i>depart</th>
+                    <th><i class="icon_mobile"></i> retour</th>
+                    <th><i class="icon_mobile"></i> image</th>
+                  
                   </tr>
                   <?php
                   foreach($result as $rows)
@@ -476,32 +442,28 @@ echo ("<tr><td>");
 echo $rows['id'];
 echo ("</td>");
 echo ("<td>");
-echo $rows['CIN'];
+echo $rows['destination'];
 echo ("</td>");
     echo ("<td>");
-    echo $rows['nom'];
+    echo $rows['prix'];
     echo ("</td>");
     echo ("<td>");
-    echo $rows['prenom'];
+    echo $rows['depart'];
     echo ("</td>");
     echo ("<td>");
-    echo $rows['telephone'];
+    echo $rows['retour'];
     echo ("</td>");
     echo ("<td>");
-    echo $rows['email'];
-    echo ("</td>");echo ("<td>");
-    echo $rows['login'];
+    echo $rows['image'];
     echo ("</td>");
-        echo ("</td>");echo ("<td>");
-        echo $rows['password'];
-    echo ("</td>");
+   
 ?>
                 
                     <td>
                       <div class="btn-group">
-                        <a class="btn btn-primary" <?php echo("href=../FRONT/Controller/editu.php?id=" .$rows['id']." ") ?>><i class="icon_plus_alt2"></i></a>
+                        <a class="btn btn-primary" <?php echo("href=../FRONT/Controller/editV.php?id=" .$rows['id']." ") ?>><i class="icon_plus_alt2"></i></a>
                         <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
-                        <a class="btn btn-danger" <?php echo("href=../FRONT/Controller/delete.php?id=" .$rows['id']." ") ?> ><i class="icon_close_alt2"></i></a>
+                        <a class="btn btn-danger" <?php echo("href=../FRONT/Controller/deleteV.php?id=" .$rows['id']." ") ?> ><i class="icon_close_alt2"></i></a>
                       </div>
                     </td>
                   </tr>
@@ -564,3 +526,12 @@ echo ("</td>");
 </body>
 
 </html>
+
+
+
+
+
+
+
+
+

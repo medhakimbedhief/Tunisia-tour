@@ -22,7 +22,6 @@
 $utilisateurC->ajouterUtilisateur($utilisateur);
 
 
-//envoi d'un email d'inscription
         $to_email =$_POST['email'];
         $subject = 'Inscription valide';
         $message = 'Bonjour nous voudrons vous informez que vous etes bien inscrit dans notre site TUNISIA TOUR';
@@ -38,7 +37,6 @@ $utilisateurC->ajouterUtilisateur($utilisateur);
         } catch (Exception $e) {
             echo 'Exception reçue : ',  $e->getMessage(), "\n";
         }
-
 
 
     }else {echo('<script> alert("Compte existant"); </script>');}

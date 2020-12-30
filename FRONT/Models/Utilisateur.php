@@ -1,13 +1,13 @@
 <?php
     class Utilisateur {
         private $id;
-        private ?string $CIN=null;
-        private ?string $nom=null;
-        private ?string $prenom=null;
-        private ?string $telephone=null;
-        private ?string $email=null;
-        private ?string $login=null;
-        private ?string $password=null;
+        private  $CIN=null;
+        private  $nom=null;
+        private  $prenom=null;
+        private  $telephone=null;
+        private  $email=null;
+        private  $login=null;
+        private  $password=null;
 
         public function __construct(string $CIN, string $nom, string $prenom, string $telephone, string $email, string $login, string $pass) {
             $this->CIN= $CIN;

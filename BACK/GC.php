@@ -1,16 +1,11 @@
 <?php
-include_once "config.php" ;
-try{
-    $pdo=config::getConnexion();
-    $query= $pdo ->prepare(
-        'SELECT * FROM utilisateur'
-    );
-    $query->execute();
-    $result = $query->fetchAll();
-}
-catch(PDOException $e){
-    $e->getMessage();
-}
+include_once "../FRONT/Controller/config.php" ;
+include_once "../FRONT/Controller/commentC.php";
+include_once "../FRONT/Models/commentm.php";
+$error ="";
+$comment = null;
+$commentC = new commentC();
+$result=$commentC->affichercomment();
 ?>
 
 <!--echo("<table border='1' align='center'><tr>");
@@ -79,7 +74,7 @@ echo("</table> ");
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>Gestion Utilisateur </title>
+  <title>Creative - Bootstrap Admin Template</title>
 
   <!-- Bootstrap CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -379,8 +374,8 @@ echo("</table> ");
     </header>
     <!--header end-->
 
+    <!--sidebar start-->
     <?php include_once "sidebar.php"; ?>
-
     <!--sidebar end-->
 
     <!--main content start-->
@@ -388,71 +383,55 @@ echo("</table> ");
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-table"></i> Tableau</h3>
+            <h3 class="page-header"><i class="fa fa-table"></i> Table</h3>
             <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="index.html">Accueil</a></li>
-              <li><i class="fa fa-table"></i>Gestion des utilisateurs</li>
-              
+              <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
+  
+              <li><i class="fa fa-th-list"></i>GB</li>
             </ol>
           </div>
         </div>
         <!-- page start-->
+        
 
 
-
-
+<!-- table start-->
         <div class="row">
           <div class="col-lg-12">
             <section class="panel">
               <header class="panel-heading">
-                Voici la liste des utilisateurs
+                Advanced Table
               </header>
 
               <table class="table table-striped table-advance table-hover">
                 <tbody>
                   <tr>
-                    <th><i class="icon_profile"></i>ID</th>
-                    <th><i class="icon_profile"></i> CIN</th>
-                    <th><i class="icon_profile"></i>Nom</th>
-                    <th><i class="icon_profile"></i>Prenom</th>
-                    <th><i class="icon_mobile"></i> Telephone</th>
-                    <th><i class="icon_mail_alt"></i> Email</th>
-                    <th><i class="icon_profile"></i>Login</th>
-                    <th><i class="icon_profile"></i>Mot de passe</th>
+                    
+                    <th><i class="icon_profile"></i> commentaire</th>
+                    <th><i class="icon_profile"></i>blog id</th>
+                    <th><i class="icon_profile"></i>nom client:</th>
                     <th><i class="icon_cogs"></i> Action</th>
                   </tr>
                   <?php
                   foreach($result as $rows)
 {
 echo ("<tr><td>");
-echo $rows['id'];
-echo ("</td>");
-echo ("<td>");
-echo $rows['CIN'];
+echo $rows['text'];
 echo ("</td>");
     echo ("<td>");
-    echo $rows['nom'];
+    echo $rows['id_b'];
     echo ("</td>");
     echo ("<td>");
-    echo $rows['prenom'];
+    echo $rows['nom_u'];
     echo ("</td>");
-    echo ("<td>");
-    echo $rows['telephone'];
-    echo ("</td>");
-    echo ("<td>");
-    echo $rows['email'];
-    echo ("</td>");echo ("<td>");
-    echo $rows['login'];
-    echo ("</td>");
-        echo ("</td>");echo ("<td>");
-        echo $rows['password'];
-    echo ("</td>");
+
 ?>
                 
                     <td>
                       <div class="btn-group">
-                        <a class="btn btn-primary" <?php echo("href=../FRONT/Views/editu.php?id=" .$rows['id']." ") ?>><i class="icon_plus_alt2"></i></a>
-                        <a class="btn btn-danger" <?php echo("href=../FRONT/Controller/delete.php?id=" .$rows['id']." ") ?> ><i class="icon_close_alt2"></i></a>
+                        <a class="btn btn-primary" <?php echo("href=../FRONT/Controller/editb.php?id=" .$rows['id']." ") ?>><i class="icon_plus_alt2"></i></a>
+                        <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
+                        <a class="btn btn-danger" <?php echo("href=../FRONT/Controller/deletec.php?id=" .$rows['id']." ") ?> ><i class="icon_close_alt2"></i></a>
                       </div>
                     </td>
                   </tr>
@@ -481,13 +460,71 @@ echo ("</td>");
   </section>
   <!-- container section end -->
   <!-- javascripts -->
-  <script src="js/jquery.js"></script>
+  <script>
+        function majus_nom() {
+            var ch = document.getElementById("titre").value;
+            var element = document.getElementById("element");
+            if (ch === "") { element.style.display = "block"; } else { element.style.display = "none"; }
+        }
+        
+        
+            <?php /*
+             $ch =echo(ch);
+               $utiC=new UtilisateurC();
+               $pdo=config::getConnexion();
+                   $query= $pdo ->prepare("select * from utilisateur where login= '$ch' ");
+                   $query->execute(['login' => $ch]);
+                    $result = $query->fetchAll();
+                    foreach($result as $rows)
+                    {
+                    if($rows['login'] == ch) {element.style.display = "block";} else { element.style.display = "none"; }
+                    } 
+                */
+                ?>
+        
+        function validation() {
+            majus_nom();majus_prenom();telephonefc();
+            var error1 = document.getElementById("element");
+            
+
+            if ((error1.style.display == "none"))
+                alert("ok");else alert("Votre blog est mal rempli");
+        }
+    </script>
+    <!-- javascripts -->
+    <script src="js/jquery.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <!-- nicescroll -->
+  <!-- nice scroll -->
   <script src="js/jquery.scrollTo.min.js"></script>
   <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
-  <!--custome script for all page-->
+
+  <!-- jquery ui -->
+  <script src="js/jquery-ui-1.9.2.custom.min.js"></script>
+
+  <!--custom checkbox & radio-->
+  <script type="text/javascript" src="js/ga.js"></script>
+  <!--custom switch-->
+  <script src="js/bootstrap-switch.js"></script>
+  <!--custom tagsinput-->
+  <script src="js/jquery.tagsinput.js"></script>
+
+  <!-- colorpicker -->
+
+  <!-- bootstrap-wysiwyg -->
+  <script src="js/jquery.hotkeys.js"></script>
+  <script src="js/bootstrap-wysiwyg.js"></script>
+  <script src="js/bootstrap-wysiwyg-custom.js"></script>
+  <script src="js/moment.js"></script>
+  <script src="js/bootstrap-colorpicker.js"></script>
+  <script src="js/daterangepicker.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <!-- ck editor -->
+  <script type="text/javascript" src="assets/ckeditor/ckeditor.js"></script>
+  <!-- custom form component script for this page-->
+  <script src="js/form-component.js"></script>
+  <!-- custome script for all page -->
   <script src="js/scripts.js"></script>
+  
   <div id="ascrail2000" class="nicescroll-rails"
     style="width: 6px; z-index: 1000; background: rgb(247, 247, 247); cursor: default; position: fixed; top: 0px; height: 100%; right: 0px; opacity: 0;">
     <div

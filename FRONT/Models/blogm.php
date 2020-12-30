@@ -10,7 +10,6 @@
             $this->titre= $titre;
             $this->article= $article;
             $this->image= $image;
-            
         }
         public function getId() {
             return $this->id;

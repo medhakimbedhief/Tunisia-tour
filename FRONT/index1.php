@@ -4,12 +4,12 @@
 $blogC = new blogC();
 $blog=$blogC->afficherblog();
 // On prolonge la session
-#session_start();
+session_start();
 // On teste si la variable de session existe et contient une valeur
-#if (empty($_SESSION['e'])) {
+if (empty($_SESSION['e'])) {
 	// Si inexistante ou nulle, on redirige vers le formulaire de login
-#	header('Location:../BACK/signin.php');
-#}
+	header('Location:../BACK/signin.php');
+}
 $voyagesC = new voyagesC();
 $voyages=$voyagesC->affichervoyages();
 // On prolonge la session
@@ -19,6 +19,7 @@ if (empty($_SESSION['e'])) {
 	// Si inexistante ou nulle, on redirige vers le formulaire de login
 	header('Location:../BACK/signin.php');
 }
+?>
 ?>
 <!doctype html>
 <html class="no-js"  lang="fr">
@@ -113,13 +114,17 @@ if (empty($_SESSION['e'])) {
 									<ul class="nav navbar-nav navbar-right">
 										<li class="smooth-menu active"><a href="#home">home</a></li>
 										<li class="smooth-menu"><a href="#gallery">Destination</a></li>
-										<li class="smooth-menu"><a href="#voyage">Voyage </a></li>
+										<li class="smooth-menu"><a href="#voyages">Voyages </a></li>
 										<li class="smooth-menu"><a href="#spo">Special Offers</a></li>
 										<li class="smooth-menu"><a href="#blog">Blog</a></li>
 										<li class="smooth-menu"><a href="#subs">subscription</a></li>
 										<li>
-											<a href="../BACK/signin.php"><button class="book-btn">connexion
+											<a href="../FRONT/Views/dex.php"><button class="book-btn" onclick="dec()">Déconnexion
 											</button></a>
+											<script>
+												function dec()
+												{alert ("Vous êtes déconnecté , à bientôt .")}
+											</script>
 										</li><!--/.project-btn--> 
 									</ul>
 								</div><!-- /.navbar-collapse -->
@@ -630,7 +635,7 @@ if (empty($_SESSION['e'])) {
 							<div class="service-content">
 								<h2>
 									<a href="#">
-									amazing tour Voyage
+									amazing tour packages
 									</a>
 								</h2>
 								<p>Duis aute irure dolor in  velit esse cillum dolore eu fugiat nulla.</p>
@@ -683,7 +688,8 @@ if (empty($_SESSION['e'])) {
 				<div class="gallery-details">
 					<div class="gallary-header text-center">
 						<h2>
-							
+							<?php 	echo 'Bienvenue  ', $_SESSION['e']; ?>
+							<br>
 							top destination
 						</h2>
 						<p>
@@ -832,10 +838,7 @@ if (empty($_SESSION['e'])) {
 						
 			
 											  
-				  <form action="recherche.php" method="GET">
-                  Votre recherche: <input type="text" name="titre"  class="form-group" >
-                  <input type="submit" value="Recherche" class="btn btn-info" href = "recherche.php">
-                  </form> 
+				
 		
 	
 	
@@ -856,7 +859,7 @@ if (empty($_SESSION['e'])) {
 											
 									
 										<div class="thumbnail-img">
-											<img src="assets/images/voyages/paris.jpg"<?php echo $rows['image']; ?> alt="voyages-img">
+											<img src="assets/images/voyages/"<?php echo $rows['image']; ?> alt="voyages-img">
 											<div class="thumbnail-img-overlay"></div><!--/.thumbnail-img-overlay-->
 										
 										</div><!--/.thumbnail-img-->
@@ -866,7 +869,7 @@ if (empty($_SESSION['e'])) {
 												<h3>
 													<a href="Views/voyage.php">
 													<hr>Destination</hr> <br>
-														<?php echo $rows['destination'];?>
+														<?php echo $rows['destination'];?> 
 														<br>
 														<hr>Prix</hr> <br>
 														<?php echo $rows['prix'];?>
@@ -895,6 +898,7 @@ if (empty($_SESSION['e'])) {
 
 		</section><!--/.voyages-->
 		<!--voyages end-->
+
 		<!-- testemonial Start -->
 		<section   class="testemonial">
 			<div class="container">
@@ -1134,7 +1138,7 @@ if (empty($_SESSION['e'])) {
 							<div class="single-special-offer">
 								<div class="single-special-offer-txt">
 									<h2>thiland</h2>
-									<div class="Voyage-review special-offer-review">
+									<div class="packages-review special-offer-review">
 										<p>
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
@@ -1143,8 +1147,8 @@ if (empty($_SESSION['e'])) {
 											<i class="fa fa-star"></i>
 											<span>2544 review</span>
 										</p>
-									</div><!--/.Voyage-review-->
-									<div class="Voyage-para special-offer-para">
+									</div><!--/.packages-review-->
+									<div class="packages-para special-offer-para">
 										<p>
 											<span>
 												<i class="fa fa-angle-right"></i> 5 daays 6 nights
@@ -1167,15 +1171,15 @@ if (empty($_SESSION['e'])) {
 										<p class="offer-para">
 											Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tem ut labore et dolore magna  aliqua. Ut enim ad minim veniam, quis nostrud exercitation una <br> ullamco laboris nisi ut aliquip ex ea commodo consequat. 
 										</p>
-									</div><!--/.Voyage-para-->
+									</div><!--/.packages-para-->
 									<div class="offer-btn-group">
 										<div class="about-btn">
-											<button  class="about-view Voyage-btn offfer-btn">
+											<button  class="about-view packages-btn offfer-btn">
 												make tour
 											</button>
 										</div><!--/.about-btn-->
 										<div class="about-btn">
-											<button  class="about-view Voyage-btn">
+											<button  class="about-view packages-btn">
 												book now
 											</button>
 										</div><!--/.about-btn-->
@@ -1238,7 +1242,7 @@ if (empty($_SESSION['e'])) {
 												
 														<?php echo $rows['article'];?>
 												
-												<a href="../BACK/signin.php">Read More</a>
+												<a href="Views/blog.php">Read More</a>
 											</div><!--/.blog-txt-->
 										</div><!--/.caption-->
 									</div><!--/.thumbnail-->
@@ -1310,7 +1314,7 @@ if (empty($_SESSION['e'])) {
 								<div class="single-footer-txt">
 									<p><a href="#">home</a></p>
 									<p><a href="#">destination</a></p>
-									<p><a href="#">spacial Voyage</a></p>
+									<p><a href="#">spacial packages</a></p>
 									<p><a href="#">special offers</a></p>
 									<p><a href="#">blog</a></p>
 									<p><a href="#">contacts</a></p>

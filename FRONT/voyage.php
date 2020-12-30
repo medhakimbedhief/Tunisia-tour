@@ -1,25 +1,9 @@
 <?php
-include_once "../Controller/blogC.php";
-include_once "../Controller/commentC.php";
-include_once "../Models/commentm.php";
-session_start();
-$comment = null;
-$commentC = new commentC();
-if (isset($_POST["text"])&& isset($_POST["id_b"]) &&isset($_SESSION['e'])) 
- { 
+include_once "../Controller/voyageC.php";
 
-     $comment = new comment(
-         $_POST['text'],
-         $_POST['id_b'],
-         $_SESSION['e']
-     );
-
-$commentC->ajoutercomment($comment);
-
-}
     
-$blogC = new blogC();
-$result=$blogC->afficherblog();
+$voyagesC = new voyagesC();
+$result=$voyagesC->affichervoyages();
 
 // On prolonge la session
 
@@ -133,15 +117,15 @@ $nom_u=$_SESSION['e'];
                             </div><!-- /.navbar-header-->
                             <div class="collapse navbar-collapse">
                                 <ul class="nav navbar-nav navbar-right">
-                                    <li class=""><a href="../index1.php">home</a></li>
+                                    <li class=""><a href="../index.php">home</a></li>
                                     <li class=""><a href="#footer">Destination</a></li>
-                                    <li class=""><a href="#footer">Packages </a></li>
+                                    <li class=""><a href="#footer">Voyages </a></li>
                                     <li class=""><a href="#footer">Special Offers</a></li>
                                     <li class="smooth-menu"><a href="#blog">blog</a></li>
                                     <li class=""><a href="#footer">subscription</a></li>
                                     <li>
-                                    <a href="../FRONT/Views/dex.php"><button class="book-btn">Déconnexion
-											</button></a>
+                                        <a href="../NiceAdmin/login.html"><button class="book-btn">book now
+                                            </button></a>
                                     </li>
                                     <!--/.project-btn-->
                                 </ul>
@@ -217,9 +201,32 @@ $nom_u=$_SESSION['e'];
     <!-- /.discount-offer-->
     <!--discount-offer end-->
 
-    <!--packages start-->
-    <!--/.packages-->
-    <!--packages end-->
+    <!--Voyages start-->
+    <section id="voyages">
+        <br>
+        <hr>
+      
+        <?php foreach($result as $rows) { ?>
+
+            <section id="voyages">
+            <div class="container">
+                <div>
+                    <img src="../assets/images/voyages/<?php echo $rows['image']; ?>">
+                </div>
+
+                <br>
+                <h3 style="color: rgb(29, 138, 165);">
+
+                    <?php echo $rows['destination'];?> : 
+                    <?php echo $rows['prix'];?> :
+                    <?php echo $rows['depart'];?> :
+                    <?php echo $rows['retour'];?> :
+
+                </h3>
+                <br>
+               
+    <!--/.Voyages-->
+    <!--Voyages end-->
 
     <!-- testemonial Start -->
     <!--/.testimonial-->
@@ -272,42 +279,106 @@ $nom_u=$_SESSION['e'];
                 <?php } ?>
 
                 <br>
-                <form method="POST" >
+                <form method="POST" bords="arrondis">
                     <h4>ajouter un commentaire :</h4>
                     <br>
 
                     <input type="hidden" name="id_b" id="id_b" value="<?php echo $rows['id']; ?>">
-                   <input type="text" class="form-control input-lg m-bot15 "  onfocusout="majus_nom();" name="text" id="text" required>
 
-                    <label id="element" name="erreur" style="color: red; display: none;">commentaire vide invalide</label>
-<br>
+                    <textarea class="form-control"  onblur="majus_nom();"name="text" id="text" cols="20" rows="5" onfocusout="" required> </textarea>
+                    <label id="element" name="erreur" style="color: red;display: none;">commentaire vide
+                                            invalide</label>
+                    <br>
                     <input type="submit" class="book-btn" name="submit" value="   ajouter   " onClick="cmnt()">
-                    
+                    <script>
+                        
+                    </script>
 
+                   
                 </form>
                 </div>
             <hr>
-            
             <?php } ?>
-            <script>
-                    function majus_nom() {
-                        var ch = document.getElementById("text").value;
-                        var element = document.getElementById("element");
-                        if (ch === "") { element.style.display = "block"; } else { element.style.display = "none"; }
-                    }
-        
-                     function cmnt() {
-                            majus_nom();
-                            var error1 = document.getElementById("element");
-                            if ((error1.style.display == "none"))
-                                alert("comentaire bien ajouter" ); else alert("Votre commentaire est mal rempli");
-                        
-                    
-                        }
-            </script>
             <!--/.caption-->
 
+
         </section>
+        <!--subscribe start
+        <section id="join" class="discount-offer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="dicount-offer-content text-center">
+                            <h2>Create a New article</h2>
+                            <br>
+                            <form action="blog.php" method="POST">
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+
+                                        <input type="text" class="form-control" id="titre" name="titre"
+                                            placeholder="Titre" style="color: rgb(29, 138, 165);"
+                                            onfocusout="majus_nom()" Required></input>
+                                        <label id="element" name="erreur" style="color: red;display: none;">titre
+                                            invalide</label>
+                                        <hr>
+                                        <h2 style="text-align: left; color: rgb(12, 137, 175) ;">Sujet :</h2>
+                                        <textarea name="" class="form-control" name="article" id="article" cols="50"
+                                            rows="10" onfocusout="majus_prenom()" Required> </textarea>
+                                        <label id="element1" name="erreur" style="color: red;display: none;">L'article
+                                            est vide </label>
+                                        <br>
+                                        <h2 style="text-align: left; color: rgb(12, 137, 175) ;">Image :</h2>
+
+                                        <input type="file" id="image" name="image" class="form-control">
+                                        <br>
+                                        <h2 style="text-align: left; color: rgb(12, 137, 175) ;">votre ID :</h2>
+                                        <input type="num" id="id_c" name="id_c" class="form_control"
+                                            placeholder="24123856" minlength="1" maxlength="8"
+                                            onfocusout="telephonefc()" Required>
+                                        <label id="element2" name="erreur" style="color: red;display: none;">l'id est
+                                            invalide </label>
+                                      
+                                        <div class="clearfix"></div>
+
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="about-btn">
+                                <input type="submit" name="submit" value="ajouter" onClick="validation()">
+                                </input>
+                            </div>
+                            /.about-btn-->
+
+
+                        <!--</div> /.dicount-offer-content
+                    </div> /.col
+                </div> /.row-
+            </div> /.container
+
+        </section> /.discount-offer-->                                       
+
+
+        <!--subscribe end-->
+        <script>
+            function majus_nom() {
+                var ch = document.getElementById("text").value;
+                var element = document.getElementById("element");
+                if (ch === "") { element.style.display = "block"; } else { element.style.display = "none"; }
+            }
+        
+
+                function cmnt() {
+                    majus_nom();
+                    var error1 = document.getElementById("element");
+                    if ((error1.style.display == "none"))
+                        alert("comentaire bien ajouter" ); else alert("Votre commentaire est mal rempli");
+                }
+        </script>
+
+
+
+
+
 
         <script src="../assets/js/jquery.js"></script>
         <!-- Include all compiled plugins (below), or include individual files as needed -->
@@ -378,7 +449,7 @@ $nom_u=$_SESSION['e'];
                             <div class="single-footer-txt">
                                 <p><a href="index.html">home</a></p>
                                 <p><a href="#">destination</a></p>
-                                <p><a href="#">spacial packages</a></p>
+                                <p><a href="#">spacial Voyages</a></p>
                                 <p><a href="#">special offers</a></p>
                                 <p><a href="#">blog</a></p>
                                 <p><a href="#">contacts</a></p>

@@ -1,6 +1,8 @@
 <?php
 include_once "config.php" ;
 class blogC{
+   
+
     public function afficherblog() {
         try{
             $result=NULL;

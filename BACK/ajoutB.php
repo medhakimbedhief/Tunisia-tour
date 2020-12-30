@@ -5,22 +5,22 @@ include_once "../FRONT/Models/blogm.php";
 $error ="";
 $blog = null;
 $blogC = new blogC();
-if (isset($_POST["titre"])&& isset($_POST["article"]) &&isset($_POST["image"])) 
+if (isset($_POST['titre'])&& isset($_POST['article']) &&isset($_POST['image'])) 
  {
      $blog = new blog(
          $_POST['titre'],
          $_POST['article'],
-         $_POST["image"],
+         $_POST['image']
 
-         
      );
 $blogC->ajouterblog($blog);
 $error = "jawik behy";
-
+echo $error;
  }
  else{
     $error = "Missing information";
-    
+    echo $error;
+
 
  }
 $result=$blogC->afficherblog();
@@ -518,27 +518,10 @@ echo("</table> ");
             var element = document.getElementById("element");
             if (ch === "") { element.style.display = "block"; } else { element.style.display = "none"; }
         }
-        
-        
-            <?php /*
-             $ch =echo(ch);
-               $utiC=new UtilisateurC();
-               $pdo=config::getConnexion();
-                   $query= $pdo ->prepare("select * from utilisateur where login= '$ch' ");
-                   $query->execute(['login' => $ch]);
-                    $result = $query->fetchAll();
-                    foreach($result as $rows)
-                    {
-                    if($rows['login'] == ch) {element.style.display = "block";} else { element.style.display = "none"; }
-                    } 
-                */
-                ?>
-        
-        function validation() {
-            majus_nom();majus_prenom();telephonefc();
-            var error1 = document.getElementById("element");
-            
 
+        function validation() {
+            majus_nom();
+            var error1 = document.getElementById("element");
             if ((error1.style.display == "none"))
                 alert("ok");else alert("Votre blog est mal rempli");
         }

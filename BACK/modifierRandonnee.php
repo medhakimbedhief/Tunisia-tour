@@ -1,73 +1,3 @@
-<?php
-include_once "config.php" ;
-try{
-    $pdo=config::getConnexion();
-    $query= $pdo ->prepare(
-        'SELECT * FROM utilisateur'
-    );
-    $query->execute();
-    $result = $query->fetchAll();
-}
-catch(PDOException $e){
-    $e->getMessage();
-}
-?>
-
-<!--echo("<table border='1' align='center'><tr>");
-echo ("<td>");
-echo "ID";
-echo ("</td>");
-echo ("<td>");
-echo "CIN";
-echo ("</td>");
-    echo ("<td>");
-    echo "Nom";
-    echo ("</td>");
-    echo ("<td>");
-    echo "Prenom";
-    echo ("</td>");
-    echo ("<td>");
-    echo "Telephone";
-    echo ("</td>");
-    echo ("<td>");
-    echo "Email";
-    echo ("</td>");echo ("<td>");
-    echo "LOGIN";
-    echo ("</td>");
-    echo ("</td>");echo ("<td>");
-    echo "Password";
-    echo ("</td>");
-    echo "</tr>";
-
-foreach($result as $rows)
-{
-echo ("<tr><td>");
-echo $rows['id'];
-echo ("</td>");
-echo ("<td>");
-echo $rows['CIN'];
-echo ("</td>");
-    echo ("<td>");
-    echo $rows['nom'];
-    echo ("</td>");
-    echo ("<td>");
-    echo $rows['prenom'];
-    echo ("</td>");
-    echo ("<td>");
-    echo $rows['telephone'];
-    echo ("</td>");
-    echo ("<td>");
-    echo $rows['email'];
-    echo ("</td>");echo ("<td>");
-    echo $rows['login'];
-    echo ("</td>");
-    echo ("</td>");echo ("<td>");
-    echo $rows['password'];
-    echo ("</td>");
-echo("</tr>");
-}
-echo("</table> ");
-?>-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -79,44 +9,39 @@ echo("</table> ");
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>Gestion Utilisateur </title>
+  <title>Widgets | Creative - Bootstrap 3 Responsive Admin Template</title>
 
   <!-- Bootstrap CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <!-- bootstrap theme -->
   <link href="css/bootstrap-theme.css" rel="stylesheet">
-  <!--external css-->
+  <!-- external css -->
   <!-- font icon -->
   <link href="css/elegant-icons-style.css" rel="stylesheet" />
   <link href="css/font-awesome.min.css" rel="stylesheet" />
-  <!-- full calendar css-->
-  <link href="assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
-  <link href="assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" />
-  <!-- easy pie chart-->
-  <link href="assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen" />
-  <!-- owl carousel -->
-  <link rel="stylesheet" href="css/owl.carousel.css" type="text/css">
-  <link href="css/jquery-jvectormap-1.2.2.css" rel="stylesheet">
   <!-- Custom styles -->
-  <link rel="stylesheet" href="css/fullcalendar.css">
-  <link href="css/widgets.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <link href="css/style-responsive.css" rel="stylesheet" />
-  <link href="css/xcharts.min.css" rel=" stylesheet">
-  <link href="css/jquery-ui-1.10.4.min.css" rel="stylesheet">
-  <!-- =======================================================
-    Theme Name: NiceAdmin
-    Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-    Author: BootstrapMade
-    Author URL: https://bootstrapmade.com
-  ======================================================= -->
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
+  <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+      <script src="js/lte-ie7.js"></script>
+    <![endif]-->
+
+    <!-- =======================================================
+      Theme Name: NiceAdmin
+      Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+      Author: BootstrapMade
+      Author URL: https://bootstrapmade.com
+    ======================================================= -->
 </head>
 
 <body>
   <!-- container section start -->
   <section id="container" class="">
-
-
+    <!--header start-->
     <header class="header dark-bg">
       <div class="toggle-nav">
         <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
@@ -145,13 +70,13 @@ echo("</table> ");
           <!-- task notificatoin start -->
           <li id="task_notificatoin_bar" class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <i class="icon-task-l"></i>
-                            <span class="badge bg-important">6</span>
+                            <span class="icon-task-l"></i>
+                            <span class="badge bg-important">5</span>
                         </a>
             <ul class="dropdown-menu extended tasks-bar">
               <div class="notify-arrow notify-arrow-blue"></div>
               <li>
-                <p class="blue">You have 6 pending letter</p>
+                <p class="blue">You have 5 pending tasks</p>
               </li>
               <li>
                 <a href="#">
@@ -379,8 +304,55 @@ echo("</table> ");
     </header>
     <!--header end-->
 
-    <?php include_once "sidebar.php"; ?>
+    <!--sidebar start-->
+    <aside>
+      <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu">
+          <li class="active">
+            <a class="" href="index.html">
+                          <i class="icon_house_alt"></i>
+                          <span>Dashboard</span>
+                      </a>
+          </li>
+          <li class="active">
+            <a class="" href="GU.php">
+                          <i class="icon_house_alt"></i>
+                          <span>Gestion des utilisateurs</span>
+                      </a>
+          </li>
+          <li class="active">
+            <a class="" href="GB.php">
+                          <i class="icon_house_alt"></i>
+                          <span>Blog</span>
+                      </a>
+          </li>
+          <li class="sub-menu">
+              <a href="javascript:;" class="">
+                <i class="icon_document_alt"></i>
+                <span>randonné et camping </span>
+                <span class="menu-arrow arrow_carrot-right"></span>
+              </a>
+              <ul class="sub">
+                <li>
+                  <a class="active" href="checkout_camping.php">camping</a>
+                </li>
+                <li>
+                  <a class="" href="">randonné</a>
+                </li>
+              </ul>
+              </li>
+          <li class="active">
+            <a class="" href="voyage.php">
+                          <i class="icon_house_alt"></i>
+                          <span>voyage</span>
+                      </a>
+          </li>
 
+        </ul>
+        <!-- sidebar menu end-->
+      </div>
+    </aside>
     <!--sidebar end-->
 
     <!--main content start-->
@@ -388,130 +360,142 @@ echo("</table> ");
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="fa fa-table"></i> Tableau</h3>
+            <h3 class="page-header"><i class="icon_genius"></i> Camping</h3>
             <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="index.html">Accueil</a></li>
-              <li><i class="fa fa-table"></i>Gestion des utilisateurs</li>
-              
-            </ol>
+              <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
+              <li><i class="icon_genius"></i>Camping</li>
+
           </div>
         </div>
-        <!-- page start-->
+    <div id="content-wrapper">
+
+      <div class="container-fluid">
 
 
 
 
-        <div class="row">
-          <div class="col-lg-12">
-            <section class="panel">
-              <header class="panel-heading">
-                Voici la liste des utilisateurs
-              </header>
-
-              <table class="table table-striped table-advance table-hover">
-                <tbody>
-                  <tr>
-                    <th><i class="icon_profile"></i>ID</th>
-                    <th><i class="icon_profile"></i> CIN</th>
-                    <th><i class="icon_profile"></i>Nom</th>
-                    <th><i class="icon_profile"></i>Prenom</th>
-                    <th><i class="icon_mobile"></i> Telephone</th>
-                    <th><i class="icon_mail_alt"></i> Email</th>
-                    <th><i class="icon_profile"></i>Login</th>
-                    <th><i class="icon_profile"></i>Mot de passe</th>
-                    <th><i class="icon_cogs"></i> Action</th>
-                  </tr>
-                  <?php
-                  foreach($result as $rows)
-{
-echo ("<tr><td>");
-echo $rows['id'];
-echo ("</td>");
-echo ("<td>");
-echo $rows['CIN'];
-echo ("</td>");
-    echo ("<td>");
-    echo $rows['nom'];
-    echo ("</td>");
-    echo ("<td>");
-    echo $rows['prenom'];
-    echo ("</td>");
-    echo ("<td>");
-    echo $rows['telephone'];
-    echo ("</td>");
-    echo ("<td>");
-    echo $rows['email'];
-    echo ("</td>");echo ("<td>");
-    echo $rows['login'];
-    echo ("</td>");
-        echo ("</td>");echo ("<td>");
-        echo $rows['password'];
-    echo ("</td>");
-?>
                 
-                    <td>
-                      <div class="btn-group">
-                        <a class="btn btn-primary" <?php echo("href=../FRONT/Views/editu.php?id=" .$rows['id']." ") ?>><i class="icon_plus_alt2"></i></a>
-                        <a class="btn btn-danger" <?php echo("href=../FRONT/Controller/delete.php?id=" .$rows['id']." ") ?> ><i class="icon_close_alt2"></i></a>
-                      </div>
-                    </td>
-                  </tr>
-                  
-            <?php } ?>
-                </tbody>
-              </table>
-            </section>
-          </div>
-        </div>
+            <?PHP
+include "RandonneeC.php";
+
+if (isset($_GET['id'])){
+    $randoneeC1=new RandonneeC();
+    $result=$randonneeC1->recupererrandonnee($_GET['id']);
+    foreach($result as $row){
+        $id=$row['id'];
+        $nom=$row['nom'];
+        $region=$row['region'];
+        $num=$row['num'];
+        $dateDebut=$row['DateDebut'];
+        $dateFin=$row['DateFin'];
+        $information=$row['information'];
+        $photo=$row['photo'];
+        $cout=$row['cout'];
+
+        
+
+?>
+
+
+
+<form class="was-validated" method="POST">
+<table>
+<div class="container-fluid">
+<hr>
+<div class="row">
+        <div class="col-md-20">
+            <h3 class="text-center text-info">Update randonnee</h3>
+            <hr>
+
+
+<div class="form-group">
+<input class="form-control" required pattern="[0-9a-zA-Z,/.]{3,12}" placeholder="Enter Name Of the Event" type="text" name="nom" value="<?PHP echo $nom ?>">
+</div>
+
+<div class="form-group">
+<input class="form-control" required pattern="[0-9a-zA-Z,/.@]{3,30}" placeholder="Enter your address" type="text" name="region" value="<?PHP echo $region ?>">
+</div>
+
+<div class="form-group">
+<input class="form-control" required pattern="[0-9]{6,12}" placeholder="Enter your phone " type="tel" name="num" value="<?PHP echo $num ?>">
+</div>
+<div class="form-group">
+<input class="form-control" required placeholder="DateDebut" type="Date" name="DateDebut" value="<?PHP echo $dateDebut ?>">
+</div>
+
+<div class="form-group">
+<input class="form-control" required placeholder="DateFin" type="Date" name="DateFin" value="<?PHP echo $dateFin ?>">
+</div>
+<div class="form-group">
+<input class="form-control" required placeholder="cout" type="prix" name="cout" value="<?PHP echo $cout ?>">
+</div>
+<div class="form-group">
+<input type="text"  class="form-control" required pattern="[0-9a-zA-Z,/.]{3,60}" placeholder="Informations About the camp" name="information" value="<?PHP echo $information ?>">
+</div>
+
+
+<div class="form-group">
+<input type="file" name="photo" class="custom-file" >
+</div>
+
+<div class="form-group">
+<input  class="btn btn-success btn-block" type="submit" name="modifier" value="Update">
+</div>
+
+<div class="form-group">
+<input  type="hidden" name="id_ini" value="<?PHP echo $_GET['id'];?>">
+</div>
+
+</table>
+
+</div>
+</div>
+</form>
+
+<?PHP
+    }}
+if (isset($_POST['modifier'])){
+  $randonneeC1=new RandonneeC();
+    $camp=new RandonneeC($_POST['id'],$_POST['nom'],$_POST['region'],$_POST['num'],$_POST['photo'],$_POST['information'],$_POST['DateDebut'],$_POST['DateFin'],$_POST['cout']);
+    $randonneeC1->modifierrandonnee($camp,$_POST['id_ini']);
+    echo $_POST['id_ini'];
+    echo ("<script> window.location.replace(\"checkout_randonnee.php\")</script>");
+}
+?> 
         <!-- page end-->
       </section>
     </section>
     <!--main content end-->
     <div class="text-right">
       <div class="credits">
-        <!--
+          <!--
             All the links in the footer should remain intact.
             You can delete the links only if you purchased the pro version.
             Licensing information: https://bootstrapmade.com/license/
             Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
-          
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
-      </div>
+          -->
+          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        </div>
     </div>
   </section>
   <!-- container section end -->
+
   <!-- javascripts -->
   <script src="js/jquery.js"></script>
   <script src="js/bootstrap.min.js"></script>
-  <!-- nicescroll -->
+  <!-- nice scroll -->
   <script src="js/jquery.scrollTo.min.js"></script>
   <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
+  <!-- jquery knob -->
+  <script src="assets/jquery-knob/js/jquery.knob.js"></script>
   <!--custome script for all page-->
   <script src="js/scripts.js"></script>
-  <div id="ascrail2000" class="nicescroll-rails"
-    style="width: 6px; z-index: 1000; background: rgb(247, 247, 247); cursor: default; position: fixed; top: 0px; height: 100%; right: 0px; opacity: 0;">
-    <div
-      style="position: relative; top: 0px; float: right; width: 6px; height: 346px; background-color: rgb(0, 122, 255); background-clip: padding-box; border-radius: 10px;">
-    </div>
-  </div>
-  <div id="ascrail2000-hr" class="nicescroll-rails"
-    style="height: 6px; z-index: 1000; background: rgb(247, 247, 247); position: fixed; left: 0px; width: 100%; bottom: 0px; cursor: default; display: none; opacity: 0;">
-    <div
-      style="position: relative; top: 0px; height: 6px; width: 1518px; background-color: rgb(0, 122, 255); background-clip: padding-box; border-radius: 10px;">
-    </div>
-  </div>
-  <div id="ascrail2001" class="nicescroll-rails"
-    style="width: 3px; z-index: auto; background: rgb(247, 247, 247); cursor: default; position: fixed; top: 0px; left: 177px; height: 772px; display: none; opacity: 0;">
-    <div
-      style="position: relative; top: 0px; float: right; width: 3px; height: 0px; background-color: rgb(0, 122, 255); background-clip: padding-box; border-radius: 10px;">
-    </div>
-  </div>
-  <div id="ascrail2001-hr" class="nicescroll-rails"
-    style="height: 3px; z-index: auto; background: rgb(247, 247, 247); top: 769px; left: 0px; position: fixed; cursor: default; display: none; opacity: 0;">
-    <div
-      style="position: relative; top: 0px; height: 3px; width: 0px; background-color: rgb(0, 122, 255); background-clip: padding-box; border-radius: 10px; left: 0px;">
-    </div>
-  </div>
+
+  <script>
+    //knob
+    $(".knob").knob();
+  </script>
+
 </body>
 
 </html>

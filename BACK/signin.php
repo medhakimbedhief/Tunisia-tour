@@ -20,6 +20,7 @@
           if ($message != 'le login ou le mot de passe est incorrect') {
 
 
+
             $to_email ='atunisiatour@gmail.com';
             $subject = 'Connexion validée';
             $message = 'Bonjour nous voudrons vous informez que vous etes bien connecté dans notre site TUNISIA TOUR';
@@ -37,7 +38,9 @@
     
     
 
-              header('Location:../FRONT/index.php');
+             
+
+              header('Location:../FRONT/index1.php');
           } else {
               $message = 'le login ou le mot de passe est incorrect';
               echo ('<script> alert("Vos données sont incorrectes, Veuillez réessayer"); </script>');
@@ -60,7 +63,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
  
      <!-- Site Metas -->
-    <title>Tunia tour Connection</title>  
+    <title>Tunia tou login</title>  
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
