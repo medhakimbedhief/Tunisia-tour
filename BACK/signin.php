@@ -12,10 +12,34 @@
           !empty($_POST["login"]) &&
           !empty($_POST["pass"])
       ) {
+          
+        
           $message = $userC->connexionUser($_POST["login"], $_POST["pass"]);
           $_SESSION['e'] = $_POST["login"]; // on stocke dans le tableau une colonne ayant comme nom "e",
-          //  avec l'email à l'intérieur
+          //  avec le login à l'intérieur
           if ($message != 'le login ou le mot de passe est incorrect') {
+
+
+
+            $to_email ='atunisiatour@gmail.com';
+            $subject = 'Connexion validée';
+            $message = 'Bonjour nous voudrons vous informez que vous etes bien connecté dans notre site TUNISIA TOUR';
+            $headers = 'atunisiatour@gmail.com';
+            try {
+                if (mail($to_email, $subject, $message, $headers)) { 
+                    echo (' <script> alert("Nous vous avons envoyer un mail"); </script> ');
+                } else {
+                    echo ('<script> alert("Erreur du mail"); </script>');
+                }
+            } catch (Exception $e) {
+                echo 'Exception reçue : ',  $e->getMessage(), "\n";
+            }
+    
+    
+    
+
+             
+
               header('Location:../FRONT/index1.php');
           } else {
               $message = 'le login ou le mot de passe est incorrect';

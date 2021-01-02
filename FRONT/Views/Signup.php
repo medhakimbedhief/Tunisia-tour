@@ -20,26 +20,28 @@
          
      );
 $utilisateurC->ajouterUtilisateur($utilisateur);
-header('location:../../BACK/signin.php');
 
 
-/*envoi d'un email d'inscription
         $to_email =$_POST['email'];
         $subject = 'Inscription valide';
         $message = 'Bonjour nous voudrons vous informez que vous etes bien inscrit dans notre site TUNISIA TOUR';
-        $headers = ' ';
-        //check if the email address is invalid $secure_check
-        $secure_check = sanitize_my_email($to_email);
-        if ($secure_check == false) {
-            echo "adresse email invalide";
-        } else { //send email 
-            mail($to_email, $subject, $message, $headers);
-            echo ('<script> alert("Nous vous avons envoyer un mail"); </script>');
-        }*/
+        $headers = 'atunisiatour@gmail.com';
+        try {
+            if (mail($to_email, $subject, $message, $headers)) {
+                echo ('<script> alert("Nous vous avons envoyer un mail"); </script>');
+                header('location:../../BACK/signin.php');
 
+            } else {
+                echo ('<script> alert("Erreur du mail"); </script>');
+            }
+        } catch (Exception $e) {
+            echo 'Exception reçue : ',  $e->getMessage(), "\n";
+        }
 
 
     }else {echo('<script> alert("Compte existant"); </script>');}
+
+
  }
 
 
@@ -122,8 +124,8 @@ header('location:../../BACK/signin.php');
                     Email :
                     <div class="input-group">
                         <span class="input-group-addon"><ins></i></span>
-                        <input type="email" class="form-control" name="email" id="email"
-                            placeholder="Enter mail" onfocusout="ad_email()" pattern=".+@gmail.com|.+@esprit.tn">
+                        <input type="email" class="form-control" name="email" id="email" 
+                            placeholder="Enter mail" onfocusout="ad_email()" >
                     </div>
                     <label id="elementemail" name="erreur" style="color: red;display: none;">L'adresse email est
                             invalide . </label>
@@ -136,7 +138,7 @@ header('location:../../BACK/signin.php');
                             minlength="8" maxlength="8" onfocusout="telephonefc()" >
                     </div>
                     <label id="element2" name="erreur" style="color: red;display: none;">Le numéro de
-                            téléphone est erroné' </label>
+                            téléphone est erroné </label>
 
                     
                 
@@ -191,11 +193,11 @@ header('location:../../BACK/signin.php');
         
         function telephonefc() {
             var element = document.getElementById("element2");
-            if (Number(document.getElementById("telephone").value) < 10000000) { element.style.display = "block"; } else { element.style.display = "none"; }
+            if ((Number(document.getElementById("telephone").value) < 10000000)||(Number(document.getElementById("telephone").value) > 99999999)) { element.style.display = "block"; } else { element.style.display = "none"; }
         }
         function cinfc() {
             var element = document.getElementById("elementcin");
-            if (Number(document.getElementById("CIN").value) < 10000000) { element.style.display = "block"; } else { element.style.display = "none"; }
+            if ((Number(document.getElementById("CIN").value) < 10000000)||(Number(document.getElementById("CIN").value) > 99999999)) { element.style.display = "block"; } else { element.style.display = "none"; }
         }
         
 
