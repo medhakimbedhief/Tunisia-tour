@@ -336,10 +336,10 @@
               </a>
               <ul class="sub">
                 <li>
-                  <a class="active" href="checkout_camping.php">camping</a>
+                  <a class="" href="checkout_camping.php">camping</a>
                 </li>
                 <li>
-                  <a class="" href="checkout_randonnee.php">randonné</a>
+                  <a class="active" href="checkout_randonne.php">randonné</a>
                 </li>
               </ul>
               </li>
@@ -361,10 +361,10 @@
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="icon_genius"></i> Camping</h3>
+            <h3 class="page-header"><i class="icon_genius"></i> randonné</h3>
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
-              <li><i class="icon_genius"></i>Camping</li>
+              <li><i class="icon_genius"></i>randonné</li>
 
           </div>
         </div>
@@ -372,24 +372,26 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-4">
-      <h3 class="text-center text-info">Add Camping</h3>
+      <h3 class="text-center text-info">Add randonné</h3>
             <hr>
-<form class="was-validated" action="AjouterCamping.php" method="POST" >
+<form class="was-validated" action="AjouterRandonnee.php" method="POST" >
 
 
 <div class="form-group">
-<input type="text" name="nom" class="form-control" required pattern="[0-9a-zA-Z,/.]{3,12}" placeholder="Enter Name Of the Event" >
+<input type="text" name="nom" class="form-control" required pattern="[0-9a-zA-Z,/.]{3,12}" placeholder="Enter Name Of the randonné" >
 </div>
 
                 <div class="form-group">
 <input type="address" name="region" class="form-control" required pattern="[0-9a-zA-Z,/.]{3,12}" placeholder="Enter your address">
 </div>
-<div class="form-group">
-<input type="Date" name="DateDebut" class="form-control" required  placeholder="DateDebut">
+
+
+
+
+                <div class="form-group">
+<input type="Date" name="date" class="form-control" required pattern="[0-9]{6,12}" placeholder="Date" >
 </div>
-<div class="form-group">
-<input type="Date" name="DateFin"  class="form-control" required  placeholder="DateFin" >
-</div>
+
 <div class="form-group">
 <input type="prix" name="cout" class="form-control" required pattern="[0-9]{1,12}" placeholder="donner le prix" >
 </div>
@@ -418,7 +420,7 @@
 
 
 
-      <textarea     onblur="calculeLongueur();" onfocus="calculeLongueur();" onkeydown="calculeLongueur();" onkeyup="calculeLongueur();" id="autre" name="information" class="form-control" required pattern="[0-9a-zA-Z-\.]{3,400}" placeholder="Informations About the products" ></textarea>
+      <textarea     onblur="calculeLongueur();" onfocus="calculeLongueur();" onkeydown="calculeLongueur();" onkeyup="calculeLongueur();" id="autre" name="description" class="form-control" required pattern="[0-9a-zA-Z-\.]{3,400}" placeholder="Informations About the randonné" ></textarea>
       
             </div>
 
@@ -434,30 +436,18 @@
  
 <input type="submit" name="add" class="btn btn-primary btn-block" value="Add">
 
+
 </div>
 </form>
 
 </div>
 <hr>
 <?PHP
-include "../BACK/Controller/CampingC.php";
-$camping1C=new CampingC();
-$listeCamping=$camping1C->afficherCamping();
+include "../BACK/Controller/RandonneeC.php";
+$randonnee1C=new randonneeC();
+$listerandonnee=$randonnee1C->afficherrandonnee();
 
 ?>
-<?php
-$today=date("Y-m-d");
-?>
-<?PHP
-
-foreach($listeCamping as $row){
-    if($row['DateFin']<$today)
-    {
-        $camping1C->supprimercamping($row['id']);
-    }
-}
-$listeCamping=$camping1C->afficherCamping();
-    ?>
 
 <table class="table table-hover">
       <thead>
@@ -465,36 +455,34 @@ $listeCamping=$camping1C->afficherCamping();
         <th  style="width: 5%">ID</th>
         <th>Nom</th>
         <th>region</th>
-         <th style="width: 15%">DateDebut</th>
-         <th style="width: 15%">DateFin</th>
+         <th style="width: 15%">date</th>
          <th style="width: 15%">cout</th>
-         <th style="width: 30%">information</th>
+         <th style="width: 30%">description</th>
 
                  <th >photo</th>
                  </tr>
       </thead>
 
 <?PHP
-foreach($listeCamping as $row){
+foreach($listerandonnee as $row){
   ?>
     
   <tr>
   <td><?PHP echo $row['id']; ?></td>
   <td><?PHP echo $row['nom']; ?></td>
   <td><?PHP echo $row['region']; ?></td>
-  <td><?PHP echo $row['DateDebut']; ?></td>
-  <td><?PHP echo $row['DateFin']; ?></td>
+  <td><?PHP echo $row['date']; ?></td>
   <td><?PHP echo $row['cout']; ?></td>
-  <td><?PHP echo $row['information']; ?></td>
+  <td><?PHP echo $row['description']; ?></td>
 
   <td><img width="80" src="uploads/<?php echo $row['photo'] ?>" alt="<?php echo $row['photo'] ?>"></td>
  
- <td style="width="70% ><form method="POST" action="supprimerCamping.php" >
+ <td style="width="70% ><form method="POST" action="supprimerRandonnee.php" >
             <input type="submit" name="delete" value="Delete" class="btn btn-danger btn-block" >
                          <input type="hidden" value="<?php echo $row['id']; ?>" name="id" >
                          </form>
                         </td>
-                         <td><a class="btn btn-success btn-block" href="modifierCamping.php?id=<?PHP echo $row['id']; ?>">
+                         <td><a class="btn btn-success btn-block" href="modifierRandonnee.php?id=<?PHP echo $row['id']; ?>">
   Modifier</a></td>     
                           
                         </tr>

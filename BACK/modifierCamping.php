@@ -376,7 +376,7 @@
 
                 
             <?PHP
-include "CampingC.php";
+include "../BACK/Controller/CampingC.php";
 
 if (isset($_GET['id'])){
     $campingC1=new CampingC();
@@ -385,7 +385,6 @@ if (isset($_GET['id'])){
         $id=$row['id'];
         $nom=$row['nom'];
         $region=$row['region'];
-        $num=$row['num'];
         $dateDebut=$row['DateDebut'];
         $dateFin=$row['DateFin'];
         $information=$row['information'];
@@ -416,9 +415,7 @@ if (isset($_GET['id'])){
 <input class="form-control" required pattern="[0-9a-zA-Z,/.@]{3,30}" placeholder="Enter your address" type="text" name="region" value="<?PHP echo $region ?>">
 </div>
 
-<div class="form-group">
-<input class="form-control" required pattern="[0-9]{6,12}" placeholder="Enter your phone " type="tel" name="num" value="<?PHP echo $num ?>">
-</div>
+
 <div class="form-group">
 <input class="form-control" required placeholder="DateDebut" type="Date" name="DateDebut" value="<?PHP echo $dateDebut ?>">
 </div>
@@ -430,7 +427,7 @@ if (isset($_GET['id'])){
 <input class="form-control" required placeholder="cout" type="prix" name="cout" value="<?PHP echo $cout ?>">
 </div>
 <div class="form-group">
-<input type="text"  class="form-control" required pattern="[0-9a-zA-Z,/.]{3,60}" placeholder="Informations About the camp" name="information" value="<?PHP echo $information ?>">
+<input type="text"  class="form-control" placeholder="Informations About the camp" name="information" value="<?PHP echo $information ?>">
 </div>
 
 
@@ -456,8 +453,8 @@ if (isset($_GET['id'])){
     }}
 if (isset($_POST['modifier'])){
   $campingC1=new CampingC();
-    $camp=new Camping($_POST['id'],$_POST['nom'],$_POST['region'],$_POST['num'],$_POST['photo'],$_POST['information'],$_POST['DateDebut'],$_POST['DateFin'],$_POST['cout']);
-    $campingC1->modifiercamping($camp,$_POST['id_ini']);
+    $camp=new Camping($_POST['id_ini'],$_POST['nom'],$_POST['region'],$_POST['photo'],$_POST['information'],$_POST['DateDebut'],$_POST['DateFin'],$_POST['cout']);
+    $campingC1->modifiercamping($camp,$_GET['id']);
     echo $_POST['id_ini'];
     echo ("<script> window.location.replace(\"checkout_camping.php\")</script>");
 }

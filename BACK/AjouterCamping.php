@@ -1,8 +1,8 @@
 <?PHP
 
-include "C:/wamp64/www/Tunisia-tour-master/BACK/CampingC.php";
+include "../BACK/Controller/CampingC.php";
 
-if (isset($_POST['nom']) and isset($_POST['region']) and isset($_POST['num']) and isset($_POST['information'])and isset($_POST['DateDebut'])and isset($_POST['DateFin'])and isset($_POST['cout'])){
+if (isset($_POST['nom']) and isset($_POST['region']) and isset($_POST['information'])and isset($_POST['DateDebut'])and isset($_POST['DateFin'])and isset($_POST['cout'])){
 
 	$targetDir = "uploads/";
 	$fileName = basename($_FILES['photo']['nom']);
@@ -14,7 +14,7 @@ if (isset($_POST['nom']) and isset($_POST['region']) and isset($_POST['num']) an
 
 	
 
-	$camping1=new Camping($_POST['id'],$_POST['nom'],$_POST['region'],$_POST['num'],$_POST['photo'],$_POST['information'],$_POST['DateDebut'],$_POST['DateFin'],$_POST['cout']);
+	$camping1=new Camping($_POST['id'],$_POST['nom'],$_POST['region'],$_POST['photo'],$_POST['information'],$_POST['DateDebut'],$_POST['DateFin'],$_POST['cout']);
 
 
 

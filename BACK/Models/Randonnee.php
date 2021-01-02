@@ -4,16 +4,16 @@ class Randonnee{
     private $id;
     private $nom;
     private $region;
-    private $num;
+    private $date;
     private $photo;
     private $description;
     private $cout;
 
- function __construct($Id,$Nom,$Region,$Num,$Photo,$Description,$Cout){
+ function __construct($Id,$Nom,$Region,$Date,$Photo,$Description,$Cout){
     $this->id=$Id;
     $this->nom=$Nom;
     $this->region=$Region;
-    $this->num=$Num;
+    $this->date=$Date;
     $this->photo=$Photo;
     $this->description=$Description; 
     $this->cout=$Cout;     
@@ -28,8 +28,8 @@ class Randonnee{
  function getregion(){
     return $this->region;
  }
- function getnum(){
-    return $this->num;
+ function getdate(){
+    return $this->date;
  }
  function getphoto(){
     return $this->photo;
@@ -51,8 +51,8 @@ function getcout(){
  function setregion($Region){
     $this->region=$Region;
  }
- function setnum($Num){
-     $this->num=$Num;
+ function setnum($Date){
+     $this->date=$Date;
  }
  function setphoto($Photo){
      $this->photo=$Photo;

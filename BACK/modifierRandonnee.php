@@ -335,10 +335,10 @@
               </a>
               <ul class="sub">
                 <li>
-                  <a class="active" href="checkout_camping.php">camping</a>
+                  <a class="" href="checkout_camping.php">camping</a>
                 </li>
                 <li>
-                  <a class="" href="">randonné</a>
+                  <a class="active" href="checkout_randonnee.php">randonné</a>
                 </li>
               </ul>
               </li>
@@ -376,20 +376,18 @@
 
                 
             <?PHP
-include "RandonneeC.php";
+include "./Controller/RandonneeC.php";
 
 if (isset($_GET['id'])){
-    $randoneeC1=new RandonneeC();
+    $randonneeC1=new RandonneeC();
     $result=$randonneeC1->recupererrandonnee($_GET['id']);
     foreach($result as $row){
         $id=$row['id'];
         $nom=$row['nom'];
         $region=$row['region'];
-        $num=$row['num'];
-        $dateDebut=$row['DateDebut'];
-        $dateFin=$row['DateFin'];
-        $information=$row['information'];
+        $date=$row['date'];
         $photo=$row['photo'];
+        $description=$row['description'];
         $cout=$row['cout'];
 
         
@@ -409,28 +407,22 @@ if (isset($_GET['id'])){
 
 
 <div class="form-group">
-<input class="form-control" required pattern="[0-9a-zA-Z,/.]{3,12}" placeholder="Enter Name Of the Event" type="text" name="nom" value="<?PHP echo $nom ?>">
+<input class="form-control" required pattern="[0-9a-zA-Z,/.]{3,12}" placeholder="Enter Name " type="text" name="nom" value="<?PHP echo $nom ?>">
 </div>
 
 <div class="form-group">
 <input class="form-control" required pattern="[0-9a-zA-Z,/.@]{3,30}" placeholder="Enter your address" type="text" name="region" value="<?PHP echo $region ?>">
 </div>
 
-<div class="form-group">
-<input class="form-control" required pattern="[0-9]{6,12}" placeholder="Enter your phone " type="tel" name="num" value="<?PHP echo $num ?>">
-</div>
-<div class="form-group">
-<input class="form-control" required placeholder="DateDebut" type="Date" name="DateDebut" value="<?PHP echo $dateDebut ?>">
-</div>
 
 <div class="form-group">
-<input class="form-control" required placeholder="DateFin" type="Date" name="DateFin" value="<?PHP echo $dateFin ?>">
+<input class="form-control" required placeholder="Date" type="Date" name="date" value="<?PHP echo $date ?>">
 </div>
 <div class="form-group">
 <input class="form-control" required placeholder="cout" type="prix" name="cout" value="<?PHP echo $cout ?>">
 </div>
 <div class="form-group">
-<input type="text"  class="form-control" required pattern="[0-9a-zA-Z,/.]{3,60}" placeholder="Informations About the camp" name="information" value="<?PHP echo $information ?>">
+<input type="text"  class="form-control"   placeholder="Informations About the randonnée" name="description" value="<?PHP echo $description ?>">
 </div>
 
 
@@ -456,8 +448,8 @@ if (isset($_GET['id'])){
     }}
 if (isset($_POST['modifier'])){
   $randonneeC1=new RandonneeC();
-    $camp=new RandonneeC($_POST['id'],$_POST['nom'],$_POST['region'],$_POST['num'],$_POST['photo'],$_POST['information'],$_POST['DateDebut'],$_POST['DateFin'],$_POST['cout']);
-    $randonneeC1->modifierrandonnee($camp,$_POST['id_ini']);
+    $rand=new Randonnee($_POST['id_ini'],$_POST['nom'],$_POST['region'],$_POST['date'],$_POST['photo'],$_POST['description'],$_POST['cout']);
+    $randonneeC1->modifierrandonnee($rand,$_POST['id_ini']);
     echo $_POST['id_ini'];
     echo ("<script> window.location.replace(\"checkout_randonnee.php\")</script>");
 }

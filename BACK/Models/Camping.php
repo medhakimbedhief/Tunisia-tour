@@ -4,18 +4,16 @@ class Camping{
     private $id;
     private $nom;
     private $region;
-    private $num;
     private $DateDebut;
     private $DateFin;
     private $photo;
     private $information;
     private $cout;
 
- function __construct($Id,$Nom,$Region,$Num,$Photo,$information,$dateDebut,$dateFin,$Cout){
+ function __construct($Id,$Nom,$Region,$Photo,$information,$dateDebut,$dateFin,$Cout){
     $this->id=$Id;
     $this->nom=$Nom;
     $this->region=$Region;
-    $this->num=$Num;
     $this->photo=$Photo; 
     $this->information=$information;
     $this->DateDebut=$dateDebut;
@@ -31,9 +29,6 @@ class Camping{
  }
  function getregion(){
     return $this->region;
- }
- function getnum(){
-    return $this->num;
  }
  function getphoto(){
     return $this->photo;
@@ -61,9 +56,6 @@ function getCout(){
  }
  function setregion($Region){
     $this->region=$Region;
- }
- function setnum($Num){
-     $this->num=$Num;
  }
  function setphoto($Photo){
      $this->photo=$Photo;

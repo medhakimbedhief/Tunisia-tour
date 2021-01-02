@@ -1,18 +1,19 @@
 <?php
  include "config.php";
- include "C:/wamp64/www/Tunisia-tour-master/BACK/Randonnee.php";
- class RandonneeC {
+ include "./Models/Randonnee.php";
+ 
+  class RandonneeC {
 
 
-	function ajouterrandonneeC($randonnee){
-		$sql="insert into randonnee (id,nom,region,num,photo,description, cout) values (:id, :nom,:region,:num, :photo, :description, :cout)";
+	function ajouterrandonnee($randonnee){
+		$sql="insert into randonnee (id,nom,region,date,photo,description, cout) values (:id, :nom,:region,:date, :photo, :description, :cout)";
 		$db = config::getConnexion();
 		try{
         $req=$db->prepare($sql);
         $id=$randonnee->getid();
 		$nom=$randonnee->getnom();
 		$region=$randonnee->getregion();
-        $num=$randonnee->getnum();
+        $date=$randonnee->getdate();
         $photo=$randonnee->getphoto();
         $description=$randonnee->getdescription();
         $cout=$randonnee->getcout();
@@ -21,7 +22,7 @@
 		$req->bindValue(':nom',$nom);
 		$req->bindValue(':region',$region);
 
-		$req->bindValue(':num',$num);
+		$req->bindValue(':date',$date);
 		$req->bindValue(':photo',$photo);
         $req->bindValue(':description',$description);
         $req->bindValue(':cout',$cout);        
@@ -68,31 +69,30 @@
     }
     
 
-    function modifierrandonnee($randonnee,$id){
-		$sql="UPDATE randonnee SET id=:idd, nom=:nom, region=:region, num=:num,description=:description, photo=:photo , cout=:cout WHERE id=:id";
+    function modifierrandonnee($Randonnee,$id){
+		$sql="UPDATE randonnee SET nom=:nom, region=:region, date=:date,description=:description, photo=:photo , cout=:cout WHERE id=:id";
 		
 		$db = config::getConnexion();
 		//$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 try{		
         $req=$db->prepare($sql);
-		$idd=$randonnee->getid();
-		$nom=$randonnee->getnom();
-		$region=$randonnee->getregion();
-        $num=$randonnee->getnum();
-		$photo=$randonnee->getphoto();
-        $description=$randonnee->getdescription();
-        $cout=$randonnee->getcout();		
+		$nom=$Randonnee->getnom();
+		$region=$Randonnee->getregion();
+        $date=$Randonnee->getdate();
+		$photo=$Randonnee->getphoto();
+        $description=$Randonnee->getdescription();
+        $cout=$Randonnee->getcout();		
 
       
        
-		$datas = array(':idd'=>$idd,':id'=>$id,  ':nom'=>$nom, ':region'=>$region,':num'=>$num, ':photo'=>$photo, 'description'=>$description, 'cout'=>$cout );
-		$req->bindValue(':idd',$idd);
+		$datas = array(':id'=>$id,  ':nom'=>$nom, ':region'=>$region,':date'=>$date, ':photo'=>$photo, ':description'=>$description, ':cout'=>$cout );
+	
 		$req->bindValue(':id',$id);
 
 		$req->bindValue(':nom',$nom);
 		$req->bindValue(':region',$region);
 
-		$req->bindValue(':num',$num);
+		$req->bindValue(':date',$date);
 		$req->bindValue(':photo',$photo);
         $req->bindValue(':description',$description);
         $req->bindValue(':cout',$cout);
