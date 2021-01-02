@@ -70,7 +70,7 @@ class blogC{
             $sql="update blog SET 
                                 titre = :titre,
                                 article = :article, 
-                                image = :image,
+                                image = :image
                             WHERE id = :id";
             $db=config::getConnexion(); 
             $query=$db->prepare($sql);
