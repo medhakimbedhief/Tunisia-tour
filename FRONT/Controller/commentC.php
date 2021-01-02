@@ -1,7 +1,19 @@
 <?php
 include_once "config.php" ;
 class commentC{
-
+    public function neutre()
+    {
+        try{
+            $pdo=config::getConnexion();
+            $sql="SELECT COUNT(*) FROM commentaire WHERE text NOT LIKE '%joli%' OR text NOT LIKE '%bon%' OR text NOT LIKE '%great%' OR text NOT LIKE '%bad%' OR text NOT LIKE '%mauvais%' OR text NOT LIKE '%worst%' ";
+            $query=$pdo->prepare($sql);
+            $query->execute();
+            return $query->fetchColumn();
+        }
+        catch(PDOException $e){
+            $e->getMessage();
+        }
+    }
     public function positives()
     {
         try{

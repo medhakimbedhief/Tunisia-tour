@@ -314,7 +314,76 @@
     <!--header end-->
 
     <!--sidebar start-->
-    <?php include_once "sidebar.php"; ?>
+    <aside>
+      <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu">
+          <li class="">
+            <a class="" href="index.html">
+                          <i class="icon_house_alt"></i>
+                          <span>Dashboard</span>
+                      </a>
+          </li>
+          <li class="sub-menu">
+            <a class="" href="GU.php">
+                          <i class="icon_table"></i>
+                          <span>Gestion des utilisateurs</span>
+                      </a>
+          </li>
+          <li class="sub-menu active">
+            <a href="javascript:;" class="">
+              <i class="icon_house_alt"></i>
+                          <span>Blog</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+                      <ul class="sub">
+                        <li><a class=""href="GB.php"> Table</a></li>
+                        <li><a class=""href="ajoutB.php"> formulaire ajout </a></li>
+                        <li><a class=""href="recherche B.php"> recherche </a></li>
+
+
+                      </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;" class="">
+              <i class="icon_house_alt"></i>
+                          <span>Commentaires</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+                      <ul class="sub">
+                        <li><a class=""href="GC.php"> Table</a></li>
+                        <li><a class=""href="recherche C.php"> recherche</a></li>
+                        <li><a class=""href="stat_C.php"> Stat</a></li>
+
+
+                      </ul>
+          </li>
+          <li class="sub-menu">
+            <a class="" href="index.html">
+                          <i class="icon_house_alt"></i>
+                          <span>randonné et camping </span>
+                      </a>
+          </li>
+
+         
+
+          <li class="sub-menu">
+              <a href="javascript:;" class="">
+                          <i class="icon_document_alt"></i>
+                          <span>Voyage</span>
+                          <span class="menu-arrow arrow_carrot-down"></span>
+                      </a>
+                      <ul class="sub">
+                <li><a class="" href="GV.php">Tableau</a></li>
+                <li><a class="" href="ajoutV.php">formulaire ajout</a></li>
+              </ul>
+            </li>
+
+        </ul>
+        <!-- sidebar menu end-->
+      </div>
+    </aside>
+
     <!--sidebar end-->
 
 
@@ -327,7 +396,7 @@
           <div class="col-lg-12">
             <h3 class="page-header"><i class="fa fa-table"></i> Table</h3>
             <ol class="breadcrumb">
-              <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
+              <li><i class="fa fa-home"></i><a href="index.html">Accueil</a></li>
   
               <li><i class="fa fa-th-list"></i>GB</li>
             </ol>

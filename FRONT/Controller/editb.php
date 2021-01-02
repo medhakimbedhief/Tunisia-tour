@@ -5,71 +5,547 @@
 
     $blogC = new blogC();
     $pdo=config::getConnexion();
-        $query= $pdo ->prepare("select * from blog where id='$id'");
+        $query= $pdo ->prepare("select * from blog where id = '$id' ");
         $query->execute();
         $result = $query->fetchAll();
-    if (
-
-        isset($_POST["update"])
-        )  {
+    if (isset($_POST["update"]))
+          {
             $titre=$_POST['titre'];
             $article= $_POST['article'];
             $image=$_POST['image'];
             $error = "ok";
-            echo $error;
             $blogC->modifierblog($titre,$article,$image,$id);
             header('location:../../BACK/GB.php');
-        } else{
-            $error = "Missing information";
             echo $error;
-        }
+        } 
     ?>
     
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>edit</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
+  <meta name="author" content="GeeksLabs">
+  <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+  <link rel="shortcut icon" href="img/favicon.png">
+
+  <title>Creative - Bootstrap Admin Template</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- bootstrap theme -->
+  <link href="../../BACK/css/bootstrap-theme.css" rel="stylesheet">
+  <!--external css-->
+  <!-- font icon -->
+  <link href="../../BACK/css/elegant-icons-style.css" rel="stylesheet" />
+  <link href="../../BACK/css/font-awesome.min.css" rel="stylesheet" />
+  <!-- full calendar css-->
+  <link href="../../BACK/assets/fullcalendar/fullcalendar/bootstrap-fullcalendar.css" rel="stylesheet" />
+  <link href="../../BACK/assets/fullcalendar/fullcalendar/fullcalendar.css" rel="stylesheet" />
+  <!-- easy pie chart-->
+  <link href="../../BACK/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.css" rel="stylesheet" type="text/css" media="screen" />
+  <!-- owl carousel -->
+  <link rel="../../BACK/stylesheet" href="css/owl.carousel.css" type="text/css">
+  <link href="../../BACK/css/jquery-jvectormap-1.2.2.css" rel="stylesheet">
+  <!-- Custom styles -->
+  <link rel="../../BACK/stylesheet" href="css/fullcalendar.css">
+  <link href="../../BACK/css/widgets.css" rel="stylesheet">
+  <link href="../../BACK/css/style.css" rel="stylesheet">
+  <link href="../../BACK/css/style-responsive.css" rel="stylesheet" />
+  <link href="../../BACK/css/xcharts.min.css" rel=" stylesheet">
+  <link href="../../BACK/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
+  <!-- =======================================================
+    Theme Name: NiceAdmin
+    Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
+    Author: BootstrapMade
+    Author URL: https://bootstrapmade.com
+  ======================================================= -->
 </head>
-<body style="background-color: burlywood;">
-<?php
 
-        #if (isset($_GET['id'])) {
-         #   $blog = $blogC->getAlbumById($_GET['id']);
-			
-    ?>
-<h2 align="center">Update Data</h2>
-<hr>
-<br>
-<center>
-<form action="" method="POST">
-<table border="0">
-    <tr> <td>ID</td>
-        <td> titre</td>
-        <td>article</td>
-        <td>image</td>
+<body>
+  <!-- container section start -->
+  <section id="container" class="">
 
-    </tr>
-    <?php foreach($result as $rows) {?>
 
-    <tr>
-    <td style="color:red"><?php echo $rows['id']; ?> </td>   
-    <td >    
-  <input type="text" name="titre" value="<?php echo $rows['titre']; ?>" placeholder="Enter title" Required></td>
-  <td>
-  <input type="text" name="article" value="<?php echo $rows['article']; ?>" placeholder="Enter article" Required></td>
-  <td>
-  <input type="file" name="image"  value="<?php echo $rows['image'] ;?>" ></td>
-  </tr>
-</table>
-<br>
-<input type="submit" name="update" value="modifier"> 
+    <header class="header dark-bg">
+      <div class="toggle-nav">
+        <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
+      </div>
 
-<?php } ?>
-</form>
-</center>
+      <!--logo start-->
+      <a href="index.html" class="logo">Nice <span class="lite">Admin</span></a>
+      <!--logo end-->
 
+      <div class="nav search-row" id="top_menu">
+        <!--  search form start -->
+        <ul class="nav top-menu">
+          <li>
+            <form class="navbar-form">
+              <input class="form-control" placeholder="Search" type="text">
+            </form>
+          </li>
+        </ul>
+        <!--  search form end -->
+      </div>
+
+      <div class="top-nav notification-row">
+        <!-- notificatoin dropdown start-->
+        <ul class="nav pull-right top-menu">
+
+          <!-- task notificatoin start -->
+          <li id="task_notificatoin_bar" class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i class="icon-task-l"></i>
+                            <span class="badge bg-important">6</span>
+                        </a>
+            <ul class="dropdown-menu extended tasks-bar">
+              <div class="notify-arrow notify-arrow-blue"></div>
+              <li>
+                <p class="blue">You have 6 pending letter</p>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="task-info">
+                    <div class="desc">Design PSD </div>
+                    <div class="percent">90%</div>
+                  </div>
+                  <div class="progress progress-striped">
+                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100" style="width: 90%">
+                      <span class="sr-only">90% Complete (success)</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="task-info">
+                    <div class="desc">
+                      Project 1
+                    </div>
+                    <div class="percent">30%</div>
+                  </div>
+                  <div class="progress progress-striped">
+                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100" style="width: 30%">
+                      <span class="sr-only">30% Complete (warning)</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="task-info">
+                    <div class="desc">Digital Marketing</div>
+                    <div class="percent">80%</div>
+                  </div>
+                  <div class="progress progress-striped">
+                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+                      <span class="sr-only">80% Complete</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="task-info">
+                    <div class="desc">Logo Designing</div>
+                    <div class="percent">78%</div>
+                  </div>
+                  <div class="progress progress-striped">
+                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100" style="width: 78%">
+                      <span class="sr-only">78% Complete (danger)</span>
+                    </div>
+                  </div>
+                </a>
+              </li>
+              <li>
+                <a href="#">
+                  <div class="task-info">
+                    <div class="desc">Mobile App</div>
+                    <div class="percent">50%</div>
+                  </div>
+                  <div class="progress progress-striped active">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
+                      <span class="sr-only">50% Complete</span>
+                    </div>
+                  </div>
+
+                </a>
+              </li>
+              <li class="external">
+                <a href="#">See All Tasks</a>
+              </li>
+            </ul>
+          </li>
+          <!-- task notificatoin end -->
+          <!-- inbox notificatoin start-->
+          <li id="mail_notificatoin_bar" class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <i class="icon-envelope-l"></i>
+                            <span class="badge bg-important">5</span>
+                        </a>
+            <ul class="dropdown-menu extended inbox">
+              <div class="notify-arrow notify-arrow-blue"></div>
+              <li>
+                <p class="blue">You have 5 new messages</p>
+              </li>
+              <li>
+                <a href="#">
+                                    <span class="photo"><img alt="avatar" src="./img/avatar-mini.jpg"></span>
+                                    <span class="subject">
+                                    <span class="from">Greg  Martin</span>
+                                    <span class="time">1 min</span>
+                                    </span>
+                                    <span class="message">
+                                        I really like this admin panel.
+                                    </span>
+                                </a>
+              </li>
+              <li>
+                <a href="#">
+                                    <span class="photo"><img alt="avatar" src="./img/avatar-mini2.jpg"></span>
+                                    <span class="subject">
+                                    <span class="from">Bob   Mckenzie</span>
+                                    <span class="time">5 mins</span>
+                                    </span>
+                                    <span class="message">
+                                     Hi, What is next project plan?
+                                    </span>
+                                </a>
+              </li>
+              <li>
+                <a href="#">
+                                    <span class="photo"><img alt="avatar" src="./img/avatar-mini3.jpg"></span>
+                                    <span class="subject">
+                                    <span class="from">Phillip   Park</span>
+                                    <span class="time">2 hrs</span>
+                                    </span>
+                                    <span class="message">
+                                        I am like to buy this Admin Template.
+                                    </span>
+                                </a>
+              </li>
+              <li>
+                <a href="#">
+                                    <span class="photo"><img alt="avatar" src="./img/avatar-mini4.jpg"></span>
+                                    <span class="subject">
+                                    <span class="from">Ray   Munoz</span>
+                                    <span class="time">1 day</span>
+                                    </span>
+                                    <span class="message">
+                                        Icon fonts are great.
+                                    </span>
+                                </a>
+              </li>
+              <li>
+                <a href="#">See all messages</a>
+              </li>
+            </ul>
+          </li>
+          <!-- inbox notificatoin end -->
+          <!-- alert notification start-->
+          <li id="alert_notificatoin_bar" class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+
+                            <i class="icon-bell-l"></i>
+                            <span class="badge bg-important">7</span>
+                        </a>
+            <ul class="dropdown-menu extended notification">
+              <div class="notify-arrow notify-arrow-blue"></div>
+              <li>
+                <p class="blue">You have 4 new notifications</p>
+              </li>
+              <li>
+                <a href="#">
+                                    <span class="label label-primary"><i class="icon_profile"></i></span>
+                                    Friend Request
+                                    <span class="small italic pull-right">5 mins</span>
+                                </a>
+              </li>
+              <li>
+                <a href="#">
+                                    <span class="label label-warning"><i class="icon_pin"></i></span>
+                                    John location.
+                                    <span class="small italic pull-right">50 mins</span>
+                                </a>
+              </li>
+              <li>
+                <a href="#">
+                                    <span class="label label-danger"><i class="icon_book_alt"></i></span>
+                                    Project 3 Completed.
+                                    <span class="small italic pull-right">1 hr</span>
+                                </a>
+              </li>
+              <li>
+                <a href="#">
+                                    <span class="label label-success"><i class="icon_like"></i></span>
+                                    Mick appreciated your work.
+                                    <span class="small italic pull-right"> Today</span>
+                                </a>
+              </li>
+              <li>
+                <a href="#">See all notifications</a>
+              </li>
+            </ul>
+          </li>
+          <!-- alert notification end-->
+          <!-- user login dropdown start-->
+          <li class="dropdown">
+            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="profile-ava">
+                                <img alt="" src="img/avatar1_small.jpg">
+                            </span>
+                            <span class="username">Jenifer Smith</span>
+                            <b class="caret"></b>
+                        </a>
+            <ul class="dropdown-menu extended logout">
+              <div class="log-arrow-up"></div>
+              <li class="eborder-top">
+                <a href="#"><i class="icon_profile"></i> My Profile</a>
+              </li>
+              <li>
+                <a href="#"><i class="icon_mail_alt"></i> My Inbox</a>
+              </li>
+              <li>
+                <a href="#"><i class="icon_clock_alt"></i> Timeline</a>
+              </li>
+              <li>
+                <a href="#"><i class="icon_chat_alt"></i> Chats</a>
+              </li>
+              <li>
+                <a href="login.html"><i class="icon_key_alt"></i> Log Out</a>
+              </li>
+              <li>
+                <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
+              </li>
+              <li>
+                <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
+              </li>
+            </ul>
+          </li>
+          <!-- user login dropdown end -->
+        </ul>
+        <!-- notificatoin dropdown end-->
+      </div>
+    </header>
+    <!--header end-->
+
+    <!--sidebar start-->
+    <aside>
+      <div id="sidebar" class="nav-collapse ">
+        <!-- sidebar menu start-->
+        <ul class="sidebar-menu">
+          <li class="">
+            <a class="" href="../../BACK/index.html">
+                          <i class="icon_house_alt"></i>
+                          <span>Dashboard</span>
+                      </a>
+          </li>
+          <li class="sub-menu">
+            <a class="" href="../../BACK/GU.php">
+                          <i class="icon_table"></i>
+                          <span>Gestion des utilisateurs</span>
+                      </a>
+          </li>
+          <li class="sub-menu active">
+            <a href="javascript:;" class="">
+              <i class="icon_house_alt"></i>
+                          <span>Blog</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+                      <ul class="sub">
+                        <li><a class=""href="../../BACK/GB.php"> Table</a></li>
+                        <li><a class=""href="../../BACK/ajoutB.php"> formulaire ajout </a></li>
+                        <li><a class=""href="../../BACK/recherche B.php"> recherche </a></li>
+
+
+                      </ul>
+          </li>
+          <li class="sub-menu">
+            <a href="javascript:;" class="">
+              <i class="icon_house_alt"></i>
+                          <span>Commentaires</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+                      <ul class="sub">
+                        <li><a class=""href="../../BACK/GC.php"> Table</a></li>
+                        <li><a class=""href="../../BACK/recherche C.php"> recherche</a></li>
+                        <li><a class=""href="../../BACK/stat_C.php"> Stat</a></li>
+
+
+                      </ul>
+          </li>
+          <li class="sub-menu">
+            <a class="" href="../../BACK/index.html">
+                          <i class="icon_house_alt"></i>
+                          <span>randonné et camping </span>
+                      </a>
+          </li>
+
+         
+
+          <li class="sub-menu">
+              <a href="javascript:;" class="">
+                          <i class="icon_document_alt"></i>
+                          <span>Voyage</span>
+                          <span class="menu-arrow arrow_carrot-down"></span>
+                      </a>
+                      <ul class="sub">
+                <li><a class="" href="../../BACK/GV.php">Tableau</a></li>
+                <li><a class="" href="../../BACK/ajoutV.php">formulaire ajout</a></li>
+              </ul>
+            </li>
+
+        </ul>
+         <!--sidebar menu end-->
+      </div>
+    </aside>
+
+    <!--sidebar end-->
+
+    <!--main content start-->
+    <section id="main-content">
+      <section class="wrapper">
+        <div class="row">
+          <div class="col-lg-12">
+            <h3 class="page-header"><i class="fa fa-table"></i> Table</h3>
+            <ol class="breadcrumb">
+              <li><i class="fa fa-home"></i><a href="index.html">Accueil</a></li>
+  
+              <li><i class="fa fa-th-list"></i>GB</li>
+            </ol>
+          </div>
+        </div>
+        <!-- page start-->
+        <div class="row">
+              <!-- CKEditor -->
+              <div class="col-lg-12">
+                <section class="panel">
+                <div class="form">
+                <?php foreach($result as $rows) {?>
+                     <div class="form-group">
+                       <form action="" method="POST">
+                          <div class="col-lg-6">
+                            <h3 style="text-align: left; color: rgb(12, 137, 175) ;">Titre  :</h3>
+                            <input type="text" class="form-control" id="titre" name="titre" value="<?php echo $rows['titre']; ?>" style="color: rgb(29, 138, 165);" onfocusout="majus_nom()" Required></input>
+                            <label id="element" name="erreur" style="color: red;display: none;">titre invalide</label>
+                          </div>
+                          <div class="col-sm-10">
+                            <h3 style="text-align: left; color: rgb(12, 137, 175) ;">Sujet :</h3>
+                            
+                            <input type="text" class="form-control input-lg m-bot15 " value="<?php echo $rows['article']; ?> " name="article"  >
+                          </div>
+                          <div class="col-sm-10">
+                              <h2 style="text-align: left; color: rgb(12, 137, 175) ;">Image :</h2>
+                            <input type="file" id="image" name="image" value="<?php echo $rows['image'] ;?>" class="form-control" >
+                            <br>
+                            <center><input type="submit" name="update" class="btn btn-primary btn-lg" onClick="validation()" ></center>
+
+                          </div> 
+
+                            </form> 
+                            <?php } ?>
+                    </div>
+                </div>
+              </div> 
+            
+          </div>
+
+
+<!-- table start-->
+        
+        <!-- page end-->
+      </section>
+    </section>
+    <!--main content end-->
+    <div class="text-right">
+      <div class="credits">
+        <!--
+            All the links in the footer should remain intact.
+            You can delete the links only if you purchased the pro version.
+            Licensing information: https://bootstrapmade.com/license/
+            Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
+          
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
+      </div>
+    </div>
+  </section>
+  <!-- container section end -->
+  <!-- javascripts -->
+  <script>
+        function majus_nom() {
+            var ch = document.getElementById("titre").value;
+            var element = document.getElementById("element");
+            if (ch === "") { element.style.display = "block"; } else { element.style.display = "none"; }
+        }
+
+        function validation() {
+            majus_nom();
+            var error1 = document.getElementById("element");
+            if ((error1.style.display == "none"))
+                alert("ok");else alert("Votre blog est mal rempli");
+        }
+    </script>
+    <!-- javascripts -->
+    <script src="../../BACK/js/jquery.js"></script>
+  <script src="../../BACK/js/bootstrap.min.js"></script>
+  <!-- nice scroll -->
+  <script src="../../BACK/js/jquery.scrollTo.min.js"></script>
+  <script src="../../BACK/js/jquery.nicescroll.js" type="text/javascript"></script>
+
+  <!-- jquery ui -->
+  <script src="../../BACK/js/jquery-ui-1.9.2.custom.min.js"></script>
+
+  <!--custom checkbox & radio-->
+  <script type="../../BACK/text/javascript" src="js/ga.js"></script>
+  <!--custom switch-->
+  <script src="../../BACK/js/bootstrap-switch.js"></script>
+  <!--custom tagsinput-->
+  <script src="../../BACK/js/jquery.tagsinput.js"></script>
+
+  <!-- colorpicker -->
+
+  <!-- bootstrap-wysiwyg -->
+  <script src="../../BACK/js/jquery.hotkeys.js"></script>
+  <script src="../../BACK/js/bootstrap-wysiwyg.js"></script>
+  <script src="../../BACK/js/bootstrap-wysiwyg-custom.js"></script>
+  <script src="../../BACK/js/moment.js"></script>
+  <script src="../../BACK/js/bootstrap-colorpicker.js"></script>
+  <script src="../../BACK/js/daterangepicker.js"></script>
+  <script src="../../BACK/js/bootstrap-datepicker.js"></script>
+  <!-- ck editor -->
+  <script type="../../BACK/text/javascript" src="assets/ckeditor/ckeditor.js"></script>
+  <!-- custom form component script for this page-->
+  <script src="../../BACK/js/form-component.js"></script>
+  <!-- custome script for all page -->
+  <script src="../../BACK/js/scripts.js"></script>
+  
+  <div id="ascrail2000" class="nicescroll-rails"
+    style="width: 6px; z-index: 1000; background: rgb(247, 247, 247); cursor: default; position: fixed; top: 0px; height: 100%; right: 0px; opacity: 0;">
+    <div
+      style="position: relative; top: 0px; float: right; width: 6px; height: 346px; background-color: rgb(0, 122, 255); background-clip: padding-box; border-radius: 10px;">
+    </div>
+  </div>
+  <div id="ascrail2000-hr" class="nicescroll-rails"
+    style="height: 6px; z-index: 1000; background: rgb(247, 247, 247); position: fixed; left: 0px; width: 100%; bottom: 0px; cursor: default; display: none; opacity: 0;">
+    <div
+      style="position: relative; top: 0px; height: 6px; width: 1518px; background-color: rgb(0, 122, 255); background-clip: padding-box; border-radius: 10px;">
+    </div>
+  </div>
+  <div id="ascrail2001" class="nicescroll-rails"
+    style="width: 3px; z-index: auto; background: rgb(247, 247, 247); cursor: default; position: fixed; top: 0px; left: 177px; height: 772px; display: none; opacity: 0;">
+    <div
+      style="position: relative; top: 0px; float: right; width: 3px; height: 0px; background-color: rgb(0, 122, 255); background-clip: padding-box; border-radius: 10px;">
+    </div>
+  </div>
+  <div id="ascrail2001-hr" class="nicescroll-rails"
+    style="height: 3px; z-index: auto; background: rgb(247, 247, 247); top: 769px; left: 0px; position: fixed; cursor: default; display: none; opacity: 0;">
+    <div
+      style="position: relative; top: 0px; height: 3px; width: 0px; background-color: rgb(0, 122, 255); background-clip: padding-box; border-radius: 10px; left: 0px;">
+    </div>
+  </div>
 </body>
-</html>
 
+</html>

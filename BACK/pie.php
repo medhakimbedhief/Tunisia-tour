@@ -12,7 +12,7 @@ foreach($result as $rows)
 */
 $positive=$commentC->positives();
 $negative=$commentC->negatives();
-
+$neutre = $commentC->neutre();
 
 
 
@@ -22,6 +22,8 @@ $negative=$commentC->negatives();
 <input type="hidden" id="pos" value="<?php echo $positive; ?> ">
 <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="\assets\chart-master\loader.js"></script>
+
     <script type="text/javascript">
           var pos=document.getElementById("pos").value;
 
@@ -32,7 +34,9 @@ $negative=$commentC->negatives();
         var data = google.visualization.arrayToDataTable([
           ['', 'percent'],
           ['positive', <?php echo $positive; ?>],
-          ['negative',     <?php echo $negative ;?>]
+          ['negative',     <?php echo $negative ;?>],
+          ['neutre',     <?php echo $neutre ;?>]
+
         ]);
 
         var options = {

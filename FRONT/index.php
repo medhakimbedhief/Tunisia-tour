@@ -14,11 +14,7 @@ $voyagesC = new voyagesC();
 $voyages=$voyagesC->affichervoyages();
 // On prolonge la session
 
-// On teste si la variable de session existe et contient une valeur
-if (empty($_SESSION['e'])) {
-	// Si inexistante ou nulle, on redirige vers le formulaire de login
-	header('Location:../BACK/signin.php');
-}
+
 ?>
 <!doctype html>
 <html class="no-js"  lang="fr">
