@@ -175,6 +175,31 @@ INSERT INTO `utilisateur` (`id`, `CIN`, `nom`, `prenom`, `telephone`, `email`, `
 
 -- --------------------------------------------------------
 
+-- Structure de la table `region`
+--
+
+DROP TABLE IF EXISTS `region`;
+CREATE TABLE IF NOT EXISTS `region` (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(100) NOT NULL, 
+  `photo` varchar(255) NOT NULL,
+  `information` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `region`
+--
+
+INSERT INTO `region` (`id`, `nom`, `photo`, `information`, ) VALUES
+(27, 'nabeul', 'tÃ©lÃ©chargement.jpg', 'ttt');
+
+-- --------------------------------------------------------
+
+
+
+
+
 --
 -- Structure de la table `voyages`
 --
