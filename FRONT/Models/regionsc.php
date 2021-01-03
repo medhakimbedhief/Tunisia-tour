@@ -1,9 +1,7 @@
 <?php
-    class regionsc {
-           
-include "../../config.php";
-require_once("../../../regions.php");
-class region {
+ include "config.php";
+ include "./Models/region.php";
+ class regionc {
 {
 
     function afficherregion(){
@@ -56,14 +54,6 @@ class region {
 			catch (Exception $e){
 				echo 'Erreur: '.$e->getMessage();
 			}
-		
-
-	<?php
- //include "config.php";
- include "./Models/region.php";
- class regionc {
-
-
 	
 	
 	function supprimerregion($idR){
