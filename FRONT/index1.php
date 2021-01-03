@@ -271,8 +271,8 @@ foreach($listeCamp as $row){
 									</div><!--/.packages-para-->
 
 									<div class="about-btn">
-									<form method="POST" action="AjouterPanier.php"> 
-										<input type="hidden" name="idchoix" value="<?php echo $row['id'] ?>">
+									<form method="POST" action="AjouterPanierC.php"> 
+										<input type="hidden" name="idchoixC" value="<?php echo $row['id'] ?>">
 									<input type="submit" name="add" class="about-view packages-btn" value="participé">
 									</form>	
 									</div><!--/.about-btn-->
@@ -304,8 +304,8 @@ foreach($listeRand as $rowR){
 									</div><!--/.packages-para-->
 
 									<div class="about-btn">
-									<form method="POST" action="AjouterPanier.php"> 
-							     	<input type="hidden" name="idchoix" value="<?php echo $rowR['id'] ?>">
+									<form method="POST" action="AjouterPanierR.php"> 
+							     	<input type="hidden" name="idchoixR" value="<?php echo $rowR['id'] ?>">
 									<input type="submit" name="add" class="about-view packages-btn" value="participé">
 									</form>	
 									</div><!--/.about-btn-->

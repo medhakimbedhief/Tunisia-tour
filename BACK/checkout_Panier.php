@@ -336,10 +336,13 @@
               </a>
               <ul class="sub">
                 <li>
-                  <a class="" href="checkout_camping.php">camping</a>
+                  <a class="active" href="checkout_camping.php">camping</a>
                 </li>
                 <li>
-                  <a class="active" href="checkout_randonne.php">randonné</a>
+                  <a class="" href="checkout_randonnee.php">randonné</a>
+                </li>
+                <li>
+                  <a class="" href="checkout_Panier.php">Panier</a>
                 </li>
               </ul>
               </li>
@@ -361,98 +364,25 @@
       <section class="wrapper">
         <div class="row">
           <div class="col-lg-12">
-            <h3 class="page-header"><i class="icon_genius"></i> randonné</h3>
+            <h3 class="page-header"><i class="icon_genius"></i> Panier</h3>
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
-              <li><i class="icon_genius"></i>randonné</li>
+              <li><i class="icon_genius"></i>Panier</li>
 
           </div>
         </div>
 <div class="page-head">
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-4">
-      <h3 class="text-center text-info">Add randonné</h3>
-            <hr>
-<form class="was-validated" action="Ajouterrandonnee.php" method="POST" >
-
-
-<div class="form-group">
-<input type="text" name="nom" class="form-control" required pattern="[0-9a-zA-Z,/.]{3,12}" placeholder="Enter Name Of the Event" >
-</div>
-
-                <div class="form-group">
-<input type="address" name="region" class="form-control" required pattern="[0-9a-zA-Z,/.]{3,12}" placeholder="Enter your address">
-</div>
-
-
-
-
-                <div class="form-group">
-<input type="tel" name="num" class="form-control" required pattern="[0-9]{6,12}" placeholder="Enter your phone" >
-</div>
-
-<div class="form-group">
-<input type="Date" name="DateDebut" class="form-control" required  placeholder="DateDebut">
-</div>
-<div class="form-group">
-<input type="Date" name="DateFin"  class="form-control" required  placeholder="DateFin" >
-</div>
-<div class="form-group">
-<input type="prix" name="cout" class="form-control" required pattern="[0-9]{1,12}" placeholder="donner le prix" >
-</div>
-
-<div class="form-group">
-
-
-               <script language="javascript" type="text/javascript">
-                  function calculeLongueur(){
-                      var iLongueur, iLongueurRestante;
-                      iLongueur = document.getElementById('autre').value.length;
-                      if (iLongueur>20) {
-                        document.getElementById('autre').value = document.getElementById('autre').value.substring(0,40);
-                        iLongueurRestante = 0;
-                      }
-                      else {
-                      iLongueurRestante = 40 - iLongueur;
-                    }
-                    if (iLongueurRestante <= 1)
-                      document.getElementById('indic').innerHTML = iLongueurRestante + "&nbsp;caract&egrave;re&nbsp;disponible";
-                    else
-                      document.getElementById('indic').innerHTML = iLongueurRestante + "&nbsp;caract&egrave;res&nbsp;disponibles";
-                  }
-              </script>
-
-
-
-
-      <textarea     onblur="calculeLongueur();" onfocus="calculeLongueur();" onkeydown="calculeLongueur();" onkeyup="calculeLongueur();" id="autre" name="information" class="form-control" required pattern="[0-9a-zA-Z-\.]{3,400}" placeholder="Informations About the products" ></textarea>
-      
-            </div>
-
-
-
-
-
-
-<div class="form-group">
-<input type="file" name="photo" class="custom-file">
-</div>
-        <div class="form-group">
- 
-<input type="submit" name="add" class="btn btn-primary btn-block" value="Add">
-
-</div>
-</form>
-
-</div>
+  
 <hr>
 <?PHP
-include "randonneeC.php";
-$randonné1C=new randonneeC();
-$listerandonnee=$randonnee1C->afficherrandonee();
+include "../BACK/Controller/panierC.php";
+$panier1C=new panierC();
+$listePanier=$panier1C->afficherpanier();
 
 ?>
+
 
 <table class="table table-hover">
       <thead>
@@ -460,7 +390,6 @@ $listerandonnee=$randonnee1C->afficherrandonee();
         <th  style="width: 5%">ID</th>
         <th>Nom</th>
         <th>region</th>
-         <th style="width: 15%">numero de telephone</th>
          <th style="width: 15%">DateDebut</th>
          <th style="width: 15%">DateFin</th>
          <th style="width: 15%">cout</th>
@@ -471,28 +400,23 @@ $listerandonnee=$randonnee1C->afficherrandonee();
       </thead>
 
 <?PHP
-foreach($listerandonnee as $row){
+foreach($listePanier as $row){
   ?>
     
   <tr>
   <td><?PHP echo $row['id']; ?></td>
-  <td><?PHP echo $row['nom']; ?></td>
-  <td><?PHP echo $row['region']; ?></td>
-  <td><?PHP echo $row['num']; ?></td>
-  <td><?PHP echo $row['DateDebut']; ?></td>
-  <td><?PHP echo $row['DateFin']; ?></td>
-  <td><?PHP echo $row['cout']; ?></td>
-  <td><?PHP echo $row['information']; ?></td>
+  <td><?PHP echo $row['idchoix']; ?></td>
+  <td><?PHP echo $row['iduser']; ?></td>
 
-  <td><img width="80" src="uploads/<?php echo $row['photo'] ?>" alt="<?php echo $row['photo'] ?>"></td>
+
+
  
- <td style="width="70% ><form method="POST" action="supprimerrandonnee.php" >
+ <td style="width="70% ><form method="POST" action="SupprimerPanier.php" >
             <input type="submit" name="delete" value="Delete" class="btn btn-danger btn-block" >
                          <input type="hidden" value="<?php echo $row['id']; ?>" name="id" >
                          </form>
                         </td>
-                         <td><a class="btn btn-success btn-block" href="modifierrandonnee.php?id=<?PHP echo $row['id']; ?>">
-  Modifier</a></td>     
+                       
                           
                         </tr>
                        

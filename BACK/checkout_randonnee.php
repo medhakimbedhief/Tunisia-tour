@@ -341,6 +341,9 @@
                 <li>
                   <a class="active" href="checkout_randonne.php">randonné</a>
                 </li>
+                <li>
+                  <a class="" href="checkout_Panier.php">Panier</a>
+                </li>
               </ul>
               </li>
           <li class="active">
@@ -447,6 +450,15 @@ include "../BACK/Controller/RandonneeC.php";
 $randonnee1C=new randonneeC();
 $listerandonnee=$randonnee1C->afficherrandonnee();
 
+$today=date("Y-m-d");
+
+foreach($listerandonnee as $row){
+    if($row['date']<$today)
+    {
+        $randonnee1C->supprimerrandonnee($row['id']);
+    }
+}
+$listerandonnee=$randonnee1C->afficherrandonnee();
 ?>
 
 <table class="table table-hover">

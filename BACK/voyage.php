@@ -332,12 +332,24 @@
                           <span>Blog</span>
                       </a>
           </li>
-          <li class="active">
-            <a class="" href="index.html">
-                          <i class="icon_house_alt"></i>
-                          <span>randonné et camping </span>
-                      </a>
-          </li>
+          <li class="sub-menu">
+              <a href="index.php" class="active">
+                <i class="icon_document_alt"></i>
+                <span>randonné et camping </span>
+                <span class="menu-arrow arrow_carrot-right"></span>
+              </a>
+              <ul class="sub">
+                <li>
+                  <a class="" href="checkout_camping.php">camping</a>
+                </li>
+                <li>
+                  <a class="" href="checkout_randonnee.php">randonné</a>
+                </li>
+                <li>
+                  <a class="" href="checkout_Panier.php">Panier</a>
+                </li>
+              </ul>
+              </li>
           <li class="sub-menu">
               <a href="javascript:;" class="">
                           <i class="icon_document_alt"></i>
