@@ -1,9 +1,7 @@
 <?php
-    class regionsc {
-           
-include "../../config.php";
-require_once("../../../regions.php");
-class region {
+ include "config.php";
+ include "./Models/region.php";
+ class regionc {
 {
 
     function afficherregion(){
@@ -33,28 +31,22 @@ class region {
 	}
     */
 	function ajouterregion($region){
-		$sql="insert into region (idR,nomRegion,photo,information,DateDebut,DateFin,cout) values 
-(:idR,:nomRegion, :photo, :information, :DateDebut, :DateFin, :cout)";
+		$sql="insert into region (idR,nomRegion,photo,description) values 
+(:idR,:nomRegion, :photo, :description)";
 		$db = config::getConnexion();
 		try{
 			$req=$db->prepare($sql);
 			$idR=$region->getidR();
 			$nomRegion=$region->getnomRegion();
 			$photo=$region->getphoto();
-			$information=$region->getinformation();
-			$DateDebut=$region->getDateDebut();
-			$DateFin=$region->getDateFin();
-			$cout=$region->getCout();
+			$description=$region->getdescription();
+		
 	
 			$req->bindValue(':id',$idR);
 			$req->bindValue(':nom',$nomRegion);
 
 			$req->bindValue(':photo',$photo);
-			$req->bindValue(':information',$information);
-			$req->bindValue(':DateDebut',$DateDebut);
-			$req->bindValue(':DateFin',$DateFin);
-			$req->bindValue(':cout',$cout);
-	
+			$req->bindValue(':description',$description);
 			
 				$req->execute();
 			   
@@ -62,14 +54,6 @@ class region {
 			catch (Exception $e){
 				echo 'Erreur: '.$e->getMessage();
 			}
-		
-
-	<?php
- //include "config.php";
- include "./Models/region.php";
- class regionc {
-
-
 	
 	
 	function supprimerregion($idR){
@@ -88,31 +72,25 @@ class region {
 
 
 
-	function modifierRegion($region,$id){
-		$sql="UPDATE region SET nom=:nom, photo=:photo, information=:information, DateDebut=:DateDebut, DateFin=:DateFin,cout=:cout  WHERE id=:idR";
+	function modifierRegion($region,$idR){
+		$sql="UPDATE region SET nom=:nomRegion, photo=:photo, description=:description  WHERE id=:idR";
 		
 		$db = config::getConnexion();
 		//$db->setAttribute(PDO::ATTR_EMULATE_PREPARES,false);
 try{		
         $req=$db->prepare($sql);
-	//	$idd=$region->getidR();
+	//	$id=$region->getidR();
 		$nom=$camping->getnomRegion();
-        $information=$camping->getinformation();
-        $DateDebut=$camping->getDateDebut();
-        $DateFin=$camping->getDateFin();
-        $cout=$camping->getCout();
+                $description=$camping->getdescription();
 		$photo=$camping->getphoto();
 		
 
       
-		$datas = array(':id'=>$idR,  ':nom'=>$nomRegion, ':information'=>$information, ':DateDebut'=>$DateDebut, ':DateFin'=>$DateFin, ':cout'=>$cout, ':photo'=>$photo);
+		$datas = array(':id'=>$idR,  ':nom'=>$nomRegion, ':description'=>$description,':photo'=>$photo);
 
 		$req->bindValue(':id',$idR);
 		$req->bindValue(':nom',$nomRegion);
-		$req->bindValue(':information',$information);
-		$req->bindValue(':DateDebut',$DateDebut);
-		$req->bindValue(':DateFin',$DateFin);
-		$req->bindValue(':cout',$cout);
+		$req->bindValue(':description',$description);
 		$req->bindValue(':photo',$photo);
 
 		
