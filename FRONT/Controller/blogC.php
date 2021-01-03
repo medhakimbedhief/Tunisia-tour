@@ -18,9 +18,10 @@ class blogC{
         }
     }
     public function ajouterblog($blog) {
-    try {
-    $sql="insert into blog(titre,article,image) values(:titre,:article,:image)";
+    
+    $sql="insert into blog (titre,article,image) values(:titre,:article,:image)";
     $db=config::getConnexion();
+    try {
     $query=$db->prepare($sql);
     $query->execute([
 					'titre' => $blog->gettitre(),

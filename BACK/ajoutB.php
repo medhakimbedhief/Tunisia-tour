@@ -15,7 +15,9 @@ if (isset($_POST['titre'])&& isset($_POST['article']) &&isset($_POST['image']))
      );
 $blogC->ajouterblog($blog);
 $error = "jawik behy";
+echo $error;
 
+header('Location:GB.php');
  }
  else{
     $error = "Missing information";
@@ -26,61 +28,7 @@ $error = "jawik behy";
 $result=$blogC->afficherblog();
 ?>
 
-<!--echo("<table border='1' align='center'><tr>");
-echo ("<td>");
-echo "ID";
-echo ("</td>");
-echo ("<td>");
-echo "CIN";
-echo ("</td>");
-    echo ("<td>");
-    echo "Nom";
-    echo ("</td>");
-    echo ("<td>");
-    echo "Prenom";
-    echo ("</td>");
-    echo ("<td>");
-    echo "Telephone";
-    echo ("</td>");
-    echo ("<td>");
-    echo "Email";
-    echo ("</td>");echo ("<td>");
-    echo "LOGIN";
-    echo ("</td>");
-    echo ("</td>");echo ("<td>");
-    echo "Password";
-    echo ("</td>");
-    echo "</tr>";
 
-foreach($result as $rows)
-{
-echo ("<tr><td>");
-echo $rows['id'];
-echo ("</td>");
-echo ("<td>");
-echo $rows['CIN'];
-echo ("</td>");
-    echo ("<td>");
-    echo $rows['nom'];
-    echo ("</td>");
-    echo ("<td>");
-    echo $rows['prenom'];
-    echo ("</td>");
-    echo ("<td>");
-    echo $rows['telephone'];
-    echo ("</td>");
-    echo ("<td>");
-    echo $rows['email'];
-    echo ("</td>");echo ("<td>");
-    echo $rows['login'];
-    echo ("</td>");
-    echo ("</td>");echo ("<td>");
-    echo $rows['password'];
-    echo ("</td>");
-echo("</tr>");
-}
-echo("</table> ");
-?>-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -486,7 +434,7 @@ echo("</table> ");
                 <div class="form">
                      
                      <div class="form-group">
-                       <form action="GB.php" method="POST">
+                       <form action="" method="POST">
                           <div class="col-lg-6">
                             <h3 style="text-align: left; color: rgb(12, 137, 175) ;">Titre  :</h3>
                             <input type="text" class="form-control" id="titre" name="titre" placeholder="Titre" style="color: rgb(29, 138, 165);" onfocusout="majus_nom()" Required></input>

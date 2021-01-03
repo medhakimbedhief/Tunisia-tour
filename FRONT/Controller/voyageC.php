@@ -111,8 +111,8 @@ class voyagesC
 
 	function getdestination($destination) {
 		try {
-			$pdo = getConnexion();
-			$query = $pdo->prepare(
+			$db = config::getConnexion();
+			$query = $db->prepare(
 				'SELECT * FROM voyages WHERE destination = :destination'
 			);
 			$query->execute([
@@ -127,8 +127,8 @@ class voyagesC
 	 function getvoyages($prix) {
 		
 		try {
-			$pdo = getConnexion();
-			$query = $pdo->prepare(
+			$db = config::getConnexion();
+			$query = $db->prepare(
 				'SELECT * FROM voyages WHERE prix = :prix'
 			);
 			$query->execute([

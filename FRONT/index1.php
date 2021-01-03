@@ -1,6 +1,6 @@
 <?php
   include_once '.\Controller\blogC.php ';
-  include '.\Controller\voyageC.php ';
+  include_once '.\Controller\voyageC.php ';
 $blogC = new blogC();
 $blog=$blogC->afficherblog();
 // On prolonge la session
@@ -13,14 +13,7 @@ if (empty($_SESSION['e'])) {
 $voyagesC = new voyagesC();
 $voyages=$voyagesC->affichervoyages();
 // On prolonge la session
-
-// On teste si la variable de session existe et contient une valeur
-if (empty($_SESSION['e'])) {
-	// Si inexistante ou nulle, on redirige vers le formulaire de login
-	header('Location:../BACK/signin.php');
-}
 ?>
-
 <!doctype html>
 <html class="no-js"  lang="fr">
 
@@ -114,7 +107,7 @@ if (empty($_SESSION['e'])) {
 									<ul class="nav navbar-nav navbar-right">
 										<li class="smooth-menu active"><a href="#home">home</a></li>
 										<li class="smooth-menu"><a href="#gallery">Destination</a></li>
-										<li class="smooth-menu"><a href="#voyages">Voyages </a></li>
+										<li class="smooth-menu"><a href="#pack">Packages </a></li>
 										<li class="smooth-menu"><a href="#spo">Special Offers</a></li>
 										<li class="smooth-menu"><a href="#blog">Blog</a></li>
 										<li class="smooth-menu"><a href="#subs">subscription</a></li>
@@ -171,7 +164,454 @@ if (empty($_SESSION['e'])) {
 		</section><!--/.about-us-->
 		<!--about-us end -->
 
-	
+		<!--travel-box start-->
+		<section  class="travel-box">
+        	<div class="container">
+        		<div class="row">
+        			<div class="col-md-12">
+        				<div class="single-travel-boxes">
+        					<div id="desc-tabs" class="desc-tabs">
+
+								<ul class="nav nav-tabs" role="tablist">
+
+									<li role="presentation" class="active">
+									 	<a href="#tours" aria-controls="tours" role="tab" data-toggle="tab">
+									 		<i class="fa fa-tree"></i>
+									 		Camping
+									 	</a>
+									</li>
+
+									<li role="presentation">
+										<a href="#hotels" aria-controls="hotels" role="tab" data-toggle="tab">
+											<i class="fa fa-building"></i>
+											Randonné
+										</a>
+									</li>
+
+									<li role="presentation">
+									 	<a href="#flights" aria-controls="flights" role="tab" data-toggle="tab">
+									 		<i class="fa fa-plane"></i>
+									 		flights
+									 	</a>
+									</li>
+								</ul>
+
+								<!-- Tab panes -->
+								<div class="tab-content">
+
+									<div role="tabpanel" class="tab-pane active fade in" id="tours">
+										<div class="tab-para">
+
+											<div class="row">
+												<div class="col-lg-4 col-md-4 col-sm-12">
+													<div class="single-tab-select-box">
+
+														<h2>destination</h2>
+
+														<div class="travel-select-icon">
+															<select class="form-control ">
+
+															  	<option value="default">enter your destination country</option><!-- /.option-->
+
+															  	<option value="turkey">turkey</option><!-- /.option-->
+
+															  	<option value="russia">russia</option><!-- /.option-->
+															  	<option value="egept">egypt</option><!-- /.option-->
+
+															</select><!-- /.select-->
+														</div><!-- /.travel-select-icon -->
+
+														<div class="travel-select-icon">
+															<select class="form-control ">
+
+															  	<option value="default">enter your destination location</option><!-- /.option-->
+
+															  	<option value="istambul">istambul</option><!-- /.option-->
+
+															  	<option value="mosko">mosko</option><!-- /.option-->
+															  	<option value="cairo">cairo</option><!-- /.option-->
+
+															</select><!-- /.select-->
+														</div><!-- /.travel-select-icon -->
+
+													</div><!--/.single-tab-select-box-->
+												</div><!--/.col-->
+
+												<div class="col-lg-2 col-md-3 col-sm-4">
+													<div class="single-tab-select-box">
+														<h2>check in</h2>
+														<div class="travel-check-icon">
+															<form action="#">
+																<input type="text" name="check_in" class="form-control" data-toggle="datepicker" placeholder="12 -01 - 2017 ">
+															</form>
+														</div><!-- /.travel-check-icon -->
+													</div><!--/.single-tab-select-box-->
+												</div><!--/.col-->
+
+												<div class="col-lg-2 col-md-3 col-sm-4">
+													<div class="single-tab-select-box">
+														<h2>check out</h2>
+														<div class="travel-check-icon">
+															<form action="#">
+																<input type="text" name="check_out" class="form-control"  data-toggle="datepicker" placeholder="22 -01 - 2017 ">
+															</form>
+														</div><!-- /.travel-check-icon -->
+													</div><!--/.single-tab-select-box-->
+												</div><!--/.col-->
+
+												<div class="col-lg-2 col-md-1 col-sm-4">
+													<div class="single-tab-select-box">
+														<h2>duration</h2>
+														<div class="travel-select-icon">
+															<select class="form-control ">
+
+															  	<option value="default">5</option><!-- /.option-->
+
+															  	<option value="10">10</option><!-- /.option-->
+
+															  	<option value="15">15</option><!-- /.option-->
+															  	<option value="20">20</option><!-- /.option-->
+
+															</select><!-- /.select-->
+														</div><!-- /.travel-select-icon -->
+													</div><!--/.single-tab-select-box-->
+												</div><!--/.col-->
+
+												<div class="col-lg-2 col-md-1 col-sm-4">
+													<div class="single-tab-select-box">
+														<h2>members</h2>
+														<div class="travel-select-icon">
+															<select class="form-control ">
+
+															  	<option value="default">1</option><!-- /.option-->
+
+															  	<option value="2">2</option><!-- /.option-->
+
+															  	<option value="4">4</option><!-- /.option-->
+															  	<option value="8">8</option><!-- /.option-->
+
+															</select><!-- /.select-->
+														</div><!-- /.travel-select-icon -->
+													</div><!--/.single-tab-select-box-->
+												</div><!--/.col-->
+
+											</div><!--/.row-->
+
+											<div class="row">
+												<div class="col-sm-5">
+													<div class="travel-budget">
+														<div class="row">
+															<div class="col-md-3 col-sm-4">
+																<h3>budget : </h3>
+															</div><!--/.col-->
+															<div class="co-md-9 col-sm-8">
+																<div class="travel-filter">
+																	<div class="info_widget">
+																		<div class="price_filter">
+																			
+																			<div id="slider-range"></div><!--/.slider-range-->
+
+																			<div class="price_slider_amount">
+																				<input type="text" id="amount" name="price"  placeholder="Add Your Price" />
+																			</div><!--/.price_slider_amount-->
+																		</div><!--/.price-filter-->
+																	</div><!--/.info_widget-->
+																</div><!--/.travel-filter-->
+															</div><!--/.col-->
+														</div><!--/.row-->
+													</div><!--/.travel-budget-->
+												</div><!--/.col-->
+												<div class="clo-sm-7">
+													<div class="about-btn travel-mrt-0 pull-right">
+														<button  class="about-view travel-btn">
+															search	
+														</button><!--/.travel-btn-->
+													</div><!--/.about-btn-->
+												</div><!--/.col-->
+
+											</div><!--/.row-->
+
+										</div><!--/.tab-para-->
+
+									</div><!--/.tabpannel-->
+
+									<div role="tabpanel" class="tab-pane fade in" id="hotels">
+										<div class="tab-para">
+
+											<div class="row">
+												<div class="col-lg-4 col-md-4 col-sm-12">
+													<div class="single-tab-select-box">
+
+														<h2>destination</h2>
+
+														<div class="travel-select-icon">
+															<select class="form-control ">
+
+															  	<option value="default">enter your destination country</option><!-- /.option-->
+
+															  	<option value="turkey">turkey</option><!-- /.option-->
+
+															  	<option value="russia">russia</option><!-- /.option-->
+															  	<option value="egept">egypt</option><!-- /.option-->
+
+															</select><!-- /.select-->
+														</div><!-- /.travel-select-icon -->
+
+														<div class="travel-select-icon">
+															<select class="form-control ">
+
+															  	<option value="default">enter your destination location</option><!-- /.option-->
+
+															  	<option value="istambul">istambul</option><!-- /.option-->
+
+															  	<option value="mosko">mosko</option><!-- /.option-->
+															  	<option value="cairo">cairo</option><!-- /.option-->
+
+															</select><!-- /.select-->
+														</div><!-- /.travel-select-icon -->
+
+													</div><!--/.single-tab-select-box-->
+												</div><!--/.col-->
+
+												<div class="col-lg-2 col-md-3 col-sm-4">
+													<div class="single-tab-select-box">
+														<h2>check in</h2>
+														<div class="travel-check-icon">
+															<form action="#">
+																<input type="text" name="check_in" class="form-control" data-toggle="datepicker" placeholder="12 -01 - 2017 ">
+															</form>
+														</div><!-- /.travel-check-icon -->
+													</div><!--/.single-tab-select-box-->
+												</div><!--/.col-->
+
+												<div class="col-lg-2 col-md-3 col-sm-4">
+													<div class="single-tab-select-box">
+														<h2>check out</h2>
+														<div class="travel-check-icon">
+															<form action="#">
+																<input type="text" name="check_out" class="form-control"  data-toggle="datepicker" placeholder="22 -01 - 2017 ">
+															</form>
+														</div><!-- /.travel-check-icon -->
+													</div><!--/.single-tab-select-box-->
+												</div><!--/.col-->
+
+												<div class="col-lg-2 col-md-1 col-sm-4">
+													<div class="single-tab-select-box">
+														<h2>duration</h2>
+														<div class="travel-select-icon">
+															<select class="form-control ">
+
+															  	<option value="default">5</option><!-- /.option-->
+
+															  	<option value="10">10</option><!-- /.option-->
+
+															  	<option value="15">15</option><!-- /.option-->
+															  	<option value="20">20</option><!-- /.option-->
+
+															</select><!-- /.select-->
+														</div><!-- /.travel-select-icon -->
+													</div><!--/.single-tab-select-box-->
+												</div><!--/.col-->
+
+												<div class="col-lg-2 col-md-1 col-sm-4">
+													<div class="single-tab-select-box">
+														<h2>members</h2>
+														<div class="travel-select-icon">
+															<select class="form-control ">
+
+															  	<option value="default">1</option><!-- /.option-->
+
+															  	<option value="2">2</option><!-- /.option-->
+
+															  	<option value="4">4</option><!-- /.option-->
+															  	<option value="8">8</option><!-- /.option-->
+
+															</select><!-- /.select-->
+														</div><!-- /.travel-select-icon -->
+													</div><!--/.single-tab-select-box-->
+												</div><!--/.col-->
+
+											</div><!--/.row-->
+
+											<div class="row">
+												<div class="col-sm-5"></div><!--/.col-->
+												<div class="clo-sm-7">
+													<div class="about-btn travel-mrt-0 pull-right">
+														<button  class="about-view travel-btn">
+															search	
+														</button><!--/.travel-btn-->
+													</div><!--/.about-btn-->
+												</div><!--/.col-->
+
+											</div><!--/.row-->
+
+										</div><!--/.tab-para-->
+
+									</div><!--/.tabpannel-->
+
+									<div role="tabpanel" class="tab-pane fade in" id="flights">
+										<div class="tab-para">
+											<div class="trip-circle">
+												<div class="single-trip-circle">
+													<input type="radio" id="radio01" name="radio" />
+  													<label for="radio01">
+  														<span class="round-boarder">
+  															<span class="round-boarder1"></span>
+  														</span>round trip
+  													</label>
+												</div><!--/.single-trip-circle-->
+												<div class="single-trip-circle">
+													<input type="radio" id="radio02" name="radio" />
+  													<label for="radio02">
+  														<span class="round-boarder">
+  															<span class="round-boarder1"></span>
+  														</span>on way
+  													</label>
+												</div><!--/.single-trip-circle-->
+											</div><!--/.trip-circle-->
+											<div class="row">
+												<div class="col-lg-4 col-md-4 col-sm-12">
+													<div class="single-tab-select-box">
+
+														<h2>from</h2>
+
+														<div class="travel-select-icon">
+															<select class="form-control ">
+
+															  	<option value="default">enter your location</option><!-- /.option-->
+
+															  	<option value="turkey">turkey</option><!-- /.option-->
+
+															  	<option value="russia">russia</option><!-- /.option-->
+															  	<option value="egept">egypt</option><!-- /.option-->
+
+															</select><!-- /.select-->
+														</div><!-- /.travel-select-icon -->
+													</div><!--/.single-tab-select-box-->
+												</div><!--/.col-->
+
+												<div class="col-lg-2 col-md-3 col-sm-4">
+													<div class="single-tab-select-box">
+														<h2>departure</h2>
+														<div class="travel-check-icon">
+															<form action="#">
+																<input type="text" name="departure" class="form-control" data-toggle="datepicker"
+																placeholder="12 -01 - 2017 ">
+															</form>
+														</div><!-- /.travel-check-icon -->
+													</div><!--/.single-tab-select-box-->
+												</div><!--/.col-->
+
+												<div class="col-lg-2 col-md-3 col-sm-4">
+													<div class="single-tab-select-box">
+														<h2>return</h2>
+														<div class="travel-check-icon">
+															<form action="#">
+																<input type="text" name="return" class="form-control" data-toggle="datepicker" placeholder="22 -01 - 2017 ">
+															</form>
+														</div><!-- /.travel-check-icon -->
+													</div><!--/.single-tab-select-box-->
+												</div><!--/.col-->
+
+												<div class="col-lg-2 col-md-1 col-sm-4">
+													<div class="single-tab-select-box">
+														<h2>adults</h2>
+														<div class="travel-select-icon">
+															<select class="form-control ">
+
+															  	<option value="default">5</option><!-- /.option-->
+
+															  	<option value="10">10</option><!-- /.option-->
+
+															  	<option value="15">15</option><!-- /.option-->
+															  	<option value="20">20</option><!-- /.option-->
+
+															</select><!-- /.select-->
+														</div><!-- /.travel-select-icon -->
+													</div><!--/.single-tab-select-box-->
+												</div><!--/.col-->
+
+												<div class="col-lg-2 col-md-1 col-sm-4">
+													<div class="single-tab-select-box">
+														<h2>childs</h2>
+														<div class="travel-select-icon">
+															<select class="form-control ">
+
+															  	<option value="default">1</option><!-- /.option-->
+
+															  	<option value="2">2</option><!-- /.option-->
+
+															  	<option value="4">4</option><!-- /.option-->
+															  	<option value="8">8</option><!-- /.option-->
+
+															</select><!-- /.select-->
+														</div><!-- /.travel-select-icon -->
+													</div><!--/.single-tab-select-box-->
+												</div><!--/.col-->
+
+											</div><!--/.row-->
+
+											<div class="row">
+												<div class="col-lg-4 col-md-4 col-sm-12">
+													<div class="single-tab-select-box">
+
+														<h2>to</h2>
+
+														<div class="travel-select-icon">
+															<select class="form-control ">
+
+															  	<option value="default">enter your destination location</option><!-- /.option-->
+
+															  	<option value="istambul">istambul</option><!-- /.option-->
+
+															  	<option value="mosko">mosko</option><!-- /.option-->
+															  	<option value="cairo">cairo</option><!-- /.option-->
+
+															</select><!-- /.select-->
+														</div><!-- /.travel-select-icon -->
+
+													</div><!--/.single-tab-select-box-->
+												</div><!--/.col-->
+												<div class="col-lg-3 col-md-3 col-sm-4">
+													<div class="single-tab-select-box">
+
+														<h2>class</h2>
+														<div class="travel-select-icon">
+															<select class="form-control ">
+
+															  	<option value="default">enter class</option><!-- /.option-->
+
+															  	<option value="A">A</option><!-- /.option-->
+
+															  	<option value="B">B</option><!-- /.option-->
+															  	<option value="C">C</option><!-- /.option-->
+
+															</select><!-- /.select-->
+														</div><!-- /.travel-select-icon -->
+													</div><!--/.single-tab-select-box-->
+												</div><!--/.col-->
+												<div class="clo-sm-5">
+													<div class="about-btn pull-right">
+														<button  class="about-view travel-btn">
+															search	
+														</button><!--/.travel-btn-->
+													</div><!--/.about-btn-->
+												</div><!--/.col-->
+												
+											</div><!--/.row-->
+
+										</div>
+
+									</div><!--/.tabpannel-->
+
+								</div><!--/.tab content-->
+							</div><!--/.desc-tabs-->
+        				</div><!--/.single-travel-box-->
+        			</div><!--/.col-->
+        		</div><!--/.row-->
+        	</div><!--/.container-->
+
+        </section><!--/.travel-box-->
 		<!--travel-box end-->
 
         <!--service start-->
@@ -188,7 +628,7 @@ if (empty($_SESSION['e'])) {
 							<div class="service-content">
 								<h2>
 									<a href="#">
-									amazing tour Voyage
+									amazing tour packages
 									</a>
 								</h2>
 								<p>Duis aute irure dolor in  velit esse cillum dolore eu fugiat nulla.</p>
@@ -243,86 +683,89 @@ if (empty($_SESSION['e'])) {
 						<h2>
 							<?php 	echo 'Bienvenue  ', $_SESSION['e']; ?>
 							<br>
-							Découverte
+							top destination
 						</h2>
 						<p>
-						Camping randonnée pour un séjour découverte en camping
-											</p>
+							Duis aute irure dolor in  velit esse cillum dolore eu fugiat nulla.  
+						</p>
 					</div><!--/.gallery-header-->
 					<div class="gallery-box">
 						<div class="gallery-content">
 						  	<div class="filtr-container">
 						  		<div class="row">
-								  <?php 
-include "../FRONT/Controller/CampingC.php";
-include "../FRONT/Controller/RandonneeC.php";
-$Camping1C=new CampingC();
-$RandC=new RandonneeC();
-$listeRand=$RandC->afficherrandonnee();
-$listeCamp=$Camping1C->afficherCamping();
 
-foreach($listeCamp as $row){
-	?>
-						<div class="col-md-4 col-sm-6">
-							<div class="single-package-item">
-								<img width="500" height="300"src="uploads/<?php echo $row['photo'] ?>" alt="<?php echo $row['photo'] ?>">
-								<div class="single-package-item-txt">
-									<h3><?php echo $row['nom'] ?> <span class="pull-right"><?php echo $row['cout'] ?></span></h3>
-									<div class="packages-para">
-										<p>
-											<span>
-												<i class="fa fa-angle-right"></i>Camping
-											</span>
-											<i class="fa fa-angle-right"></i>  <a href="">plus d'info</a>
-										</p>
-				
-									</div><!--/.packages-para-->
+						  			<div class="col-md-6">
+						  				<div class="filtr-item">
+											<img src="assets/images/gallary/g1.jpg" alt="portfolio image"/>
+											<div class="item-title">
+												<a href="#">
+													china
+												</a>
+												<p><span>20 tours</span><span>15 places</span></p>
+											</div><!-- /.item-title -->
+										</div><!-- /.filtr-item -->
+						  			</div><!-- /.col -->
 
-									<div class="about-btn">
-										<button  class="about-view packages-btn">
-											participé
-										</button>
-									</div><!--/.about-btn-->
-								</div><!--/.single-package-item-txt-->
-							</div><!--/.single-package-item-->
+						  			<div class="col-md-6">
+						  				<div class="filtr-item">
+											<img src="assets/images/gallary/g2.jpg" alt="portfolio image"/>
+											<div class="item-title">
+												<a href="#">
+													venuzuala
+												</a>
+												<p><span>12 tours</span><span>9 places</span></p>
+											</div> <!-- /.item-title-->
+										</div><!-- /.filtr-item -->
+						  			</div><!-- /.col -->
 
-						</div><!--/.col-->
-		
-                        <?PHP
-}
-?>
-								  <?php 
+						  			<div class="col-md-4">
+						  				<div class="filtr-item">
+											<img src="assets/images/gallary/g3.jpg" alt="portfolio image"/>
+											<div class="item-title">
+												<a href="#">
+													brazil
+												</a>
+												<p><span>25 tours</span><span>10 places</span></p>
+											</div><!-- /.item-title -->
+										</div><!-- /.filtr-item -->
+						  			</div><!-- /.col -->
 
-foreach($listeRand as $row){
-	?>
-						<div class="col-md-4 col-sm-6">
-							<div class="single-package-item">
-								<img width="500" height="300"src="uploads/<?php echo $row['photo'] ?>" alt="<?php echo $row['photo'] ?>">
-								<div class="single-package-item-txt">
-									<h3><?php echo $row['nom'] ?> <span class="pull-right"><?php echo $row['cout'] ?></span></h3>
-									<div class="packages-para">
-										<p>
-											<span>
-												<i class="fa fa-angle-right"></i>Randonée
-											</span>
-											<i class="fa fa-angle-right"></i>  <a href="">plus d'info</a>
-										</p>
-				
-									</div><!--/.packages-para-->
+						  			<div class="col-md-4">
+						  				<div class="filtr-item">
+											<img src="assets/images/gallary/g4.jpg" alt="portfolio image"/>
+											<div class="item-title">
+												<a href="#">
+													australia 
+												</a>
+												<p><span>18 tours</span><span>9 places</span></p>
+											</div> <!-- /.item-title-->
+										</div><!-- /.filtr-item -->
+						  			</div><!-- /.col -->
 
-									<div class="about-btn">
-										<button  class="about-view packages-btn">
-											participé
-										</button>
-									</div><!--/.about-btn-->
-								</div><!--/.single-package-item-txt-->
-							</div><!--/.single-package-item-->
+						  			<div class="col-md-4">
+						  				<div class="filtr-item">
+											<img src="assets/images/gallary/g5.jpg" alt="portfolio image"/>
+											<div class="item-title">
+												<a href="#">
+													netharland
+												</a>
+												<p><span>14 tours</span><span>12 places</span></p>
+											</div> <!-- /.item-title-->
+										</div><!-- /.filtr-item -->
+						  			</div><!-- /.col -->
 
-						</div><!--/.col-->
-		
-                        <?PHP
-}
-?>
+						  			<div class="col-md-8">
+						  				<div class="filtr-item">
+											<img src="assets/images/gallary/g6.jpg" alt="portfolio image"/>
+											<div class="item-title">
+												<a href="#">
+													turkey
+												</a>
+												<p><span>14 tours</span><span>6 places</span></p>
+											</div> <!-- /.item-title-->
+										</div><!-- /.filtr-item -->
+						  			</div><!-- /.col -->
+
 						  		</div><!-- /.row -->
 
 						  	</div><!-- /.filtr-container-->
@@ -373,22 +816,21 @@ foreach($listeRand as $row){
 		</section><!-- /.discount-offer-->
 		<!--discount-offer end-->
 
-			<!--voyages start-->
-			<section id="voyages" class="voyages">
+		<!--packages start-->
+		<section id="pack" class="packages">
 			<div class="container">
-			<div class="voyages-details">
-						<div class="gallary-header text-center">
-							<h2>
-								VOYAGES
-							</h2>
-							<p>
-								Nos voyages disponibles
-							</p>
-						</div><!--/.gallery-header-->
-						
-			
-											  
-				
+				<div class="gallary-header text-center">
+					<h2>
+						special packages
+					</h2>
+					<p>
+						Duis aute irure dolor in  velit esse cillum dolore eu fugiat nulla.  
+					</p>
+				</div><!--/.gallery-header-->
+				<form action="recherche.php" method="GET">
+                  Votre recherche: <input type="text" name="titre"  class="form-group" >
+                  <input type="submit" value="Recherche" class="btn btn-info" href = "recherche.php">
+                  </form> 
 		
 	
 	
@@ -408,18 +850,18 @@ foreach($listeRand as $row){
 										<h2>Voyage Organisé <span>15 november 2021</span></h2>
 											
 									
-										<div class="thumbnail-img">
-										<img src="assets/images/voyages/paris.jpg"<?php echo $rows['image']; ?> alt="voyages-img">
-											<div class="thumbnail-img-overlay"></div><!--/.thumbnail-img-overlay-->
-										
-										</div><!--/.thumbnail-img-->
+									
+									
 									  
 										<div class="caption">
 											<div class="voyages-txt">
 												<h3>
 													<a href="Views/voyage.php">
+													<hr>image</hr> <br>
+														<img src="assets/images/blog/<?php echo $rows['image'];?>" >
+														<br>
 													<hr>Destination</hr> <br>
-														<?php echo $rows['destination'];?> 
+														<?php echo $rows['destination'];?>
 														<br>
 														<hr>Prix</hr> <br>
 														<?php echo $rows['prix'];?>
@@ -448,6 +890,14 @@ foreach($listeRand as $row){
 
 		</section><!--/.voyages-->
 		<!--voyages end-->
+						</div><!--/.col-->
+
+					</div><!--/.row-->
+				</div><!--/.packages-content-->
+			</div><!--/.container-->
+
+		</section><!--/.packages-->
+		<!--packages end-->
 
 		<!-- testemonial Start -->
 		<section   class="testemonial">
@@ -688,7 +1138,7 @@ foreach($listeRand as $row){
 							<div class="single-special-offer">
 								<div class="single-special-offer-txt">
 									<h2>thiland</h2>
-									<div class="Voyage-review special-offer-review">
+									<div class="packages-review special-offer-review">
 										<p>
 											<i class="fa fa-star"></i>
 											<i class="fa fa-star"></i>
@@ -697,8 +1147,8 @@ foreach($listeRand as $row){
 											<i class="fa fa-star"></i>
 											<span>2544 review</span>
 										</p>
-									</div><!--/.Voyage-review-->
-									<div class="Voyage-para special-offer-para">
+									</div><!--/.packages-review-->
+									<div class="packages-para special-offer-para">
 										<p>
 											<span>
 												<i class="fa fa-angle-right"></i> 5 daays 6 nights
@@ -864,7 +1314,7 @@ foreach($listeRand as $row){
 								<div class="single-footer-txt">
 									<p><a href="#">home</a></p>
 									<p><a href="#">destination</a></p>
-									<p><a href="#">spacial Voyage</a></p>
+									<p><a href="#">spacial packages</a></p>
 									<p><a href="#">special offers</a></p>
 									<p><a href="#">blog</a></p>
 									<p><a href="#">contacts</a></p>
