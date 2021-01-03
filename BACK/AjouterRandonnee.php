@@ -20,10 +20,20 @@ if (isset($_POST['nom']) and isset($_POST['region']) and isset($_POST['date']) a
 
 $RandonneeC1=new RandonneeC();
 
-$RandonneeC1-> ajouterrandonnee($randonne1);
+
+$today=date("Y-m-d");
+
+if($today > $_POST['date'] )
+{
+	echo("<script> alert(\"verifier date debut\")</script>");
+	echo("<script> window.location.replace(\"checkout_camping.php\")</script>");
+
+}
+else {
+$RandonneeC1-> AjouterRandonnee($randonne1);
 
 header('Location: checkout_randonnee.php');
-
+}
 }else{
 	echo "vérifier les champs";
 }

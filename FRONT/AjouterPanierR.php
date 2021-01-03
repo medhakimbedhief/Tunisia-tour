@@ -2,23 +2,12 @@
 
 include "../FRONT/Controller/RandonneeC.php";
 include "../FRONT/Controller/PanierC.php";
+require __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/twilio-php-main/src/Twilio/autoload.php';
 use Twilio\Rest\Client;
-session_start();
-if (isset($_POST['idchoixR']) ){
-
-
-	$panier1=new panier($_POST['idchoixR'],$_SESSION['e']);
-
-
-$panier1C=new panierC();
-
-$panier1C->ajouterpanier($panier1);
-
-
 // Your Account SID and Auth Token from twilio.com/console
 $account_sid = 'AC5ae12f720f77d17914b24ca11bb66341';
-$auth_token = 'dc559536630320bd4a21ec7ff8254b97';
+$auth_token = 'fa19c23d0e7e763e7c725bac05ea8cd7';
 // In production, these should be environment variables. E.g.:
 // $auth_token = $_ENV["TWILIO_AUTH_TOKEN"]
 
@@ -34,6 +23,16 @@ $client->messages->create(
         'body' => 'Participation avec succées nouveau client !'
     )
 );
+session_start();
+if (isset($_POST['idchoixR']) ){
+
+
+	$panier1=new panier($_POST['idchoixR'],$_SESSION['e']);
+
+
+$panier1C=new panierC();
+
+$panier1C->ajouterpanier($panier1);
 
 
 }

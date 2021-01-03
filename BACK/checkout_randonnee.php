@@ -339,7 +339,7 @@
                   <a class="" href="checkout_camping.php">camping</a>
                 </li>
                 <li>
-                  <a class="active" href="checkout_randonne.php">randonné</a>
+                  <a class="active" href="checkout_randonnee.php">randonné</a>
                 </li>
                 <li>
                   <a class="" href="checkout_Panier.php">Panier</a>

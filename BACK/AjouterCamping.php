@@ -19,7 +19,16 @@ if (isset($_POST['nom']) and isset($_POST['region']) and isset($_POST['informati
 
 
 $campingC1=new CampingC();
-if($_POST['DateFin']< $_POST['DateDebut'] )
+
+$today=date("Y-m-d");
+
+if($today > $_POST['DateDebut'] )
+{
+	echo("<script> alert(\"verifier date debut\")</script>");
+	echo("<script> window.location.replace(\"checkout_camping.php\")</script>");
+
+}
+else if($_POST['DateFin']< $_POST['DateDebut'] )
 {
 	echo("<script> alert(\"il faut que la date fin soit superieur a la date debut\")</script>");
 	echo("<script> window.location.replace(\"checkout_camping.php\")</script>");

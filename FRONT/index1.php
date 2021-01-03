@@ -106,7 +106,7 @@ $voyages=$voyagesC->affichervoyages();
 								<div class="collapse navbar-collapse">		  
 									<ul class="nav navbar-nav navbar-right">
 										<li class="smooth-menu active"><a href="#home">home</a></li>
-										<li class="smooth-menu"><a href="#gallery">Destination</a></li>
+										<li class="smooth-menu"><a href="#gallery">Découverte</a></li>
 										<li class="smooth-menu"><a href="#pack">Packages </a></li>
 										<li class="smooth-menu"><a href="#spo">Special Offers</a></li>
 										<li class="smooth-menu"><a href="#blog">Blog</a></li>

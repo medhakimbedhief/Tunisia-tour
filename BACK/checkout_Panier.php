@@ -388,14 +388,9 @@ $listePanier=$panier1C->afficherpanier();
       <thead>
         <tr>
         <th  style="width: 5%">ID</th>
-        <th>Nom</th>
-        <th>region</th>
-         <th style="width: 15%">DateDebut</th>
-         <th style="width: 15%">DateFin</th>
-         <th style="width: 15%">cout</th>
-         <th style="width: 30%">information</th>
+        <th>idchoix</th>
+        <th>user</th>
 
-                 <th >photo</th>
                  </tr>
       </thead>
 

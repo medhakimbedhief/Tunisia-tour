@@ -2,24 +2,14 @@
 
 include "../FRONT/Controller/CampingC.php";
 include "../FRONT/Controller/PanierC.php";
+require __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/twilio-php-main/src/Twilio/autoload.php';
 use Twilio\Rest\Client;
-session_start();
-if (isset($_POST['idchoixC']) ){
-
-
-	$panier1=new panier($_POST['idchoixC'],$_SESSION['e']);
-
-
-$panier1C=new panierC();
-
-$panier1C->ajouterpanier($panier1);
-
 
 
 // Your Account SID and Auth Token from twilio.com/console
 $account_sid = 'AC5ae12f720f77d17914b24ca11bb66341';
-$auth_token = 'dc559536630320bd4a21ec7ff8254b97';
+$auth_token = 'fa19c23d0e7e763e7c725bac05ea8cd7';
 // In production, these should be environment variables. E.g.:
 // $auth_token = $_ENV["TWILIO_AUTH_TOKEN"]
 
@@ -35,6 +25,18 @@ $client->messages->create(
         'body' => 'Participation avec succées nouveau client ! '
     )
 );
+session_start();
+if (isset($_POST['idchoixC']) ){
+
+
+	$panier1=new panier($_POST['idchoixC'],$_SESSION['e']);
+
+
+$panier1C=new panierC();
+
+$panier1C->ajouterpanier($panier1);
+
+
 
 }
 
@@ -59,7 +61,7 @@ $pdf->cell(300,10,"Tunisia tour",0,0,'C');
 $pdf->Ln();
 $pdf->cell(300,10,"1,2 rue Andre Ampere -2083- pole Technologique - El Ghazala",0,0,'C');
 $pdf->Ln();
-$pdf->cell(300,10,"23814764",0,0,'C');
+$pdf->cell(300,10,"44196276",0,0,'C');
 $pdf->Ln() ;
 $pdf->Ln();
 $pdf->SetFont('Arial','B',20);
@@ -96,7 +98,7 @@ $pdf->cell(40,10,$_SESSION['e'],1,0,'C');
 $pdf->cell(60,10,$_SESSION['e'],1,0,'C');
 $pdf->Ln();
 
-$pdf->cell(5,10,"Nb:Au cas d'annulation de la réservation Veuillez nous envoyer un mail :TunisiaTour@gmail.com ");
+$pdf->cell(5,10,"Nb:Au cas d'annulation de la reservation Veuillez nous envoyer un mail :TunisiaTour@gmail.com ");
 $pdf->Ln();
 $pdf->cell(5,5,"en presiciant votre nom,prenom,numero telephone,le nom choisie de camping ou randonee");
 
