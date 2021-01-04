@@ -1,6 +1,6 @@
 <?php
-include  '../FRONT/Models/voyagem.php';
-include_once '../FRONT/Controller/voyageC.php';
+include_once  '../FRONT/Models/hotelm.php';
+include_once '../FRONT/Controller/hotelC.php';
 
 
 $error = "";
@@ -9,30 +9,30 @@ $error = "";
 $user = null;
 
 // create an instance of the controller
-$userC = new voyagesC();
+$userC = new hotelC();
 if (
-    isset($_POST["destination"]) &&
-    isset($_POST["prix"]) &&
+    isset($_POST["nom"]) &&
+    isset($_POST["options"]) &&
     isset($_POST["depart"]) &&
     isset($_POST["retour"]) &&
-    isset($_POST["image"]) 
+    isset($_POST["etoiles"]) 
 ) {
     if (
-        !empty($_POST["destination"]) &&
-        !empty($_POST["prix"]) &&
+        !empty($_POST["nom"]) &&
+        !empty($_POST["options"]) &&
         !empty($_POST["depart"]) &&
         !empty($_POST["retour"]) &&
-        !empty($_POST["image"])
+        !empty($_POST["etoiles"])
     ) {
-        $user = new voyages(
-            $_POST['destination'],
-            $_POST['prix'],
+        $user = new hotel(
+            $_POST['nom'],
+            $_POST['options'],
             $_POST['depart'],
             $_POST['retour'],
-            $_POST['image']
+            $_POST['etoiles']
         );
-        $userC->ajoutervoyages($user);
-        header('Location:GV.php');
+        $userC->ajouterhotel($user);
+        header('Location:GH.php');
     } else
         $error = "Missing information";
 }
@@ -380,7 +380,14 @@ if (
           <li class="active">
             <a class="" href="voyage.php">
                           <i class="icon_house_alt"></i>
-                          <span>voyages</span>
+                          <span>voyage
+                          </span>
+                      </a>
+          </li>
+          <li class="active">
+            <a class="" href="hotel.php">
+                          <i class="icon_house_alt"></i>
+                          <span>hotel</span>
                       </a>
           </li>
 
@@ -398,7 +405,7 @@ if (
             <h3 class="page-header"><i class="fa fa-table"></i> Table</h3>
             <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
-              <li><i class="fa fa-table"></i>GV</li>
+              <li><i class="fa fa-table"></i>GH</li>
               
             </ol>
           </div>
@@ -406,7 +413,7 @@ if (
         <!-- page start-->
 
 
-        <button><a href="GV.php">Retour à la liste</a></button>
+        <button><a href="GH.php">Retour à la liste</a></button>
     <hr>
 <section id="container" class="">
     <div id="error">
@@ -415,53 +422,48 @@ if (
 
 
 
+    
+   
+
 
     <div class="panel-body"> 
             <div class="panel-body"> 
             <section class="panel-body">
               <header class="panel-body">
-                Nouveau voyages
+                Nouveau hotel
               </header>
               <table class="table">
                 <thead>
+   
     <form class="form-horizontal" action="" method="POST">
         <table border="1" align="center">
         <div class="form-group">
 
-        <label class="col-sm-2 control-label">destination</label>
+        <label class="col-sm-2 control-label">nom</label>
 <div class="col-sm-10">
-<input type="text" class="form-control" name="destination" required pattern="[0-9a-zA-Z-\.]{3,12}" id="destination" maxlength="20">
+<input type="text" class="form-control" required pattern="[0-9a-zA-Z-\.]{3,12}" name="nom" id="nom" size="40" maxlength="40">
                     </div>
                     </div>
 
                
             
-                    <form class="form-horizontal" action="" method="POST">
-        <table border="1" align="center">
-        <div class="form-group">
+                
 
-        <label class="col-sm-2 control-label">prix</label>
-<div class="col-sm-10">
-<input type="text" class="form-control" name="prix" required pattern="[0-9]" id="prix" maxlength="20">
-                    </div>
-                    </div>
-
-                    <form class="form-horizontal" action="" method="POST">
         <table border="1" align="center">
         <div class="form-group">
 
         <label class="col-sm-2 control-label">depart</label>
 <div class="col-sm-10">
-<input type="text" class="form-control" name="depart" id="depart" maxlength="20">
+<input type="date" class="form-control" name="depart" id="depart" maxlength="20">
                     </div>
                     </div>
-                    <form class="form-horizontal" action="" method="POST">
+                  
         <table border="1" align="center">
         <div class="form-group">
 
         <label class="col-sm-2 control-label">retour</label>
 <div class="col-sm-10">
-<input type="text" class="form-control" name="retour" id="retour" maxlength="20">
+<input type="date" class="form-control" name="retour" id="retour" maxlength="20">
                     </div>
                     </div>
                     <br>
@@ -473,15 +475,29 @@ if (
                     <table border="1" align="center">
         <div class="form-group">
 
-        <label class="col-sm-2 control-label">image</label>
+        <label class="col-sm-2 control-label">etoiles</label>
 <div class="col-sm-10">
-<input type="file" id="image" name="image" class="form-control" >
+<input type="text" id="etoiles" required pattern="[0-9]"name="etoiles" class="form-control" >
                     </div>
                     </div>
                     <br>
                     <br>
 
+                    <table border="1" align="center">
+        <div class="form-group">
 
+        <label class="col-sm-2 control-label">options</label>
+<div class="col-sm-10">
+ 
+
+							<select name="options" id="options" class="form-control" >
+								<option value="Selectionner">Selectionner</option>
+								<option value="pension complète">pension complète</option>
+								<option value="demi-pension">demi-pension</option>
+								<option value="all inclusive">all inclusive</option>
+							</select>
+						
+                    </div>
 
 
 
@@ -508,7 +524,7 @@ if (
             
 
             </tr>
-            
+
      
     
         </table>

@@ -423,7 +423,7 @@ echo("</table> ");
               <header class="panel-heading">
                 Advanced Table
               </header>
-
+              <a href = "rechercheV.php" class="btn btn-primary shop-item-button">Search</a>
               <table class="table table-striped table-advance table-hover">
                 <tbody>
                   <tr>
@@ -469,6 +469,29 @@ echo ("</td>");
                   </tr>
                   
             <?php } ?>
+            <script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+function myFunction() {
+    window.print();
+   
+}
+
+</script>
+<button class="btn btn-danger" onclick="myFunction()">imprimer les voyages</button>
+
                 </tbody>
               </table>
             </section>

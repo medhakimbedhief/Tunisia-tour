@@ -1,57 +1,65 @@
 <?php
-include  '../FRONT/Models/voyagem.php';
-include_once '../FRONT/Controller/voyageC.php';
-
-
-$error = "";
-
-// create user
-$user = null;
-
-// create an instance of the controller
-$userC = new voyagesC();
-if (
-    isset($_POST["destination"]) &&
-    isset($_POST["prix"]) &&
-    isset($_POST["depart"]) &&
-    isset($_POST["retour"]) &&
-    isset($_POST["image"]) 
-) {
-    if (
-        !empty($_POST["destination"]) &&
-        !empty($_POST["prix"]) &&
-        !empty($_POST["depart"]) &&
-        !empty($_POST["retour"]) &&
-        !empty($_POST["image"])
-    ) {
-        $user = new voyages(
-            $_POST['destination'],
-            $_POST['prix'],
-            $_POST['depart'],
-            $_POST['retour'],
-            $_POST['image']
-        );
-        $userC->ajoutervoyages($user);
-        header('Location:GV.php');
-    } else
-        $error = "Missing information";
+include_once "config.php" ;
+try{
+    $pdo=config::getConnexion();
+    $query= $pdo ->prepare(
+        'SELECT * FROM hotel'
+    );
+    $query->execute();
+    $result = $query->fetchAll();
 }
-
-
+catch(PDOException $e){
+    $e->getMessage();
+}
 ?>
+
+<!--echo("<table border='1' align='center'><tr>");
+echo ("<td>");
+echo "ID";
+echo ("</td>");
+echo ("<td>");
+echo "nom";
+echo ("</td>");
+    echo ("<td>");
+    echo "options";
+    echo ("</td>");
+    echo ("<td>");
+    echo "depart";
+    echo ("</td>");
+    echo ("<td>");
+    echo "retour";
+    echo ("</td>");
+   
+echo $rows['nom'];
+echo ("</td>");
+    echo ("<td>");
+    echo $rows['options'];
+    echo ("</td>");
+    echo ("<td>");
+    echo $rows['depart'];
+    echo ("</td>");
+    echo ("<td>");
+    echo $rows['retour'];
+    echo ("</td>");
+    
+echo("</tr>");
+}
+echo("</table> ");
+?>-->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
   <meta name="author" content="GeeksLabs">
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
-    <title>creative-bootstrap admin template</title>
-    <!-- Bootstrap CSS -->
+
+  <title>Creative - Bootstrap Admin Template</title>
+
+  <!-- Bootstrap CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <!-- bootstrap theme -->
   <link href="css/bootstrap-theme.css" rel="stylesheet">
@@ -79,12 +87,13 @@ if (
     Theme URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
     Author: BootstrapMade
     Author URL: https://bootstrapmade.com
-  =======-->
+  ======================================================= -->
 </head>
 
 <body>
+  <!-- container section start -->
+  <section id="container" class="">
 
- 
 
     <header class="header dark-bg">
       <div class="toggle-nav">
@@ -383,6 +392,12 @@ if (
                           <span>voyages</span>
                       </a>
           </li>
+          <li class="active">
+            <a class="" href="hotel.php">
+                          <i class="icon_house_alt"></i>
+                          <span>hotel</span>
+                      </a>
+          </li>
 
         </ul>
         <!-- sidebar menu end-->
@@ -406,116 +421,139 @@ if (
         <!-- page start-->
 
 
-        <button><a href="GV.php">Retour à la liste</a></button>
-    <hr>
-<section id="container" class="">
-    <div id="error">
-        <?php echo $error; ?>
-    </div>
 
 
-
-
-    <div class="panel-body"> 
-            <div class="panel-body"> 
-            <section class="panel-body">
-              <header class="panel-body">
-                Nouveau voyages
+        <div class="row">
+          <div class="col-lg-12">
+            <section class="panel">
+              <header class="panel-heading">
+                Advanced Table
               </header>
-              <table class="table">
-                <thead>
-    <form class="form-horizontal" action="" method="POST">
-        <table border="1" align="center">
-        <div class="form-group">
-
-        <label class="col-sm-2 control-label">destination</label>
-<div class="col-sm-10">
-<input type="text" class="form-control" name="destination" required pattern="[0-9a-zA-Z-\.]{3,12}" id="destination" maxlength="20">
-                    </div>
-                    </div>
-
-               
-            
-                    <form class="form-horizontal" action="" method="POST">
-        <table border="1" align="center">
-        <div class="form-group">
-
-        <label class="col-sm-2 control-label">prix</label>
-<div class="col-sm-10">
-<input type="text" class="form-control" name="prix" required pattern="[0-9]" id="prix" maxlength="20">
-                    </div>
-                    </div>
-
-                    <form class="form-horizontal" action="" method="POST">
-        <table border="1" align="center">
-        <div class="form-group">
-
-        <label class="col-sm-2 control-label">depart</label>
-<div class="col-sm-10">
-<input type="text" class="form-control" name="depart" id="depart" maxlength="20">
-                    </div>
-                    </div>
-                    <form class="form-horizontal" action="" method="POST">
-        <table border="1" align="center">
-        <div class="form-group">
-
-        <label class="col-sm-2 control-label">retour</label>
-<div class="col-sm-10">
-<input type="text" class="form-control" name="retour" id="retour" maxlength="20">
-                    </div>
-                    </div>
-                    <br>
-                    <br>
-
-
-
-
-                    <table border="1" align="center">
-        <div class="form-group">
-
-        <label class="col-sm-2 control-label">image</label>
-<div class="col-sm-10">
-<input type="file" id="image" name="image" class="form-control" >
-                    </div>
-                    </div>
-                    <br>
-                    <br>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <tr>
-            <br>
-                    <br>
-            <div class="col-lg-offset-2 col-lg-10">
-                
-                    <input type="submit" value="Envoyer" class="btn btn-danger">
-
-                    <input type="reset" value="Annuler" class="btn btn-danger">
-            
-
-            </tr>
-            
-     
-    
-        </table>
-    </form>
+              <a href = "rechercheV.php" class="btn btn-primary shop-item-button">Search</a>
+              <table class="table table-striped table-advance table-hover">
+                <tbody>
+                  <tr>
+                    <th><i class="icon_profile"></i>ID</th>
+                    <th><i class="icon_profile"></i> nom</th>
+                    <th><i class="icon_profile"></i>options</th>
+                    <th><i class="icon_profile"></i>depart</th>
+                    <th><i class="icon_mobile"></i> retour</th>
+                    <th><i class="icon_mobile"></i> etoiles</th>
+                  
+                  </tr>
+                  <?php
+                  foreach($result as $rows)
+{
+echo ("<tr><td>");
+echo $rows['id'];
+echo ("</td>");
+echo ("<td>");
+echo $rows['nom'];
+echo ("</td>");
+    echo ("<td>");
+    echo $rows['options'];
+    echo ("</td>");
+    echo ("<td>");
+    echo $rows['depart'];
+    echo ("</td>");
+    echo ("<td>");
+    echo $rows['retour'];
+    echo ("</td>");
+    echo ("<td>");
+    echo $rows['etoiles'];
+    echo ("</td>");
    
+?>
+                
+                    <td>
+                      <div class="btn-group">
+                        <a class="btn btn-primary" <?php echo("href=../FRONT/Controller/editV.php?id=" .$rows['id']." ") ?>><i class="icon_plus_alt2"></i></a>
+                        <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
+                        <a class="btn btn-danger" <?php echo("href=../FRONT/Controller/deleteV.php?id=" .$rows['id']." ") ?> ><i class="icon_close_alt2"></i></a>
+                      </div>
+                    </td>
+                  </tr>
+                  
+            <?php } ?>
+            <script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
 
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+function myFunction() {
+    window.print();
+   
+}
+
+</script>
+<button class="btn btn-danger" onclick="myFunction()">imprimer les hotels</button>
+
+                </tbody>
+              </table>
+            </section>
+          </div>
+        </div>
+        <!-- page end-->
+      </section>
+    </section>
+    <!--main content end-->
+    <div class="text-right">
+      <div class="credits">
+        <!--
+            All the links in the footer should remain intact.
+            You can delete the links only if you purchased the pro version.
+            Licensing information: https://bootstrapmade.com/license/
+            Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
+          
+        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> -->
+      </div>
+    </div>
+  </section>
+  <!-- container section end -->
+  <!-- javascripts -->
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <!-- nicescroll -->
+  <script src="js/jquery.scrollTo.min.js"></script>
+  <script src="js/jquery.nicescroll.js" type="text/javascript"></script>
+  <!--custome script for all page-->
+  <script src="js/scripts.js"></script>
+  <div id="ascrail2000" class="nicescroll-rails"
+    style="width: 6px; z-index: 1000; background: rgb(247, 247, 247); cursor: default; position: fixed; top: 0px; height: 100%; right: 0px; opacity: 0;">
+    <div
+      style="position: relative; top: 0px; float: right; width: 6px; height: 346px; background-color: rgb(0, 122, 255); background-clip: padding-box; border-radius: 10px;">
+    </div>
+  </div>
+  <div id="ascrail2000-hr" class="nicescroll-rails"
+    style="height: 6px; z-index: 1000; background: rgb(247, 247, 247); position: fixed; left: 0px; width: 100%; bottom: 0px; cursor: default; display: none; opacity: 0;">
+    <div
+      style="position: relative; top: 0px; height: 6px; width: 1518px; background-color: rgb(0, 122, 255); background-clip: padding-box; border-radius: 10px;">
+    </div>
+  </div>
+  <div id="ascrail2001" class="nicescroll-rails"
+    style="width: 3px; z-index: auto; background: rgb(247, 247, 247); cursor: default; position: fixed; top: 0px; left: 177px; height: 772px; display: none; opacity: 0;">
+    <div
+      style="position: relative; top: 0px; float: right; width: 3px; height: 0px; background-color: rgb(0, 122, 255); background-clip: padding-box; border-radius: 10px;">
+    </div>
+  </div>
+  <div id="ascrail2001-hr" class="nicescroll-rails"
+    style="height: 3px; z-index: auto; background: rgb(247, 247, 247); top: 769px; left: 0px; position: fixed; cursor: default; display: none; opacity: 0;">
+    <div
+      style="position: relative; top: 0px; height: 3px; width: 0px; background-color: rgb(0, 122, 255); background-clip: padding-box; border-radius: 10px; left: 0px;">
+    </div>
+  </div>
 </body>
 
+</html>
 
-</body>
+

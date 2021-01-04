@@ -2,6 +2,7 @@
   include_once '.\Controller\blogC.php ';
   include_once '.\Controller\voyageC.php ';
   include_once '.\Controller\commentC.php ';
+  include_once '.\Controller\hotelC.php ';
   $comment = null;
   $commentC = new commentC();
   $cmnt=$commentC->afficher_positives();
@@ -17,6 +18,8 @@ $blog=$blogC->afficherblog();
 #}
 $voyagesC = new voyagesC();
 $voyages=$voyagesC->affichervoyages();
+$hotelC = new hotelC();
+$hotel=$hotelC->afficherhotel();
 // On prolonge la session
 
 // On teste si la variable de session existe et contient une valeur
@@ -376,9 +379,9 @@ foreach($listeRand as $rowR){
 						
 			
 											  
-				  <form action="recherche.php" method="GET">
+				  <form action="rechercheV.php" method="GET">
                   Votre recherche: <input type="text" name="titre"  class="form-group" >
-                  <input type="submit" value="Recherche" class="btn btn-info" href = "recherche.php">
+                  <input type="submit" value="Recherche" class="btn btn-info" href = "rechercheV.php">
                   </form> 
 		
 	
@@ -390,8 +393,8 @@ foreach($listeRand as $rowR){
 											 
 						<br>
 						<br>
-						<div class="voyages-content">
-						<?php foreach($voyages as $rows) { ?>
+						<div class="packages-content">
+							<?php foreach($voyages as $rows) { ?>
 							<div class="row">
 
 								<div class="col-sm-4 col-md-4">
@@ -403,7 +406,7 @@ foreach($listeRand as $rowR){
 									
 									  
 										<div class="caption">
-											<div class="voyages-txt">
+											<div class="packages-txt">
 												<h3>
 													<a href="Views/voyage.php">
 													<hr>image</hr> <br>
@@ -429,7 +432,85 @@ foreach($listeRand as $rowR){
 									</div><!--/.thumbnail-->
 
 								</div><!--/.col-->
-						<?php } ?>
+								<?php } ?>
+
+								
+							</div><!--/.row-->
+						</div><!--/.voyages-content-->
+					</div><!--/.voyages-details-->
+				</div><!--/.container-->
+
+		</section><!--/.voyages-->
+		<!--voyages end-->
+		<section id="pack" class="packages">
+			<div class="container">
+			<div class="packages-details">
+						<div class="gallary-header text-center">
+							<h2>
+								hotels
+							</h2>
+							<p>
+								Nos hotels disponibles
+							</p>
+						</div><!--/.gallery-header-->
+						
+			
+											  
+				  <form action="rechercheV.php" method="GET">
+                  Votre recherche: <input type="text" name="titre"  class="form-group" >
+                  <input type="submit" value="Recherche" class="btn btn-info" href = "rechercheV.php">
+                  </form> 
+		
+	
+	
+
+
+											
+
+											 
+						<br>
+						<br>
+						<div class="packages-content">
+							<?php foreach($hotel as $rows) { ?>
+							<div class="row">
+
+								<div class="col-sm-4 col-md-4">
+									<div class="thumbnail">
+										<h2>hotels  <span>15 november 2021</span></h2>
+											
+									
+									
+									
+									  
+										<div class="caption">
+											<div class="packages-txt">
+												<h3>
+													<a href="Views/hotel.php">
+													
+													<hr>nom</hr> <br>
+														<?php echo $rows['nom'];?>
+														<br>
+														<hr>options</hr> <br>
+														<?php echo $rows['options'];?>
+														<br>
+														<hr>Depart</hr> <br>
+														<?php echo $rows['depart'];?>
+														<br>
+														<hr>Retour</hr> <br>
+														<?php echo $rows['retour'];?>
+														<br>
+														<hr>etoiles</hr> <br>
+														<?php echo $rows['etoiles'];?>
+													</a>
+												</h3>
+											
+												
+											</div><!--/.voyages-txt-->
+										</div><!--/.caption-->
+									</div><!--/.thumbnail-->
+
+								</div><!--/.col-->
+								<?php } ?>
 
 								
 							</div><!--/.row-->
