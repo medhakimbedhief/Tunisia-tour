@@ -14,6 +14,19 @@ class commentC{
             $e->getMessage();
         }
     }
+    public function afficher_positives()
+    {
+        try{
+            $pdo=config::getConnexion();
+            $sql="SELECT * FROM commentaire WHERE text LIKE '%joli%' OR text LIKE '%bon%' OR text LIKE '%great%'";
+            $query=$pdo->prepare($sql);
+            $query->execute();
+            return $query->fetchAll();
+        }
+        catch(PDOException $e){
+            $e->getMessage();
+        }
+    }
     public function positives()
     {
         try{
