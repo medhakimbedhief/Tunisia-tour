@@ -26,13 +26,14 @@ $today=date("Y-m-d");
 if($today > $_POST['date'] )
 {
 	echo("<script> alert(\"verifier date debut\")</script>");
-	echo("<script> window.location.replace(\"checkout_camping.php\")</script>");
+	echo("<script> window.location.replace(\"checkout_randonnee.php\")</script>");
 
 }
 else {
 $RandonneeC1-> AjouterRandonnee($randonne1);
+echo("<script> window.location.replace(\"checkout_randonnee.php\")</script>");
 
-header('Location: checkout_randonnee.php');
+//header('Location: checkout_randonnee.php');
 }
 }else{
 	echo "vérifier les champs";

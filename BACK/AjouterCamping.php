@@ -35,9 +35,10 @@ else if($_POST['DateFin']< $_POST['DateDebut'] )
 
 }
 else if($_POST['DateFin']> $_POST['DateDebut'] ){
-$campingC1-> ajoutercamping($camping1);
 
-header('Location: checkout_camping.php');
+$campingC1-> ajoutercamping($camping1);
+echo("<script> window.location.replace(\"checkout_camping.php\")</script>");
+//header('Location: checkout_camping.php');
 }
 }else{
 	echo "vérifier les champs";
