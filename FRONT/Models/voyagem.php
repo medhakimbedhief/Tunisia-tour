@@ -41,13 +41,13 @@
 		function setdestination(string $destination){
 			$this->destination=$destination;
 		}
-		function setprix(floatval $prix){
+		function setprix(string $prix){
 			$this->prix;
 		}
-		function setdepart(date $depart){
+		function setdepart(string $depart){
 			$this->depart=$depart;
 		}
-		function setretour(date $retour){
+		function setretour(string $retour){
 			$this->retour=$retour;
 		}
 		function setimage(string $image){

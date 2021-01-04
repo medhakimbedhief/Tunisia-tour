@@ -111,10 +111,7 @@
 </div>
 <label id="elementpass" name="erreur" style="color: red;display: none;">Ce champ est obligatoire</label> 
 
-<label class="checkbox">
-                <input type="checkbox" value="remember-me"> Remember me
-                <span class="pull-right"> <a href="#"> Forgot Password?</a></span>
-            </label>
+
     
      <input class="btn btn-primary btn-lg btn-block" type="submit" name="submit" value="Se Connecter" onClick="validation()">
      <a><button class="btn btn-info btn-lg btn-block" formaction="../FRONT/Views/Signup.php" >S'inscrire</button></a>
