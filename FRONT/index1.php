@@ -589,10 +589,10 @@ foreach($listeRand as $rowR){
 				<div class="blog-details">
 						<div class="gallary-header text-center">
 							<h2>
-								latest news
+								latest blog
 							</h2>
 							<p>
-								Travel News from all over the world 
+								Travel blog from all over the world 
 							</p>
 						</div><!--/.gallery-header-->
 						
@@ -602,7 +602,7 @@ foreach($listeRand as $rowR){
 
 								<div class="col-sm-4 col-md-4">
 									<div class="thumbnail">
-										<h2>trending news <span>15 november 2017</span></h2>
+										<h2>trending blog <span>15 november 2017</span></h2>
 										<div class="thumbnail-img">
 											<img src="assets/images/blog/<?php echo $rows['image']; ?>" alt="blog-img">
 											<div class="thumbnail-img-overlay"></div><!--/.thumbnail-img-overlay-->
